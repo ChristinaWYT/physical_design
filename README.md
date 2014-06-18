@@ -1,4 +1,5 @@
 physical_design
 ===============
 
-physical design evaluation of hbase
+In this project, we plan to evaluate the physical design of HBase. In particular, we want to evaluate different encoding, compression, and bloom filters.
+
