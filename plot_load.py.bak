@@ -1,0 +1,110 @@
+import re
+import matplotlib.pyplot as pyplot
+import numpy as np
+import argparse
+from operator import add
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument("-caseresult_dir", "--caseresult_dir", help="Result Dir")
+parser.add_argument("-cases", "--cases", help="Cases")
+
+args = parser.parse_args()
+
+load_throughputs = []
+number_bytes_written_master = []
+number_bytes_written_slave1 = []
+number_of_compaction = []
+load_end_timestamp = []
+
+cases = args.cases.split(':')
+
+for case in cases:
+	with open('case'+case+'.log', 'r') as file:
+		m = re.findall("\+ echo (\d+)", file.read())
+		print(m)
+		load_end_timestamp.append(int(m[1]))
+
+for case in cases:
+	with open(args.caseresult_dir + '/case' + case + '/load_1.dat', 'r') as file:
+		for line in file:
+			words = line.split()
+			if len(words) == 3:
+				if words[0] == '[OVERALL],' and words[1] == 'Throughput(ops/sec),':
+					load_throughputs.append(float(words[2]))
+
+def stats(filename, metric):
+	casecount=-1
+for case in cases:
+	casecount=casecount+1
+	with open(args.caseresult_dir + '/case'+ case + '/master/datanode-metrics.out', 'r') as file:
+		found = False
+		f = file.read()
+		count = 0
+		stamp = load_end_timestamp[casecount]
+		while not found and count < 1000:
+			regex = "("+str(stamp)+".*)"
+			matches = re.findall(regex, f)
+			print(matches)
+			for match in matches:
+				tokens = match.split()
+				for token in tokens:
+					words=token.strip(',').split('=')
+					if re.match('bytes_written', words[0]):
+						number_bytes_written_master.append(int(words[1]))
+						found = True
+						break
+				if found:
+					break
+			stamp = stamp+1
+			count=count+1
+
+casecount=-1
+for case in cases:
+	with open(args.caseresult_dir + '/case'+ case + '/slave1/datanode-metrics.out', 'r') as file:
+		casecount=casecount+1
+		found = False
+		f = file.read()
+		count = 0
+		stamp = load_end_timestamp[casecount]
+		while not found and count < 1000:
+			regex = "("+str(stamp)+".*)"
+			matches = re.findall(regex, f)
+			print(matches)
+			for match in matches:
+				tokens = match.split()
+				for token in tokens:
+					words=token.strip(',').split('=')
+					if re.match('bytes_written', words[0]):
+						number_bytes_written_slave1.append(int(words[1]))
+						found = True
+						break
+				if found:
+					break
+			stamp = stamp+1
+			count=count+1
+
+
+number_bytes_written = list(map(add, number_bytes_written_master, number_bytes_written_slave1))
+
+print(*load_throughputs, sep=',', end='\n')
+print(*number_bytes_written, sep=',', end='\n')
+#print(*number_of_compaction, sep=',', end='\n')
+print(len(load_throughputs))
+print(len(number_bytes_written))
+print(len([1,2,3]))
+'''
+fig, ax1 = pyplot.subplots()
+ax1.plot([1,2,3], load_throughputs, color='r', marker='o', label="insert")
+ax2 = ax1.twinx()
+ax2.plot([1,2,3], number_bytes_written, color='b', marker='o', label="byte written")
+#pyplot.plot(range(1,4), number_of_compaction, color='r', marker='o', label="load")
+
+ax1.set_ylabel('Throughput')
+ax2.set_ylabel('byte written')
+
+
+pyplot.legend()
+pyplot.xticks([1,2,3],['Default', 'Major Off', 'Major and Minor Off'], rotation=30)
+pyplot.savefig(args.caseresult_dir + '/load.png')
+pyplot.show()'''
