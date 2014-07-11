@@ -5,6 +5,14 @@ import argparse
 from operator import add
 from operator import sub
 
+def make_patch_spines_invisible(ax):
+  ax.set_frame_on(True)
+  ax.patch.set_visible(False)
+    #for sp in ax.spines.itervalues():
+    #    sp.set_visible(False)
+  for k in ax.spines.keys():
+        ax.spines[k].set_visible(False)
+
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-caseresult_dir", "--caseresult_dir", help="Result Dir")
@@ -166,21 +174,24 @@ print(*number_bytes_read, sep=',', end='\n')
 '''
 fig, ax1 = pyplot.subplots()
 fig.subplots_adjust(right=0.75)
-p1, = ax1.plot([1,2,3], workloada_throughputs, color='r', marker='o', label="workloada throughput")
+p1, = ax1.plot([1,2,3], workloada_throughputs, color='r', marker='o', label="workloada throughput", linewidth=1.5)
 ax2 = ax1.twinx()
-p2, = ax2.plot([1,2,3], number_bytes_written, color='b', marker='o', label="byte written")
+p2, = ax2.plot([1,2,3], number_bytes_written, color='b', marker='o', label="byte written", linewidth=1.5)
 ax3 = ax1.twinx()
-p3, = ax3.plot([1,2,3], number_of_compaction, color='g', marker='o', label="number of compaction")
+p3, = ax3.plot([1,2,3], number_of_compaction, color='g', marker='o', label="number of compaction", linewidth=1.5)
 ax4 = ax1.twinx()
-p4, = ax4.plot([1,2,3], number_storeFiles, color='k', marker='o', label="change in number of storeFiles")
+p4, = ax4.plot([1,2,3], number_storeFiles, color='k', marker='o', label="change in number of storeFiles", linewidth=1.5)
 ax5 = ax1.twinx()
-p5, = ax5.plot([1,2,3], number_bytes_read, color='c', marker='o', label="byte read")
+p5, = ax5.plot([1,2,3], number_bytes_read, color='c', marker='o', label="byte read", linewidth=1.5)
 
 ax3.spines["right"].set_position(("axes", 1.1))
 ax4.spines["right"].set_position(("axes",  1.2)) 
 ax5.spines["right"].set_position(("axes", 1.3))
 
-#make_patch_spines_invisible(ax3)
+make_patch_spines_invisible(ax3)
+make_patch_spines_invisible(ax4)
+make_patch_spines_invisible(ax5)
+
 ax3.spines["right"].set_visible(True)
 ax4.spines["right"].set_visible(True)
 ax5.spines["right"].set_visible(True)

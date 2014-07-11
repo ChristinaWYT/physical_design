@@ -5,12 +5,12 @@ set -x
 for i in `seq 64 78`;
 do
 	./deleteoldlogs.sh
-	start-dfs.sh
-	start-hbase.sh
+	ssh hadoop@master /home/hadoop/hadoop/bin/start-dfs.sh
+	ssh hadoop@master /home/hadoop/hbase/bin/start-hbase.sh
 	./RunACase.sh clean create load &>case`echo $i`.log
 	./collectcasetrace.sh case`echo $i`
-	stop-hbase.sh
-	stop-dfs.sh
+	ssh hadoop@master /home/hadoop/hbase/bin/stop-hbase.sh
+	ssh hadoop@master /home/hadoop/hadoop/bin/stop-dfs.sh
 done
 
 set +x

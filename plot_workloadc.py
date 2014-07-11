@@ -37,7 +37,7 @@ workloadc_end_timestamp = []
 cases = args.cases.split(':')
 
 for case in cases:
-	with open('case'+case+'.log', 'r') as file:
+	with open('caseresult/case' + case + '/case' + case+'.log', 'r') as file:
 		m = re.findall("\+ echo (\d+)", file.read())
 		#workloadc_start_timestamp.append(int(m[8]))
 		#workloadc_start_timestamp.append(int(m[0]))
@@ -225,5 +225,6 @@ lines = [p1, p2, p3,  p5]
 
 ax1.legend(lines, [l.get_label() for l in lines])
 
+pyplot.title(args.title)
 pyplot.savefig('workloadc_' + args.cases, bbox_inches='tight', pad_inches=0.2)
 #pyplot.show()

@@ -1,0 +1,262 @@
+++ ls caseresult/ -ltr
+++ wc -l
++ filename=case67
++ mkdir caseresult/case67
++ ssh hadoop@master mkdir /home/hadoop/git/physical_design/caseresult/case67
++ RESULT_DIR=/home/hadoop/git/physical_design/caseresult/case67
++ TEN=10
++ SIXTY=60
++ SLEEP_TIME=300
++ YCSB_DIR=/home/hadoop/ycsb-0.1.4
++ number_of_operations=10000000
++ number_of_threads=20
++ number_of_records=10000000
++ output_file_suffix=.dat
++ experiment_list_file=/home/hadoop/git/physical_design/case67.list
++ clean=false
++ create=false
++ load=false
++ random_read=false
++ workloada=false
++ workloadb=false
++ workloadc=false
++ scan=false
++ all=false
++ for i in '$@'
++ '[' clean == all ']'
++ '[' clean == clean ']'
++ clean=true
++ for i in '$@'
++ '[' create == all ']'
++ '[' create == clean ']'
++ '[' create == create ']'
++ create=true
++ for i in '$@'
++ '[' load == all ']'
++ '[' load == clean ']'
++ '[' load == create ']'
++ '[' load == load ']'
++ load=true
++ let counter=1
++ cd /home/hadoop/ycsb-0.1.4
+++ pwd
++ echo /home/hadoop/ycsb-0.1.4
+/home/hadoop/ycsb-0.1.4
++ read line
++ false
++ true
++ echo 'sleeping for 60 ...'
+sleeping for 60 ...
++ sleep 60
++ echo 'droping usertable...'
+droping usertable...
++ ssh hadoop@master /home/hadoop/hbase/bin/hbase shell /home/hadoop/git/physical_design/delete_table
+0 row(s) in 2.7810 seconds
+
+0 row(s) in 1.3620 seconds
+
+0 row(s) in 0.0800 seconds
+
++ echo 'sleeping for 300 ...'
+sleeping for 300 ...
++ sleep 300
++ false
++ true
++ echo 'creating usertable...'
+creating usertable...
++ create_statement='create '\''usertable'\'', { NAME=>'\''family'\'', COMPRESSION=>'\''GZ'\''}, SPLITS => ['\''user1'\'', '\''user2'\'', '\''user3'\'', '\''user4'\'', '\''user5'\'', '\''user6'\'', '\''user7'\'', '\''user8'\'', '\''user9'\'']'
++ echo create ''\''usertable'\'',' '{' 'NAME=>'\''family'\'',' 'COMPRESSION=>'\''GZ'\''},' SPLITS '=>' '['\''user1'\'',' ''\''user2'\'',' ''\''user3'\'',' ''\''user4'\'',' ''\''user5'\'',' ''\''user6'\'',' ''\''user7'\'',' ''\''user8'\'',' ''\''user9'\'']'
++ echo 'exit '
++ scp /home/hadoop/git/physical_design/caseresult/case67/create_1.script hadoop@master:/home/hadoop/git/physical_design/caseresult/case67/create_1.script
++ create_table /home/hadoop/git/physical_design/caseresult/case67/create_1.script
++ echo 'creating table...'
+creating table...
++ echo /home/hadoop/git/physical_design/caseresult/case67/create_1.script
+/home/hadoop/git/physical_design/caseresult/case67/create_1.script
++ ssh hadoop@master /home/hadoop/hbase/bin/hbase shell /home/hadoop/git/physical_design/caseresult/case67/create_1.script
+0 row(s) in 1.5020 seconds
+
++ echo 'sleeping for 10 sec ...'
+sleeping for 10 sec ...
++ sleep 10
++ false
++ true
++ echo 'loading data...'
+loading data...
++ echo 'starting time: '
+starting time: 
+++ date +%s
++ echo 1405028577
+1405028577
+++ echo /home/hadoop/git/physical_design/caseresult/case67/load_1.dat
++ ./ld 10000000 20 /home/hadoop/git/physical_design/caseresult/case67/load_1.dat
+Loading workload...
+Starting test.
+2014-07-10 14:42:58:196 0 sec: 0 operations; 
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:zookeeper.version=3.4.6-1569965, built on 02/20/2014 09:09 GMT
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:host.name=sceplus-vm43.almaden.ibm.com
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:java.version=1.6.0_31
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:java.vendor=Sun Microsystems Inc.
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:java.home=/usr/lib/jvm/java-6-openjdk-amd64/jre
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:java.class.path=/home/hadoop/ycsb-0.1.4/hbase-binding/lib/hbase-binding-0.1.4.jar:/home/hadoop/ycsb-0.1.4/hbase-binding/conf:/home/hadoop/ycsb-0.1.4/core/lib/core-0.1.4.jar:/home/hadoop/ycsb-0.1.4/jdbc-binding/conf
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:java.library.path=/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk-amd64/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib/jni:/lib:/usr/lib
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:java.io.tmpdir=/tmp
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:java.compiler=<NA>
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:os.name=Linux
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:os.arch=amd64
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:os.version=3.13.0-24-generic
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:user.name=hadoop
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:user.home=/home/hadoop
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Client environment:user.dir=/home/hadoop/ycsb-0.1.4
+14/07/10 14:42:58 INFO zookeeper.ZooKeeper: Initiating client connection, connectString=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181 sessionTimeout=90000 watcher=hconnection-0x29ee65b1, quorum=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181, baseZNode=/hbase
+14/07/10 14:42:58 INFO zookeeper.ClientCnxn: Opening socket connection to server slave1/9.1.143.59:2181. Will not attempt to authenticate using SASL (unknown error)
+14/07/10 14:42:58 INFO zookeeper.RecoverableZooKeeper: Process identifier=hconnection-0x29ee65b1 connecting to ZooKeeper ensemble=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181
+14/07/10 14:42:58 INFO zookeeper.ClientCnxn: Socket connection established to slave1/9.1.143.59:2181, initiating session
+14/07/10 14:42:58 INFO zookeeper.ClientCnxn: Session establishment complete on server slave1/9.1.143.59:2181, sessionid = 0x14723e6d7340007, negotiated timeout = 90000
+2014-07-10 14:43:08:197 10 sec: 257351 operations; 25732.53 current ops/sec; [INSERT AverageLatency(us)=535.91] 
+2014-07-10 14:43:18:198 20 sec: 494605 operations; 23723.03 current ops/sec; [INSERT AverageLatency(us)=623.06] 
+2014-07-10 14:43:28:199 30 sec: 670677 operations; 17605.44 current ops/sec; [INSERT AverageLatency(us)=504.18] 
+2014-07-10 14:43:38:199 40 sec: 786246 operations; 11556.9 current ops/sec; [INSERT AverageLatency(us)=1521.67] 
+2014-07-10 14:43:48:435 50 sec: 911889 operations; 12274.62 current ops/sec; [INSERT AverageLatency(us)=1029.76] 
+2014-07-10 14:43:58:436 60 sec: 966724 operations; 5483.5 current ops/sec; [INSERT AverageLatency(us)=1633.44] 
+14/07/10 14:44:06 INFO client.AsyncProcess: #6, table=usertable, attempt=10/35 failed 1926 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=1580, waitTime=3790, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:00 PDT 2014, retrying after 10057 ms, replay 1926 ops.
+14/07/10 14:44:06 INFO client.AsyncProcess: #12, table=usertable, attempt=10/35 failed 1852 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=1580, waitTime=3790, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:00 PDT 2014, retrying after 10064 ms, replay 1852 ops.
+2014-07-10 14:44:08:436 70 sec: 1057715 operations; 9098.19 current ops/sec; [INSERT AverageLatency(us)=2935.68] 
+2014-07-10 14:44:18:437 80 sec: 1057715 operations; 0 current ops/sec;  
+14/07/10 14:44:24 INFO client.AsyncProcess: #7, table=usertable, attempt=10/35 failed 1864 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=1748, waitTime=2365, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:17 PDT 2014, retrying after 10008 ms, replay 1864 ops.
+14/07/10 14:44:24 INFO client.AsyncProcess: #14, table=usertable, attempt=10/35 failed 3139 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=1748, waitTime=2365, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:18 PDT 2014, retrying after 10034 ms, replay 3139 ops.
+14/07/10 14:44:24 INFO client.AsyncProcess: #2, table=usertable, attempt=10/35 failed 3280 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=1748, waitTime=2365, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:16 PDT 2014, retrying after 10003 ms, replay 3280 ops.
+14/07/10 14:44:24 INFO client.AsyncProcess: #20, table=usertable, attempt=10/35 failed 3110 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=1748, waitTime=2365, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:17 PDT 2014, retrying after 10039 ms, replay 3110 ops.
+14/07/10 14:44:24 INFO client.AsyncProcess: #6, table=usertable, attempt=11/35 failed 1926 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=1748, waitTime=2365, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:00 PDT 2014, retrying after 10085 ms, replay 1926 ops.
+14/07/10 14:44:24 INFO client.AsyncProcess: #12, table=usertable, attempt=11/35 failed 1852 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=1748, waitTime=2365, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:00 PDT 2014, retrying after 10051 ms, replay 1852 ops.
+2014-07-10 14:44:28:437 90 sec: 1083384 operations; 2566.9 current ops/sec; [INSERT AverageLatency(us)=4432.7] 
+14/07/10 14:44:38 INFO client.AsyncProcess: #7, table=usertable, attempt=11/35 failed 1864 ops, last exception: java.net.SocketTimeoutException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:56464 remote=sceplus-vm48.almaden.ibm.com/9.1.143.58:60020] on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:17 PDT 2014, retrying after 10062 ms, replay 1864 ops.
+14/07/10 14:44:38 INFO client.AsyncProcess: #12, table=usertable, attempt=12/35 failed 1852 ops, last exception: java.net.SocketTimeoutException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:56464 remote=sceplus-vm48.almaden.ibm.com/9.1.143.58:60020] on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:00 PDT 2014, retrying after 20074 ms, replay 1852 ops.
+14/07/10 14:44:38 INFO client.AsyncProcess: #14, table=usertable, attempt=11/35 failed 3139 ops, last exception: java.net.SocketTimeoutException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:56464 remote=sceplus-vm48.almaden.ibm.com/9.1.143.58:60020] on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:18 PDT 2014, retrying after 10018 ms, replay 3139 ops.
+14/07/10 14:44:38 INFO client.AsyncProcess: #6, table=usertable, attempt=12/35 failed 1926 ops, last exception: java.net.SocketTimeoutException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:56464 remote=sceplus-vm48.almaden.ibm.com/9.1.143.58:60020] on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:00 PDT 2014, retrying after 20001 ms, replay 1926 ops.
+14/07/10 14:44:38 INFO client.AsyncProcess: #20, table=usertable, attempt=11/35 failed 3110 ops, last exception: java.net.SocketTimeoutException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:56464 remote=sceplus-vm48.almaden.ibm.com/9.1.143.58:60020] on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:17 PDT 2014, retrying after 10087 ms, replay 3110 ops.
+14/07/10 14:44:38 INFO client.AsyncProcess: #2, table=usertable, attempt=11/35 failed 3280 ops, last exception: java.net.SocketTimeoutException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:56464 remote=sceplus-vm48.almaden.ibm.com/9.1.143.58:60020] on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:16 PDT 2014, retrying after 10034 ms, replay 3280 ops.
+2014-07-10 14:44:38:438 100 sec: 1083384 operations; 0 current ops/sec;  
+2014-07-10 14:44:48:438 110 sec: 1083384 operations; 0 current ops/sec;  
+14/07/10 14:44:50 INFO client.AsyncProcess: #7, table=usertable, attempt=12/35 failed 1864 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=2302, waitTime=2153, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:17 PDT 2014, retrying after 20053 ms, replay 1864 ops.
+14/07/10 14:44:50 INFO client.AsyncProcess: #20, table=usertable, attempt=12/35 failed 3110 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=2302, waitTime=2153, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:17 PDT 2014, retrying after 20198 ms, replay 3110 ops.
+14/07/10 14:44:50 INFO client.AsyncProcess: #14, table=usertable, attempt=12/35 failed 3139 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=2302, waitTime=2153, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:18 PDT 2014, retrying after 20051 ms, replay 3139 ops.
+14/07/10 14:44:50 INFO client.AsyncProcess: #2, table=usertable, attempt=12/35 failed 3280 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=2302, waitTime=2153, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:16 PDT 2014, retrying after 20028 ms, replay 3280 ops.
+2014-07-10 14:44:58:438 120 sec: 1157948 operations; 7456.4 current ops/sec; [INSERT AverageLatency(us)=4915.25] 
+14/07/10 14:45:00 INFO client.AsyncProcess: #6, table=usertable, attempt=13/35 failed 1926 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=2449, waitTime=2206, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:00 PDT 2014, retrying after 20182 ms, replay 1926 ops.
+14/07/10 14:45:00 INFO client.AsyncProcess: #12, table=usertable, attempt=13/35 failed 1852 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=2449, waitTime=2206, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:00 PDT 2014, retrying after 20072 ms, replay 1852 ops.
+2014-07-10 14:45:08:439 130 sec: 1331574 operations; 17360.86 current ops/sec; [INSERT AverageLatency(us)=634.21] 
+14/07/10 14:45:09 INFO client.AsyncProcess: #8, table=usertable, attempt=10/35 failed 1870 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=2705, waitTime=2226, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:44:04 PDT 2014, retrying after 10065 ms, replay 1870 ops.
+14/07/10 14:45:09 INFO client.AsyncProcess: #11, table=usertable, attempt=10/35 failed 2426 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=2705, waitTime=2226, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:44:02 PDT 2014, retrying after 10018 ms, replay 2426 ops.
+14/07/10 14:45:11 INFO client.AsyncProcess: #5, table=usertable, attempt=10/35 failed 2068 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=2757, waitTime=2055, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:44:07 PDT 2014, retrying after 10074 ms, replay 2068 ops.
+14/07/10 14:45:12 INFO client.AsyncProcess: #5, table=usertable, attempt=10/35 failed 3315 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=2763, waitTime=2082, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:44:06 PDT 2014, retrying after 10044 ms, replay 3315 ops.
+14/07/10 14:45:12 INFO client.AsyncProcess: #14, table=usertable, attempt=13/35 failed 3139 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=2768, waitTime=2227, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:18 PDT 2014, retrying after 20101 ms, replay 3139 ops.
+14/07/10 14:45:12 INFO client.AsyncProcess: #7, table=usertable, attempt=13/35 failed 1864 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=2768, waitTime=2227, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:17 PDT 2014, retrying after 20138 ms, replay 1864 ops.
+14/07/10 14:45:12 INFO client.AsyncProcess: #2, table=usertable, attempt=13/35 failed 3280 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=2768, waitTime=2227, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:16 PDT 2014, retrying after 20062 ms, replay 3280 ops.
+14/07/10 14:45:12 INFO client.AsyncProcess: #20, table=usertable, attempt=13/35 failed 3110 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=2768, waitTime=2227, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:17 PDT 2014, retrying after 20047 ms, replay 3110 ops.
+2014-07-10 14:45:18:927 140 sec: 1603790 operations; 25955 current ops/sec; [INSERT AverageLatency(us)=865.2] 
+14/07/10 14:45:20 INFO client.AsyncProcess: #8, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:44:04 PDT 2014
+14/07/10 14:45:20 INFO client.AsyncProcess: #11, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:44:02 PDT 2014
+14/07/10 14:45:20 INFO client.AsyncProcess: #12, table=usertable, attempt=14/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:00 PDT 2014
+14/07/10 14:45:20 INFO client.AsyncProcess: #6, table=usertable, attempt=14/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:00 PDT 2014
+14/07/10 14:45:22 INFO client.AsyncProcess: #5, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:44:07 PDT 2014
+14/07/10 14:45:22 INFO client.AsyncProcess: #5, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:44:06 PDT 2014
+2014-07-10 14:45:28:927 150 sec: 1787166 operations; 18337.6 current ops/sec; [INSERT AverageLatency(us)=3074.1] 
+14/07/10 14:45:34 INFO client.AsyncProcess: #2, table=usertable, attempt=14/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:16 PDT 2014
+14/07/10 14:45:34 INFO client.AsyncProcess: #7, table=usertable, attempt=14/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:17 PDT 2014
+14/07/10 14:45:34 INFO client.AsyncProcess: #20, table=usertable, attempt=14/35 failed 3110 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=3458, waitTime=2027, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:17 PDT 2014, retrying after 20051 ms, replay 3110 ops.
+14/07/10 14:45:34 INFO client.AsyncProcess: #14, table=usertable, attempt=14/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:18 PDT 2014
+2014-07-10 14:45:38:928 160 sec: 1961619 operations; 17445.3 current ops/sec; [INSERT AverageLatency(us)=3247.09] 
+2014-07-10 14:45:48:928 170 sec: 2125536 operations; 16390.06 current ops/sec; [INSERT AverageLatency(us)=1219.81] 
+14/07/10 14:45:56 INFO client.AsyncProcess: #20, table=usertable, attempt=15/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:43:17 PDT 2014
+2014-07-10 14:45:58:929 180 sec: 2294872 operations; 16931.91 current ops/sec; [INSERT AverageLatency(us)=1975.7] 
+2014-07-10 14:46:08:929 190 sec: 2528230 operations; 23335.8 current ops/sec; [INSERT AverageLatency(us)=959.26] 
+2014-07-10 14:46:18:930 200 sec: 2700889 operations; 17265.9 current ops/sec; [INSERT AverageLatency(us)=973.82] 
+2014-07-10 14:46:28:930 210 sec: 2879649 operations; 17874.21 current ops/sec; [INSERT AverageLatency(us)=673.52] 
+2014-07-10 14:46:38:931 220 sec: 3112418 operations; 23274.57 current ops/sec; [INSERT AverageLatency(us)=1103.31] 
+2014-07-10 14:46:48:931 230 sec: 3294751 operations; 18233.3 current ops/sec; [INSERT AverageLatency(us)=1228.67] 
+2014-07-10 14:46:58:932 240 sec: 3572166 operations; 27738.73 current ops/sec; [INSERT AverageLatency(us)=683.98] 
+2014-07-10 14:47:08:933 250 sec: 3804355 operations; 23218.9 current ops/sec; [INSERT AverageLatency(us)=948.04] 
+2014-07-10 14:47:18:933 260 sec: 4074575 operations; 27019.3 current ops/sec; [INSERT AverageLatency(us)=654.66] 
+2014-07-10 14:47:28:933 270 sec: 4074575 operations; 0 current ops/sec;  
+2014-07-10 14:47:39:497 281 sec: 4292600 operations; 20638.49 current ops/sec; [INSERT AverageLatency(us)=1944.26] 
+2014-07-10 14:47:49:498 291 sec: 4777319 operations; 48467.05 current ops/sec; [INSERT AverageLatency(us)=427.41] 
+2014-07-10 14:47:59:498 301 sec: 4971108 operations; 19378.9 current ops/sec; [INSERT AverageLatency(us)=811.74] 
+2014-07-10 14:48:09:499 311 sec: 4971108 operations; 0 current ops/sec;  
+2014-07-10 14:48:19:499 321 sec: 5350657 operations; 37954.9 current ops/sec; [INSERT AverageLatency(us)=1171.27] 
+2014-07-10 14:48:29:500 331 sec: 5766873 operations; 41617.44 current ops/sec; [INSERT AverageLatency(us)=444.79] 
+2014-07-10 14:48:39:501 341 sec: 5903378 operations; 13649.14 current ops/sec; [INSERT AverageLatency(us)=1443.1] 
+2014-07-10 14:48:49:501 351 sec: 6103005 operations; 19962.7 current ops/sec; [INSERT AverageLatency(us)=571.1] 
+2014-07-10 14:48:59:501 361 sec: 6305310 operations; 20230.5 current ops/sec; [INSERT AverageLatency(us)=1104.34] 
+2014-07-10 14:49:09:502 371 sec: 6326329 operations; 2101.69 current ops/sec; [INSERT AverageLatency(us)=307.1] 
+2014-07-10 14:49:19:502 381 sec: 6326329 operations; 0 current ops/sec;  
+2014-07-10 14:49:29:503 391 sec: 6409320 operations; 8298.27 current ops/sec; [INSERT AverageLatency(us)=3700.22] 
+14/07/10 14:49:29 INFO client.AsyncProcess: #12, table=usertable, attempt=10/35 failed 3030 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=9396, waitTime=2030, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:36 PDT 2014, retrying after 10074 ms, replay 3030 ops.
+2014-07-10 14:49:39:503 401 sec: 6589444 operations; 18012.4 current ops/sec; [INSERT AverageLatency(us)=514.95] 
+14/07/10 14:49:40 INFO client.AsyncProcess: #12, table=usertable, attempt=11/35 failed 3030 ops, last exception: java.io.IOException: Unexpected closed connection on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:36 PDT 2014, retrying after 10026 ms, replay 3030 ops.
+14/07/10 14:49:44 INFO client.AsyncProcess: #2, table=usertable, attempt=10/35 failed 3158 ops, last exception: java.io.IOException: Unexpected closed connection on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:45 PDT 2014, retrying after 10013 ms, replay 3158 ops.
+14/07/10 14:49:46 INFO client.AsyncProcess: #9, table=usertable, attempt=10/35 failed 3243 ops, last exception: java.net.SocketTimeoutException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:56468 remote=sceplus-vm48.almaden.ibm.com/9.1.143.58:60020] on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:55 PDT 2014, retrying after 10092 ms, replay 3243 ops.
+14/07/10 14:49:48 INFO client.AsyncProcess: #11, table=usertable, attempt=10/35 failed 3274 ops, last exception: java.net.SocketTimeoutException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:56469 remote=sceplus-vm48.almaden.ibm.com/9.1.143.58:60020] on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:54 PDT 2014, retrying after 10068 ms, replay 3274 ops.
+14/07/10 14:49:48 INFO client.AsyncProcess: #8, table=usertable, attempt=10/35 failed 1876 ops, last exception: java.io.IOException: Unexpected closed connection on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:57 PDT 2014, retrying after 10025 ms, replay 1876 ops.
+14/07/10 14:49:48 INFO client.AsyncProcess: #9, table=usertable, attempt=10/35 failed 1857 ops, last exception: java.io.IOException: Unexpected closed connection on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:56 PDT 2014, retrying after 10040 ms, replay 1857 ops.
+14/07/10 14:49:48 INFO client.AsyncProcess: #19, table=usertable, attempt=10/35 failed 3119 ops, last exception: java.io.IOException: Unexpected closed connection on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:55 PDT 2014, retrying after 10078 ms, replay 3119 ops.
+14/07/10 14:49:48 INFO client.AsyncProcess: #15, table=usertable, attempt=10/35 failed 2456 ops, last exception: java.io.IOException: Unexpected closed connection on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:57 PDT 2014, retrying after 10050 ms, replay 2456 ops.
+14/07/10 14:49:48 INFO client.AsyncProcess: #17, table=usertable, attempt=10/35 failed 1852 ops, last exception: java.io.IOException: Unexpected closed connection on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:56 PDT 2014, retrying after 10027 ms, replay 1852 ops.
+14/07/10 14:49:48 INFO client.AsyncProcess: #7, table=usertable, attempt=10/35 failed 2756 ops, last exception: java.io.IOException: Unexpected closed connection on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:56 PDT 2014, retrying after 10064 ms, replay 2756 ops.
+14/07/10 14:49:48 INFO client.AsyncProcess: #6, table=usertable, attempt=10/35 failed 1872 ops, last exception: java.io.IOException: Unexpected closed connection on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:55 PDT 2014, retrying after 10018 ms, replay 1872 ops.
+14/07/10 14:49:48 INFO client.AsyncProcess: #10, table=usertable, attempt=10/35 failed 1884 ops, last exception: java.io.IOException: Unexpected closed connection on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:55 PDT 2014, retrying after 10047 ms, replay 1884 ops.
+14/07/10 14:49:48 INFO client.AsyncProcess: #14, table=usertable, attempt=10/35 failed 3276 ops, last exception: java.net.SocketTimeoutException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:56469 remote=sceplus-vm48.almaden.ibm.com/9.1.143.58:60020] on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:54 PDT 2014, retrying after 10044 ms, replay 3276 ops.
+2014-07-10 14:49:49:504 411 sec: 6589444 operations; 0 current ops/sec;  
+14/07/10 14:49:52 INFO client.AsyncProcess: #12, table=usertable, attempt=12/35 failed 3030 ops, last exception: java.net.SocketTimeoutException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:56470 remote=sceplus-vm48.almaden.ibm.com/9.1.143.58:60020] on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:36 PDT 2014, retrying after 20152 ms, replay 3030 ops.
+14/07/10 14:49:52 INFO client.AsyncProcess: #16, table=usertable, attempt=10/35 failed 3315 ops, last exception: java.io.IOException: Unexpected closed connection on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:54 PDT 2014, retrying after 10078 ms, replay 3315 ops.
+14/07/10 14:49:55 INFO client.AsyncProcess: #2, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:45 PDT 2014
+14/07/10 14:49:57 INFO client.AsyncProcess: #9, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:55 PDT 2014
+14/07/10 14:49:59 INFO client.AsyncProcess: #8, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:57 PDT 2014
+14/07/10 14:49:59 INFO client.AsyncProcess: #17, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:56 PDT 2014
+14/07/10 14:49:59 INFO client.AsyncProcess: #9, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:56 PDT 2014
+2014-07-10 14:49:59:504 421 sec: 6673392 operations; 8393.96 current ops/sec; [INSERT AverageLatency(us)=2678.77] 
+14/07/10 14:49:59 INFO client.AsyncProcess: #6, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:55 PDT 2014
+14/07/10 14:50:00 INFO client.AsyncProcess: #19, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:55 PDT 2014
+14/07/10 14:50:00 INFO client.AsyncProcess: #7, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:56 PDT 2014
+14/07/10 14:50:00 INFO client.AsyncProcess: #14, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:54 PDT 2014
+14/07/10 14:50:00 INFO client.AsyncProcess: #11, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:54 PDT 2014
+14/07/10 14:50:00 INFO client.AsyncProcess: #15, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:57 PDT 2014
+14/07/10 14:50:00 INFO client.AsyncProcess: #10, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:55 PDT 2014
+14/07/10 14:50:04 INFO client.AsyncProcess: #16, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:54 PDT 2014
+2014-07-10 14:50:09:539 431 sec: 7093841 operations; 41898.26 current ops/sec; [INSERT AverageLatency(us)=1562.31] 
+14/07/10 14:50:13 INFO client.AsyncProcess: #3, table=usertable, attempt=10/35 failed 207 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=10722, waitTime=2075, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:49:34 PDT 2014, retrying after 10036 ms, replay 207 ops.
+14/07/10 14:50:13 INFO client.AsyncProcess: #13, table=usertable, attempt=10/35 failed 3249 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=10750, waitTime=2004, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:49:34 PDT 2014, retrying after 10050 ms, replay 3249 ops.
+14/07/10 14:50:13 INFO client.AsyncProcess: #5, table=usertable, attempt=10/35 failed 1894 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=10761, waitTime=2180, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:49:31 PDT 2014, retrying after 10013 ms, replay 1894 ops.
+14/07/10 14:50:13 INFO client.AsyncProcess: #20, table=usertable, attempt=10/35 failed 3252 ops, last exception: java.io.IOException: Call to sceplus-vm48.almaden.ibm.com/9.1.143.58:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=10761, waitTime=2180, rpcTimetout=2000 on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:49:31 PDT 2014, retrying after 10087 ms, replay 3252 ops.
+14/07/10 14:50:14 INFO client.AsyncProcess: #12, table=usertable, attempt=13/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:48:36 PDT 2014
+2014-07-10 14:50:19:620 441 sec: 7503367 operations; 40623.55 current ops/sec; [INSERT AverageLatency(us)=710.62] 
+14/07/10 14:50:24 INFO client.AsyncProcess: #13, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:49:34 PDT 2014
+14/07/10 14:50:24 INFO client.AsyncProcess: #3, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:49:34 PDT 2014
+14/07/10 14:50:25 INFO client.AsyncProcess: #20, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:49:31 PDT 2014
+14/07/10 14:50:25 INFO client.AsyncProcess: #5, table=usertable, attempt=11/35 SUCCEEDED on sceplus-vm48.almaden.ibm.com,60020,1405056637259, tracking started Thu Jul 10 14:49:31 PDT 2014
+2014-07-10 14:50:29:620 451 sec: 7973288 operations; 46992.1 current ops/sec; [UPDATE AverageLatency(us)=2449745.5] [INSERT AverageLatency(us)=552.76] [CLEANUP AverageLatency(us)=2450251.5] 
+2014-07-10 14:50:39:621 461 sec: 8556196 operations; 58284.97 current ops/sec; [UPDATE AverageLatency(us)=4103333] [INSERT AverageLatency(us)=319.09] [CLEANUP AverageLatency(us)=4103344.5] 
+2014-07-10 14:50:49:621 471 sec: 9095080 operations; 53888.4 current ops/sec; [UPDATE AverageLatency(us)=2987514.67] [INSERT AverageLatency(us)=260.93] [CLEANUP AverageLatency(us)=2987525.67] 
+2014-07-10 14:50:59:622 481 sec: 9528760 operations; 43363.66 current ops/sec; [UPDATE AverageLatency(us)=3251864.4] [INSERT AverageLatency(us)=214.43] [CLEANUP AverageLatency(us)=3251875.4] 
+2014-07-10 14:51:09:623 491 sec: 9928103 operations; 39930.31 current ops/sec; [UPDATE AverageLatency(us)=1978741] [INSERT AverageLatency(us)=119.62] [CLEANUP AverageLatency(us)=1978752] 
+2014-07-10 14:51:19:624 501 sec: 10000000 operations; 7189.7 current ops/sec; [UPDATE AverageLatency(us)=1256958.33] [INSERT AverageLatency(us)=146.64] [CLEANUP AverageLatency(us)=1256968.67] 
+2014-07-10 14:51:20:211 502 sec: 10000000 operations; 0 current ops/sec; [UPDATE AverageLatency(us)=592600]  [CLEANUP AverageLatency(us)=592610] 
++ echo 'end time:'
+end time:
+++ date +%s
++ echo 1405029080
+1405029080
++ echo 'sleeping for 10 sec ...'
+sleeping for 10 sec ...
++ sleep 10
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ let counter=1+1
++ read line
++ set +x

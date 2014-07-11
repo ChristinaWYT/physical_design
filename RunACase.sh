@@ -4,6 +4,7 @@ set -x
 
 filename="case"`ls caseresult/ -ltr | wc -l`
 mkdir caseresult/$filename
+ssh hadoop@master mkdir /home/hadoop/git/physical_design/caseresult/$filename
 RESULT_DIR=/home/hadoop/git/physical_design/caseresult/$filename
 TEN=10
 SIXTY=60
@@ -11,9 +12,11 @@ SIXTY=60
 SLEEP_TIME=300
 #SLEEP_TIME=0
 YCSB_DIR=/home/hadoop/ycsb-0.1.4
-number_of_operations=10000000
+#number_of_operations=10000000
+number_of_operations=50000000
 #number_of_operations=100
 number_of_threads=20
+#number_of_records=10000000
 number_of_records=50000000
 #number_of_records=100
 output_file_suffix='.dat'
@@ -65,7 +68,7 @@ let counter=1
 function create_table {
 	echo "creating table..."
 	echo $1
-	hbase shell $1
+	ssh hadoop@master /home/hadoop/hbase/bin/hbase shell $1
 }
 
 
@@ -79,7 +82,7 @@ do
 		echo "sleeping for $SIXTY ..."
 		sleep $SIXTY
 		echo "droping usertable..."
-		hbase shell ~/git/physical_design/delete_table
+		ssh hadoop@master /home/hadoop/hbase/bin/hbase shell ~/git/physical_design/delete_table
 		echo "sleeping for $SLEEP_TIME ..."
 		sleep $SLEEP_TIME
 	fi
@@ -90,6 +93,7 @@ do
 		create_statement=$line	
 		echo $create_statement > $RESULT_DIR/create_$counter.script
 		echo "exit " >> $RESULT_DIR/create_$counter.script
+ 		scp $RESULT_DIR/create_$counter.script hadoop@master:$RESULT_DIR/create_$counter.script
 		create_table $RESULT_DIR/create_$counter.script
 
 		echo "sleeping for 10 sec ..."

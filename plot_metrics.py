@@ -20,7 +20,7 @@ with open(args.result_dir + '/master/all.metrics' , 'r') as file:
 			kv = word.strip(',').split('=')
 			p = re.compile(args.metrics)	
 			if p.match(kv[0]):
-				count = count + int(kv[1])
+				count = count + float(kv[1])
 		if count != 0:
 			master_metrics.append(count)
 
@@ -32,7 +32,7 @@ with open(args.result_dir + '/slave1/all.metrics' , 'r') as file:
 			kv = word.strip(',').split('=')
 			p = re.compile(args.metrics)	
 			if p.match(kv[0]):
-				count = count + int(kv[1])
+				count = count + float(kv[1])
 		if count != 0:
 			slave1_metrics.append(count)
 
