@@ -2,7 +2,7 @@
 
 set -x
 
-for i in `seq 34 48`;
+for i in `seq 49 63`;
 do
 	./deleteoldlogs.sh
 	start-dfs.sh
