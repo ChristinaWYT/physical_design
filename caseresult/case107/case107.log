@@ -1,0 +1,177 @@
+++ ls caseresult/ -ltr
+++ wc -l
++ filename=case107
++ mkdir caseresult/case107
++ ssh hadoop@master mkdir /home/hadoop/git/physical_design/caseresult/case107
++ RESULT_DIR=/home/hadoop/git/physical_design/caseresult/case107
++ TEN=10
++ SIXTY=60
++ SLEEP_TIME=300
++ YCSB_DIR=/home/hadoop/ycsb-0.1.4
++ number_of_operations=10000000
++ number_of_threads=20
++ number_of_records=10000000
++ output_file_suffix=.dat
++ experiment_list_file=/home/hadoop/git/physical_design/case107.list
++ clean=false
++ create=false
++ load=false
++ random_read=false
++ workloada=false
++ workloadb=false
++ workloadc=false
++ scan=false
++ all=false
++ for i in '$@'
++ '[' clean == all ']'
++ '[' clean == clean ']'
++ clean=true
++ for i in '$@'
++ '[' create == all ']'
++ '[' create == clean ']'
++ '[' create == create ']'
++ create=true
++ for i in '$@'
++ '[' workloadc == all ']'
++ '[' workloadc == clean ']'
++ '[' workloadc == create ']'
++ '[' workloadc == load ']'
++ '[' workloadc == random_read ']'
++ '[' workloadc == scan ']'
++ '[' workloadc == workloada ']'
++ '[' workloadc == workloadb ']'
++ '[' workloadc == workloadc ']'
++ workloadc=true
++ let counter=1
++ cd /home/hadoop/ycsb-0.1.4
+++ pwd
++ echo /home/hadoop/ycsb-0.1.4
+/home/hadoop/ycsb-0.1.4
++ read line
++ false
++ true
++ echo 'sleeping for 60 ...'
+sleeping for 60 ...
++ sleep 60
++ echo 'droping usertable...'
+droping usertable...
++ ssh hadoop@master /home/hadoop/hbase/bin/hbase shell /home/hadoop/git/physical_design/delete_table
+0 row(s) in 2.9790 seconds
+
+0 row(s) in 0.7550 seconds
+
+0 row(s) in 0.0580 seconds
+
++ echo 'sleeping for 300 ...'
+sleeping for 300 ...
++ sleep 300
++ false
++ true
++ echo 'creating usertable...'
+creating usertable...
++ create_statement='create '\''usertable'\'', { NAME=>'\''family'\'', CONFIGURATION => { '\''hbase.hregion.majorcompaction'\'' => '\''0'\'' } ,  COMPRESSION=>'\''GZ'\''}, SPLITS => ['\''user1'\'', '\''user2'\'', '\''user3'\'', '\''user4'\'', '\''user5'\'', '\''user6'\'', '\''user7'\'', '\''user8'\'', '\''user9'\'']'
++ echo create ''\''usertable'\'',' '{' 'NAME=>'\''family'\'',' CONFIGURATION '=>' '{' ''\''hbase.hregion.majorcompaction'\''' '=>' ''\''0'\''' '}' , 'COMPRESSION=>'\''GZ'\''},' SPLITS '=>' '['\''user1'\'',' ''\''user2'\'',' ''\''user3'\'',' ''\''user4'\'',' ''\''user5'\'',' ''\''user6'\'',' ''\''user7'\'',' ''\''user8'\'',' ''\''user9'\'']'
++ echo 'exit '
++ scp /home/hadoop/git/physical_design/caseresult/case107/create_1.script hadoop@master:/home/hadoop/git/physical_design/caseresult/case107/create_1.script
++ create_table /home/hadoop/git/physical_design/caseresult/case107/create_1.script
++ echo 'creating table...'
+creating table...
++ echo /home/hadoop/git/physical_design/caseresult/case107/create_1.script
+/home/hadoop/git/physical_design/caseresult/case107/create_1.script
++ ssh hadoop@master /home/hadoop/hbase/bin/hbase shell /home/hadoop/git/physical_design/caseresult/case107/create_1.script
+0 row(s) in 1.7580 seconds
+
++ echo 'sleeping for 10 sec ...'
+sleeping for 10 sec ...
++ sleep 10
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ true
++ echo workloadc...
+workloadc...
++ echo 'start time: '
+start time: 
+++ date +%s
++ echo 1405122940
+1405122940
+++ echo /home/hadoop/git/physical_design/caseresult/case107/workloadc_1.dat
++ ./workloadc 10000000 20 /home/hadoop/git/physical_design/caseresult/case107/workloadc_1.dat
+Loading workload...
+Starting test.
+2014-07-11 16:55:40:704 0 sec: 0 operations; 
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:zookeeper.version=3.4.6-1569965, built on 02/20/2014 09:09 GMT
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:host.name=sceplus-vm43.almaden.ibm.com
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:java.version=1.6.0_31
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:java.vendor=Sun Microsystems Inc.
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:java.home=/usr/lib/jvm/java-6-openjdk-amd64/jre
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:java.class.path=/home/hadoop/ycsb-0.1.4/hbase-binding/lib/hbase-binding-0.1.4.jar:/home/hadoop/ycsb-0.1.4/hbase-binding/conf:/home/hadoop/ycsb-0.1.4/core/lib/core-0.1.4.jar:/home/hadoop/ycsb-0.1.4/jdbc-binding/conf
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:java.library.path=/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk-amd64/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib/jni:/lib:/usr/lib
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:java.io.tmpdir=/tmp
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:java.compiler=<NA>
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:os.name=Linux
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:os.arch=amd64
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:os.version=3.13.0-24-generic
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:user.name=hadoop
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:user.home=/home/hadoop
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Client environment:user.dir=/home/hadoop/ycsb-0.1.4
+14/07/11 16:55:41 INFO zookeeper.ZooKeeper: Initiating client connection, connectString=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181 sessionTimeout=90000 watcher=hconnection-0x13f1d038, quorum=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181, baseZNode=/hbase
+14/07/11 16:55:41 INFO zookeeper.ClientCnxn: Opening socket connection to server master/9.1.143.58:2181. Will not attempt to authenticate using SASL (unknown error)
+14/07/11 16:55:41 INFO zookeeper.RecoverableZooKeeper: Process identifier=hconnection-0x13f1d038 connecting to ZooKeeper ensemble=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181
+14/07/11 16:55:41 INFO zookeeper.ClientCnxn: Socket connection established to master/9.1.143.58:2181, initiating session
+14/07/11 16:55:41 INFO zookeeper.ClientCnxn: Session establishment complete on server master/9.1.143.58:2181, sessionid = 0x472986b7ac000e, negotiated timeout = 90000
+2014-07-11 16:55:50:705 10 sec: 180336 operations; 18031.8 current ops/sec; [INSERT AverageLatency(us)=146.9] [READ AverageLatency(us)=7943.48] 
+2014-07-11 16:56:00:706 20 sec: 514415 operations; 33404.56 current ops/sec; [INSERT AverageLatency(us)=12.49] [READ AverageLatency(us)=5764.71] 
+2014-07-11 16:56:10:707 30 sec: 845959 operations; 33151.08 current ops/sec; [INSERT AverageLatency(us)=11.89] [READ AverageLatency(us)=5848.58] 
+2014-07-11 16:56:20:707 40 sec: 1171712 operations; 32575.3 current ops/sec; [INSERT AverageLatency(us)=12.53] [READ AverageLatency(us)=5935.27] 
+2014-07-11 16:56:30:708 50 sec: 1527943 operations; 35619.54 current ops/sec; [INSERT AverageLatency(us)=11.69] [READ AverageLatency(us)=5433.87] 
+2014-07-11 16:56:40:709 60 sec: 1852517 operations; 32454.15 current ops/sec; [INSERT AverageLatency(us)=11.56] [READ AverageLatency(us)=6033.23] 
+2014-07-11 16:56:50:709 70 sec: 2141383 operations; 28886.6 current ops/sec; [INSERT AverageLatency(us)=10.79] [READ AverageLatency(us)=6872.47] 
+2014-07-11 16:57:00:710 80 sec: 2373205 operations; 23179.88 current ops/sec; [INSERT AverageLatency(us)=11.79] [READ AverageLatency(us)=8493.89] 
+2014-07-11 16:57:10:710 90 sec: 2666236 operations; 29303.1 current ops/sec; [INSERT AverageLatency(us)=12.14] [READ AverageLatency(us)=6654.13] 
+2014-07-11 16:57:20:711 100 sec: 2953693 operations; 28742.83 current ops/sec; [INSERT AverageLatency(us)=12.28] [READ AverageLatency(us)=6689.36] 
+2014-07-11 16:57:30:711 110 sec: 3242727 operations; 28903.4 current ops/sec; [INSERT AverageLatency(us)=11.61] [READ AverageLatency(us)=6833.11] 
+2014-07-11 16:57:40:712 120 sec: 3537210 operations; 29445.36 current ops/sec; [INSERT AverageLatency(us)=11.51] [READ AverageLatency(us)=6620.19] 
+2014-07-11 16:57:50:712 130 sec: 3819412 operations; 28220.2 current ops/sec; [INSERT AverageLatency(us)=11.78] [READ AverageLatency(us)=6932.07] 
+2014-07-11 16:58:00:713 140 sec: 4094211 operations; 27477.15 current ops/sec; [INSERT AverageLatency(us)=11.03] [READ AverageLatency(us)=7148.06] 
+2014-07-11 16:58:10:713 150 sec: 4383627 operations; 28941.6 current ops/sec; [INSERT AverageLatency(us)=11.38] [READ AverageLatency(us)=6860.7] 
+2014-07-11 16:58:20:714 160 sec: 4661250 operations; 27759.52 current ops/sec; [INSERT AverageLatency(us)=11.13] [READ AverageLatency(us)=7078.61] 
+2014-07-11 16:58:30:714 170 sec: 4938303 operations; 27705.3 current ops/sec; [INSERT AverageLatency(us)=10.87] [READ AverageLatency(us)=6966.01] 
+2014-07-11 16:58:40:715 180 sec: 5236035 operations; 29770.22 current ops/sec; [INSERT AverageLatency(us)=11.1] [READ AverageLatency(us)=6549.19] 
+2014-07-11 16:58:50:715 190 sec: 5507618 operations; 27158.3 current ops/sec; [INSERT AverageLatency(us)=11.55] [READ AverageLatency(us)=7226.35] 
+2014-07-11 16:59:00:716 200 sec: 5783853 operations; 27620.74 current ops/sec; [INSERT AverageLatency(us)=11.54] [READ AverageLatency(us)=7074.64] 
+2014-07-11 16:59:10:716 210 sec: 6069470 operations; 28561.7 current ops/sec; [INSERT AverageLatency(us)=10.37] [READ AverageLatency(us)=6876.02] 
+2014-07-11 16:59:20:723 220 sec: 6303354 operations; 23372.04 current ops/sec; [INSERT AverageLatency(us)=10.61] [READ AverageLatency(us)=8486.1] 
+2014-07-11 16:59:30:724 230 sec: 6545384 operations; 24200.58 current ops/sec; [INSERT AverageLatency(us)=10.7] [READ AverageLatency(us)=8150.54] 
+2014-07-11 16:59:40:724 240 sec: 6794878 operations; 24949.4 current ops/sec; [INSERT AverageLatency(us)=10.55] [READ AverageLatency(us)=7785.29] 
+2014-07-11 16:59:50:725 250 sec: 7077291 operations; 28238.48 current ops/sec; [INSERT AverageLatency(us)=10.8] [READ AverageLatency(us)=7025.84] 
+2014-07-11 17:00:00:725 260 sec: 7332209 operations; 25491.8 current ops/sec; [INSERT AverageLatency(us)=10.95] [READ AverageLatency(us)=7765.16] 
+2014-07-11 17:00:10:726 270 sec: 7536397 operations; 20416.76 current ops/sec; [INSERT AverageLatency(us)=11.78] [READ AverageLatency(us)=9635.25] 
+2014-07-11 17:00:20:726 280 sec: 7779944 operations; 24354.7 current ops/sec; [INSERT AverageLatency(us)=10.26] [READ AverageLatency(us)=8171.66] 
+2014-07-11 17:00:30:727 290 sec: 8030255 operations; 25028.6 current ops/sec; [INSERT AverageLatency(us)=10.36] [READ AverageLatency(us)=7894.38] 
+2014-07-11 17:00:40:727 300 sec: 8262438 operations; 23218.3 current ops/sec; [INSERT AverageLatency(us)=10.68] [READ AverageLatency(us)=8441.23] 
+2014-07-11 17:00:50:728 310 sec: 8515289 operations; 25282.57 current ops/sec; [INSERT AverageLatency(us)=10.58] [READ AverageLatency(us)=7714.12] 
+2014-07-11 17:01:00:728 320 sec: 8768070 operations; 25278.1 current ops/sec; [INSERT AverageLatency(us)=10.82] [READ AverageLatency(us)=7828.58] 
+2014-07-11 17:01:10:729 330 sec: 8986529 operations; 21843.72 current ops/sec; [INSERT AverageLatency(us)=10.63] [READ AverageLatency(us)=8939.74] 
+2014-07-11 17:01:20:729 340 sec: 9250887 operations; 26435.8 current ops/sec; [INSERT AverageLatency(us)=10.99] [READ AverageLatency(us)=7373.77] 
+2014-07-11 17:01:30:739 350 sec: 9480002 operations; 22888.61 current ops/sec; [INSERT AverageLatency(us)=10.73] [READ AverageLatency(us)=8714.58] 
+2014-07-11 17:01:40:739 360 sec: 9701347 operations; 22134.5 current ops/sec; [INSERT AverageLatency(us)=10.96] [READ AverageLatency(us)=8899.73] 
+2014-07-11 17:01:50:740 370 sec: 9877909 operations; 17654.43 current ops/sec; [INSERT AverageLatency(us)=11.38] [READ AverageLatency(us)=11273.67] 
+2014-07-11 17:01:59:951 379 sec: 10000000 operations; 13254.91 current ops/sec; [UPDATE AverageLatency(us)=359472.6] [INSERT AverageLatency(us)=10.59] [READ AverageLatency(us)=9077.25] [CLEANUP AverageLatency(us)=359538] 
++ echo 'end time:'
+end time:
+++ date +%s
++ echo 1405123320
+1405123320
++ echo 'sleeping for 10 sec ...'
+sleeping for 10 sec ...
++ sleep 10
++ let counter=1+1
++ read line
++ set +x
