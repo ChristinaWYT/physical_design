@@ -1,13 +1,6 @@
 #!/bin/bash
 
-let counter=0
-
-for i in `seq 34 3 63`
-do
-	let counter=$counter+1
-	let j=$i+1
-	let z=$j+1
-	echo "python3 plot_workloadc.py  -caseresult_dir caseresult -cases $i:$j:$z -loc 0 -title Run$counter > plot_workloadc$i$j$z.dat"
-	python3 plot_workloadc.py  -caseresult_dir caseresult -cases "$i:$j:$z" -loc 0 -title "Run$counter" > "plot_workloadc$i$j$z.dat"
-
-done
+python3 plot_workloadc.py -caseresult_dir caseresult -cases 109:110:111 -loc 0 -title Workloadc -plot_dir plots/
+python3 plot_workloadc.py -caseresult_dir caseresult -cases 112:113:114 -loc 0 -title Workloadc -plot_dir plots/
+python3 plot_workloadc.py -caseresult_dir caseresult -cases 115:116:117 -loc 0 -title Workloadc -plot_dir plots/
+python3 plot_workloadc.py -caseresult_dir caseresult -cases 118:119:120 -loc 0 -title Workloadc -plot_dir plots/

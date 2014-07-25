@@ -1,16 +1,9 @@
 #!/bin/bash
 
-python3 plot_load.py  -caseresult_dir caseresult -cases $1
-python3 plot_load_latency.py  -caseresult_dir caseresult -cases $1
+python3 plot.py -caseresult_dir caseresult -cases 79:80:81 -loc 0 -title "Workloada: 50 million operations" -plot_dir plots/workloada/ -workload workloada
+python3 plot.py -caseresult_dir caseresult -cases 82:83:84 -loc 0 -title "Workloada: 50 million operations" -plot_dir plots/workloada/ -workload workloada
+python3 plot.py -caseresult_dir caseresult -cases 85:86:87 -loc 0 -title "Workloada: 50 million operations" -plot_dir plots/workloada/ -workload workloada
+python3 plot.py -caseresult_dir caseresult -cases 88:89:90 -loc 0 -title "Workloada: 50 million operations" -plot_dir plots/workloada/ -workload workloada
+python3 plot.py -caseresult_dir caseresult -cases 91:92:93 -loc 0 -title "Workloada: 50 million operations" -plot_dir plots/workloada/ -workload workloada
 
-python3 plot_read.py  -caseresult_dir caseresult -cases $1
-python3 plot_read_latency.py  -caseresult_dir caseresult -cases $1
 
-python3 plot_workloada.py  -caseresult_dir caseresult -cases $1
-python3 plot_workloada_latency.py  -caseresult_dir caseresult -cases $1
-
-python3 plot_workloadb.py  -caseresult_dir caseresult -cases $1
-python3 plot_workloadb_latency.py  -caseresult_dir caseresult -cases $1
-
-python3 plot_workloadc.py  -caseresult_dir caseresult -cases $1
-python3 plot_workloadc_latency.py  -caseresult_dir caseresult -cases $1

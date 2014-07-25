@@ -1,0 +1,469 @@
+++ ls caseresult/ -ltr
+++ wc -l
++ filename=case132
++ mkdir caseresult/case132
++ ssh hadoop@master mkdir /home/hadoop/git/physical_design/caseresult/case132
++ RESULT_DIR=/home/hadoop/git/physical_design/caseresult/case132
++ TEN=10
++ SIXTY=60
++ SLEEP_TIME=300
++ YCSB_DIR=/home/hadoop/ycsb-0.1.4
++ number_of_operations=50000000
++ number_of_threads=20
++ number_of_records=50000000
++ output_file_suffix=.dat
++ experiment_list_file=/home/hadoop/git/physical_design/case132.list
++ clean=false
++ create=false
++ load=false
++ random_read=false
++ workloada=false
++ workloadb=false
++ workloadc=false
++ scan=false
++ all=false
++ for i in '$@'
++ '[' clean == all ']'
++ '[' clean == clean ']'
++ clean=true
++ for i in '$@'
++ '[' create == all ']'
++ '[' create == clean ']'
++ '[' create == create ']'
++ create=true
++ for i in '$@'
++ '[' load == all ']'
++ '[' load == clean ']'
++ '[' load == create ']'
++ '[' load == load ']'
++ load=true
++ let counter=1
++ cd /home/hadoop/ycsb-0.1.4
+++ pwd
++ echo /home/hadoop/ycsb-0.1.4
+/home/hadoop/ycsb-0.1.4
++ read line
++ false
++ true
++ echo 'sleeping for 60 ...'
+sleeping for 60 ...
++ sleep 60
++ echo 'droping usertable...'
+droping usertable...
++ ssh hadoop@master /home/hadoop/hbase/bin/hbase shell /home/hadoop/git/physical_design/delete_table
+0 row(s) in 3.2480 seconds
+
+0 row(s) in 2.3170 seconds
+
+0 row(s) in 0.0870 seconds
+
++ echo 'sleeping for 300 ...'
+sleeping for 300 ...
++ sleep 300
++ false
++ true
++ echo 'creating usertable...'
+creating usertable...
++ create_statement='create '\''usertable'\'', { NAME=>'\''family'\'', COMPRESSION=>'\''GZ'\'', CONFIGURATION =>  { '\''hbase.hregion.majorcompaction'\'' => '\''0'\'', '\''hbase.hstore.compactionThreshold'\'' => '\''100000000000000'\'', '\''hbase.server.compactchecker.interval.multiplier'\'' => '\''100000000'\'', '\''hbase.hstore.compaction.max.size'\'' => '\''128'\'' } }, SPLITS => ['\''user1'\'', '\''user2'\'', '\''user3'\'', '\''user4'\'', '\''user5'\'', '\''user6'\'', '\''user7'\'', '\''user8'\'', '\''user9'\'']'
++ echo create ''\''usertable'\'',' '{' 'NAME=>'\''family'\'',' 'COMPRESSION=>'\''GZ'\'',' CONFIGURATION '=>' '{' ''\''hbase.hregion.majorcompaction'\''' '=>' ''\''0'\'',' ''\''hbase.hstore.compactionThreshold'\''' '=>' ''\''100000000000000'\'',' ''\''hbase.server.compactchecker.interval.multiplier'\''' '=>' ''\''100000000'\'',' ''\''hbase.hstore.compaction.max.size'\''' '=>' ''\''128'\''' '}' '},' SPLITS '=>' '['\''user1'\'',' ''\''user2'\'',' ''\''user3'\'',' ''\''user4'\'',' ''\''user5'\'',' ''\''user6'\'',' ''\''user7'\'',' ''\''user8'\'',' ''\''user9'\'']'
++ echo 'exit '
++ scp /home/hadoop/git/physical_design/caseresult/case132/create_1.script hadoop@master:/home/hadoop/git/physical_design/caseresult/case132/create_1.script
++ create_table /home/hadoop/git/physical_design/caseresult/case132/create_1.script
++ echo 'creating table...'
+creating table...
++ echo /home/hadoop/git/physical_design/caseresult/case132/create_1.script
+/home/hadoop/git/physical_design/caseresult/case132/create_1.script
++ ssh hadoop@master /home/hadoop/hbase/bin/hbase shell /home/hadoop/git/physical_design/caseresult/case132/create_1.script
+0 row(s) in 1.5480 seconds
+
++ echo 'sleeping for 10 sec ...'
+sleeping for 10 sec ...
++ sleep 10
++ false
++ true
++ echo 'loading data...'
+loading data...
++ echo 'starting time: '
+starting time: 
+++ date +%s
++ echo 1405305495
+1405305495
+++ echo /home/hadoop/git/physical_design/caseresult/case132/load_1.dat
++ ./ld 50000000 20 /home/hadoop/git/physical_design/caseresult/case132/load_1.dat
+Loading workload...
+Starting test.
+2014-07-13 19:38:16:141 0 sec: 0 operations; 
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:zookeeper.version=3.4.6-1569965, built on 02/20/2014 09:09 GMT
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:host.name=sceplus-vm43.almaden.ibm.com
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:java.version=1.6.0_31
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:java.vendor=Sun Microsystems Inc.
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:java.home=/usr/lib/jvm/java-6-openjdk-amd64/jre
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:java.class.path=/home/hadoop/ycsb-0.1.4/hbase-binding/lib/hbase-binding-0.1.4.jar:/home/hadoop/ycsb-0.1.4/hbase-binding/conf:/home/hadoop/ycsb-0.1.4/core/lib/core-0.1.4.jar:/home/hadoop/ycsb-0.1.4/jdbc-binding/conf
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:java.library.path=/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk-amd64/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib/jni:/lib:/usr/lib
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:java.io.tmpdir=/tmp
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:java.compiler=<NA>
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:os.name=Linux
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:os.arch=amd64
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:os.version=3.13.0-24-generic
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:user.name=hadoop
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:user.home=/home/hadoop
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Client environment:user.dir=/home/hadoop/ycsb-0.1.4
+14/07/13 19:38:16 INFO zookeeper.ZooKeeper: Initiating client connection, connectString=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181 sessionTimeout=90000 watcher=hconnection-0x3588d364, quorum=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181, baseZNode=/hbase
+14/07/13 19:38:16 INFO zookeeper.RecoverableZooKeeper: Process identifier=hconnection-0x3588d364 connecting to ZooKeeper ensemble=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181
+14/07/13 19:38:16 INFO zookeeper.ClientCnxn: Opening socket connection to server master/9.1.143.58:2181. Will not attempt to authenticate using SASL (unknown error)
+14/07/13 19:38:16 INFO zookeeper.ClientCnxn: Socket connection established to master/9.1.143.58:2181, initiating session
+14/07/13 19:38:16 INFO zookeeper.ClientCnxn: Session establishment complete on server master/9.1.143.58:2181, sessionid = 0x4734684908000a, negotiated timeout = 90000
+2014-07-13 19:38:26:423 10 sec: 272348 operations; 26487.84 current ops/sec; [INSERT AverageLatency(us)=439.22] 
+2014-07-13 19:38:36:424 20 sec: 394444 operations; 12208.38 current ops/sec; [INSERT AverageLatency(us)=328.89] 
+2014-07-13 19:38:46:425 30 sec: 394444 operations; 0 current ops/sec;  
+2014-07-13 19:38:56:425 40 sec: 394444 operations; 0 current ops/sec;  
+2014-07-13 19:39:06:426 50 sec: 554108 operations; 15964.8 current ops/sec; [INSERT AverageLatency(us)=2908.4] 
+2014-07-13 19:39:16:426 60 sec: 774820 operations; 22071.2 current ops/sec; [INSERT AverageLatency(us)=641.31] 
+14/07/13 19:39:18 INFO client.AsyncProcess: #14, table=usertable, attempt=10/35 failed 1874 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=868, waitTime=2914, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 19:38:18 PDT 2014, retrying after 10028 ms, replay 1874 ops.
+2014-07-13 19:39:26:427 70 sec: 981444 operations; 20660.33 current ops/sec; [INSERT AverageLatency(us)=2188.85] 
+14/07/13 19:39:30 INFO client.AsyncProcess: #14, table=usertable, attempt=11/35 failed 1874 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=1090, waitTime=2306, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 19:38:18 PDT 2014, retrying after 10027 ms, replay 1874 ops.
+2014-07-13 19:39:36:427 80 sec: 981444 operations; 0 current ops/sec;  
+14/07/13 19:39:42 INFO client.AsyncProcess: #14, table=usertable, attempt=12/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 19:38:18 PDT 2014
+2014-07-13 19:39:46:428 90 sec: 1220940 operations; 23947.21 current ops/sec; [INSERT AverageLatency(us)=1334.5] 
+2014-07-13 19:39:56:429 100 sec: 1667060 operations; 44607.54 current ops/sec; [INSERT AverageLatency(us)=971.01] 
+2014-07-13 19:40:06:626 110 sec: 2015241 operations; 34145.43 current ops/sec; [INSERT AverageLatency(us)=439.71] 
+2014-07-13 19:40:16:627 120 sec: 2399636 operations; 38435.66 current ops/sec; [INSERT AverageLatency(us)=632.53] 
+2014-07-13 19:40:26:627 130 sec: 2789404 operations; 38976.8 current ops/sec; [INSERT AverageLatency(us)=420.64] 
+2014-07-13 19:40:36:628 140 sec: 3155692 operations; 36625.14 current ops/sec; [INSERT AverageLatency(us)=555.7] 
+2014-07-13 19:40:46:628 150 sec: 3193260 operations; 3756.8 current ops/sec; [INSERT AverageLatency(us)=671.17] 
+2014-07-13 19:40:56:629 160 sec: 3193260 operations; 0 current ops/sec;  
+2014-07-13 19:41:06:629 170 sec: 3338836 operations; 14557.6 current ops/sec; [INSERT AverageLatency(us)=3927.98] 
+2014-07-13 19:41:16:630 180 sec: 3676948 operations; 33807.82 current ops/sec; [INSERT AverageLatency(us)=537.51] 
+2014-07-13 19:41:26:630 190 sec: 3733300 operations; 5635.2 current ops/sec; [INSERT AverageLatency(us)=523.12] 
+2014-07-13 19:41:36:631 200 sec: 4043236 operations; 30990.5 current ops/sec; [INSERT AverageLatency(us)=920.17] 
+2014-07-13 19:41:46:631 210 sec: 4170028 operations; 12679.2 current ops/sec; [INSERT AverageLatency(us)=297.67] 
+2014-07-13 19:41:56:632 220 sec: 4170028 operations; 0 current ops/sec;  
+14/07/13 19:42:00 INFO client.AsyncProcess: #12, table=usertable, attempt=10/35 failed 1886 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=3217, waitTime=2216, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 19:41:08 PDT 2014, retrying after 10065 ms, replay 1886 ops.
+14/07/13 19:42:00 INFO client.AsyncProcess: #4, table=usertable, attempt=10/35 failed 1906 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=3217, waitTime=2216, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 19:41:08 PDT 2014, retrying after 10099 ms, replay 1906 ops.
+14/07/13 19:42:00 INFO client.AsyncProcess: #13, table=usertable, attempt=10/35 failed 1893 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=3217, waitTime=2216, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 19:41:08 PDT 2014, retrying after 10022 ms, replay 1893 ops.
+14/07/13 19:42:00 INFO client.AsyncProcess: #5, table=usertable, attempt=10/35 failed 1868 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=3217, waitTime=2216, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 19:41:08 PDT 2014, retrying after 10076 ms, replay 1868 ops.
+2014-07-13 19:42:06:632 230 sec: 4198204 operations; 2817.6 current ops/sec; [INSERT AverageLatency(us)=3869.14] 
+14/07/13 19:42:11 INFO client.AsyncProcess: #13, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 19:41:08 PDT 2014
+14/07/13 19:42:11 INFO client.AsyncProcess: #5, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 19:41:08 PDT 2014
+14/07/13 19:42:11 INFO client.AsyncProcess: #4, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 19:41:08 PDT 2014
+14/07/13 19:42:11 INFO client.AsyncProcess: #12, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 19:41:08 PDT 2014
+2014-07-13 19:42:16:726 240 sec: 4579859 operations; 37810.09 current ops/sec; [INSERT AverageLatency(us)=1239.64] 
+2014-07-13 19:42:26:727 250 sec: 4888516 operations; 30865.7 current ops/sec; [INSERT AverageLatency(us)=408.25] 
+14/07/13 19:42:31 INFO client.AsyncProcess: #6, table=usertable, attempt=10/35 failed 1864 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=3753, waitTime=2628, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 19:41:38 PDT 2014, retrying after 10035 ms, replay 1864 ops.
+2014-07-13 19:42:36:854 260 sec: 5390878 operations; 49601.3 current ops/sec; [INSERT AverageLatency(us)=1024.48] 
+14/07/13 19:42:44 INFO client.AsyncProcess: #6, table=usertable, attempt=11/35 failed 1864 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=4048, waitTime=2094, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 19:41:38 PDT 2014, retrying after 10078 ms, replay 1864 ops.
+2014-07-13 19:42:46:855 270 sec: 5733796 operations; 34291.8 current ops/sec; [INSERT AverageLatency(us)=365.64] 
+14/07/13 19:42:55 INFO client.AsyncProcess: #6, table=usertable, attempt=12/35 failed 1864 ops, last exception: java.io.IOException: Unexpected closed connection on slave1,60020,1405333554898, tracking started Sun Jul 13 19:41:38 PDT 2014, retrying after 20044 ms, replay 1864 ops.
+2014-07-13 19:42:56:855 280 sec: 5733796 operations; 0 current ops/sec;  
+2014-07-13 19:43:06:855 290 sec: 5733796 operations; 0 current ops/sec;  
+14/07/13 19:43:15 INFO client.AsyncProcess: #6, table=usertable, attempt=13/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 19:41:38 PDT 2014
+2014-07-13 19:43:16:856 300 sec: 5841804 operations; 10799.72 current ops/sec; [INSERT AverageLatency(us)=1899.3] 
+2014-07-13 19:43:26:856 310 sec: 6315221 operations; 47341.7 current ops/sec; [INSERT AverageLatency(us)=1255.83] 
+2014-07-13 19:43:36:857 320 sec: 6842052 operations; 52683.1 current ops/sec; [INSERT AverageLatency(us)=585.75] 
+2014-07-13 19:43:46:857 330 sec: 7321044 operations; 47894.41 current ops/sec; [INSERT AverageLatency(us)=406.16] 
+2014-07-13 19:43:56:857 340 sec: 7846996 operations; 52595.2 current ops/sec; [INSERT AverageLatency(us)=388.41] 
+2014-07-13 19:44:06:858 350 sec: 8279028 operations; 43198.88 current ops/sec; [INSERT AverageLatency(us)=436.91] 
+2014-07-13 19:44:16:858 360 sec: 8748628 operations; 46960 current ops/sec; [INSERT AverageLatency(us)=470.46] 
+2014-07-13 19:44:26:859 370 sec: 9086740 operations; 33807.82 current ops/sec; [INSERT AverageLatency(us)=463.88] 
+2014-07-13 19:44:36:859 380 sec: 9415460 operations; 32872 current ops/sec; [INSERT AverageLatency(us)=549.31] 
+2014-07-13 19:44:46:860 390 sec: 9805228 operations; 38972.9 current ops/sec; [INSERT AverageLatency(us)=589.65] 
+2014-07-13 19:44:56:860 400 sec: 9805228 operations; 0 current ops/sec;  
+2014-07-13 19:45:06:861 410 sec: 10152732 operations; 34750.4 current ops/sec; [INSERT AverageLatency(us)=1179.52] 
+2014-07-13 19:45:16:861 420 sec: 10612940 operations; 46016.2 current ops/sec; [INSERT AverageLatency(us)=458.91] 
+2014-07-13 19:45:26:861 430 sec: 10796084 operations; 18314.4 current ops/sec; [INSERT AverageLatency(us)=472.51] 
+2014-07-13 19:45:36:862 440 sec: 10802536 operations; 645.14 current ops/sec; [INSERT AverageLatency(us)=5204.23] 
+2014-07-13 19:45:46:862 450 sec: 11359604 operations; 55706.8 current ops/sec; [INSERT AverageLatency(us)=849.52] 
+2014-07-13 19:45:56:863 460 sec: 11801028 operations; 44137.99 current ops/sec; [INSERT AverageLatency(us)=345.79] 
+2014-07-13 19:46:06:863 470 sec: 11801028 operations; 0 current ops/sec;  
+2014-07-13 19:46:16:863 480 sec: 12202351 operations; 40132.3 current ops/sec; [INSERT AverageLatency(us)=1086.86] 
+2014-07-13 19:46:26:878 490 sec: 12613642 operations; 41067.5 current ops/sec; [INSERT AverageLatency(us)=444.13] 
+2014-07-13 19:46:36:878 500 sec: 12815364 operations; 20172.2 current ops/sec; [INSERT AverageLatency(us)=336.87] 
+2014-07-13 19:46:46:879 510 sec: 12843540 operations; 2817.32 current ops/sec; [INSERT AverageLatency(us)=3194.13] 
+2014-07-13 19:46:57:027 520 sec: 13398966 operations; 54732.56 current ops/sec; [INSERT AverageLatency(us)=821.99] 
+2014-07-13 19:47:07:027 530 sec: 13749868 operations; 35090.2 current ops/sec; [INSERT AverageLatency(us)=323.21] 
+2014-07-13 19:47:17:028 540 sec: 13749868 operations; 0 current ops/sec;  
+2014-07-13 19:47:27:028 550 sec: 14252340 operations; 50247.2 current ops/sec; [INSERT AverageLatency(us)=938.88] 
+2014-07-13 19:47:37:029 560 sec: 14651500 operations; 39912.01 current ops/sec; [INSERT AverageLatency(us)=408.74] 
+2014-07-13 19:47:47:029 570 sec: 14651500 operations; 0 current ops/sec;  
+2014-07-13 19:47:57:029 580 sec: 15153972 operations; 50247.2 current ops/sec; [INSERT AverageLatency(us)=866.96] 
+2014-07-13 19:48:07:202 591 sec: 15602794 operations; 44118.94 current ops/sec; [INSERT AverageLatency(us)=455.53] 
+2014-07-13 19:48:17:202 601 sec: 15656444 operations; 5365 current ops/sec; [INSERT AverageLatency(us)=90.41] 
+2014-07-13 19:48:27:203 611 sec: 15710864 operations; 5441.46 current ops/sec; [INSERT AverageLatency(us)=7510.96] 
+2014-07-13 19:48:37:510 621 sec: 16329998 operations; 60069.27 current ops/sec; [INSERT AverageLatency(us)=260.07] 
+2014-07-13 19:48:47:511 631 sec: 16562772 operations; 23275.07 current ops/sec; [INSERT AverageLatency(us)=336.62] 
+2014-07-13 19:48:57:511 641 sec: 16849228 operations; 28645.6 current ops/sec; [INSERT AverageLatency(us)=961.12] 
+2014-07-13 19:49:07:512 651 sec: 17130834 operations; 28157.78 current ops/sec; [INSERT AverageLatency(us)=918.79] 
+2014-07-13 19:49:17:512 661 sec: 17365788 operations; 23495.4 current ops/sec; [INSERT AverageLatency(us)=322] 
+2014-07-13 19:49:27:513 671 sec: 17416390 operations; 5059.69 current ops/sec; [INSERT AverageLatency(us)=2013.07] 
+2014-07-13 19:49:37:514 681 sec: 17976268 operations; 55987.8 current ops/sec; [INSERT AverageLatency(us)=747.07] 
+2014-07-13 19:49:47:560 691 sec: 18347525 operations; 36952.03 current ops/sec; [INSERT AverageLatency(us)=464.88] 
+2014-07-13 19:49:57:561 701 sec: 18375428 operations; 2790.3 current ops/sec; [INSERT AverageLatency(us)=468.33] 
+2014-07-13 19:50:07:561 711 sec: 18802764 operations; 42729.33 current ops/sec; [INSERT AverageLatency(us)=972.44] 
+2014-07-13 19:50:17:562 721 sec: 19267668 operations; 46485.75 current ops/sec; [INSERT AverageLatency(us)=358.59] 
+2014-07-13 19:50:27:562 731 sec: 19281756 operations; 1408.8 current ops/sec; [INSERT AverageLatency(us)=524.91] 
+2014-07-13 19:50:37:563 741 sec: 19615172 operations; 33338.27 current ops/sec; [INSERT AverageLatency(us)=1187.45] 
+2014-07-13 19:50:47:563 751 sec: 19956731 operations; 34155.9 current ops/sec; [INSERT AverageLatency(us)=623.78] 
+2014-07-13 19:50:57:564 761 sec: 20169300 operations; 21254.77 current ops/sec; [INSERT AverageLatency(us)=357.06] 
+2014-07-13 19:51:07:564 771 sec: 20394708 operations; 22540.8 current ops/sec; [INSERT AverageLatency(us)=1359.42] 
+2014-07-13 19:51:17:565 781 sec: 20948836 operations; 55407.26 current ops/sec; [INSERT AverageLatency(us)=381.38] 
+2014-07-13 19:51:27:565 791 sec: 21070932 operations; 12209.6 current ops/sec; [INSERT AverageLatency(us)=362.5] 
+2014-07-13 19:51:37:566 801 sec: 21347996 operations; 27703.63 current ops/sec; [INSERT AverageLatency(us)=1244.66] 
+2014-07-13 19:51:47:566 811 sec: 21718980 operations; 37098.4 current ops/sec; [INSERT AverageLatency(us)=523.53] 
+2014-07-13 19:51:57:567 821 sec: 22089964 operations; 37094.69 current ops/sec; [INSERT AverageLatency(us)=400.2] 
+2014-07-13 19:52:07:568 831 sec: 22089964 operations; 0 current ops/sec;  
+2014-07-13 19:52:18:529 842 sec: 22480702 operations; 35644.77 current ops/sec; [INSERT AverageLatency(us)=1195.13] 
+2014-07-13 19:52:28:529 852 sec: 22775580 operations; 29487.8 current ops/sec; [INSERT AverageLatency(us)=357.7] 
+2014-07-13 19:52:38:530 862 sec: 22775580 operations; 0 current ops/sec;  
+2014-07-13 19:52:48:530 872 sec: 22775580 operations; 0 current ops/sec;  
+2014-07-13 19:52:58:531 882 sec: 22775580 operations; 0 current ops/sec;  
+2014-07-13 19:53:08:531 892 sec: 22796832 operations; 2125.2 current ops/sec; [INSERT AverageLatency(us)=6693.78] 
+2014-07-13 19:53:18:532 902 sec: 23165986 operations; 36911.71 current ops/sec; [INSERT AverageLatency(us)=241.61] 
+14/07/13 19:53:21 INFO client.AsyncProcess: #15, table=usertable, attempt=10/35 failed 1919 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=12466, waitTime=2091, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:21 PDT 2014, retrying after 10019 ms, replay 1919 ops.
+14/07/13 19:53:21 INFO client.AsyncProcess: #3, table=usertable, attempt=10/35 failed 1877 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=12466, waitTime=2091, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:20 PDT 2014, retrying after 10048 ms, replay 1877 ops.
+14/07/13 19:53:21 INFO client.AsyncProcess: #6, table=usertable, attempt=10/35 failed 1863 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=12466, waitTime=2091, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:20 PDT 2014, retrying after 10064 ms, replay 1863 ops.
+14/07/13 19:53:21 INFO client.AsyncProcess: #9, table=usertable, attempt=10/35 failed 1848 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=12466, waitTime=2091, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:20 PDT 2014, retrying after 10029 ms, replay 1848 ops.
+14/07/13 19:53:21 INFO client.AsyncProcess: #7, table=usertable, attempt=10/35 failed 1848 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=12466, waitTime=2091, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:21 PDT 2014, retrying after 10031 ms, replay 1848 ops.
+2014-07-13 19:53:28:532 912 sec: 23536332 operations; 37034.6 current ops/sec; [INSERT AverageLatency(us)=1873.1] 
+14/07/13 19:53:33 INFO client.AsyncProcess: #9, table=usertable, attempt=11/35 failed 1848 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:47291 remote=slave1/9.1.143.59:60020] on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:20 PDT 2014, retrying after 10022 ms, replay 1848 ops.
+14/07/13 19:53:33 INFO client.AsyncProcess: #15, table=usertable, attempt=11/35 failed 1919 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:47291 remote=slave1/9.1.143.59:60020] on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:21 PDT 2014, retrying after 10071 ms, replay 1919 ops.
+14/07/13 19:53:33 INFO client.AsyncProcess: #3, table=usertable, attempt=11/35 failed 1877 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:47291 remote=slave1/9.1.143.59:60020] on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:20 PDT 2014, retrying after 10055 ms, replay 1877 ops.
+14/07/13 19:53:33 INFO client.AsyncProcess: #6, table=usertable, attempt=11/35 failed 1863 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:47291 remote=slave1/9.1.143.59:60020] on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:20 PDT 2014, retrying after 10019 ms, replay 1863 ops.
+14/07/13 19:53:33 INFO client.AsyncProcess: #7, table=usertable, attempt=11/35 failed 1848 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:60020 failed because java.net.SocketTimeoutException: 2000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:47291 remote=slave1/9.1.143.59:60020] on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:21 PDT 2014, retrying after 10099 ms, replay 1848 ops.
+2014-07-13 19:53:38:533 922 sec: 23536332 operations; 0 current ops/sec;  
+14/07/13 19:53:44 INFO client.AsyncProcess: #9, table=usertable, attempt=12/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:20 PDT 2014
+14/07/13 19:53:44 INFO client.AsyncProcess: #6, table=usertable, attempt=12/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:20 PDT 2014
+14/07/13 19:53:44 INFO client.AsyncProcess: #15, table=usertable, attempt=12/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:21 PDT 2014
+14/07/13 19:53:44 INFO client.AsyncProcess: #3, table=usertable, attempt=12/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:20 PDT 2014
+14/07/13 19:53:44 INFO client.AsyncProcess: #7, table=usertable, attempt=12/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 19:52:21 PDT 2014
+2014-07-13 19:53:48:533 932 sec: 23775828 operations; 23949.6 current ops/sec; [INSERT AverageLatency(us)=3196.04] 
+2014-07-13 19:53:58:534 942 sec: 24329877 operations; 55399.36 current ops/sec; [INSERT AverageLatency(us)=384.01] 
+2014-07-13 19:54:08:534 952 sec: 24865300 operations; 53542.3 current ops/sec; [INSERT AverageLatency(us)=365.56] 
+2014-07-13 19:54:18:535 962 sec: 25336899 operations; 47155.18 current ops/sec; [INSERT AverageLatency(us)=399.47] 
+2014-07-13 19:54:28:535 972 sec: 25809196 operations; 47229.7 current ops/sec; [INSERT AverageLatency(us)=440.08] 
+2014-07-13 19:54:38:536 982 sec: 26213052 operations; 40381.56 current ops/sec; [INSERT AverageLatency(us)=389.88] 
+2014-07-13 19:54:48:536 992 sec: 26470645 operations; 25759.3 current ops/sec; [INSERT AverageLatency(us)=869.35] 
+2014-07-13 19:54:58:537 1002 sec: 26883473 operations; 41278.67 current ops/sec; [INSERT AverageLatency(us)=498.35] 
+2014-07-13 19:55:08:537 1012 sec: 27016068 operations; 13259.5 current ops/sec; [INSERT AverageLatency(us)=210.67] 
+2014-07-13 19:55:18:538 1022 sec: 27020764 operations; 469.55 current ops/sec; [INSERT AverageLatency(us)=4470.76] 
+2014-07-13 19:55:28:538 1032 sec: 27574892 operations; 55412.8 current ops/sec; [INSERT AverageLatency(us)=971.59] 
+2014-07-13 19:55:38:539 1042 sec: 28016316 operations; 44137.99 current ops/sec; [INSERT AverageLatency(us)=354.23] 
+2014-07-13 19:55:48:539 1052 sec: 28021012 operations; 469.6 current ops/sec; [INSERT AverageLatency(us)=2847.4] 
+2014-07-13 19:55:58:540 1062 sec: 28363820 operations; 34277.37 current ops/sec; [INSERT AverageLatency(us)=1062.17] 
+2014-07-13 19:56:08:540 1072 sec: 28814636 operations; 45081.6 current ops/sec; [INSERT AverageLatency(us)=533.67] 
+2014-07-13 19:56:18:541 1082 sec: 28894468 operations; 7982.4 current ops/sec; [INSERT AverageLatency(us)=435.93] 
+2014-07-13 19:56:28:541 1092 sec: 28941428 operations; 4696 current ops/sec; [INSERT AverageLatency(us)=2579.08] 
+2014-07-13 19:56:38:542 1102 sec: 29425116 operations; 48363.96 current ops/sec; [INSERT AverageLatency(us)=942.08] 
+2014-07-13 19:56:48:703 1112 sec: 29832321 operations; 40075.29 current ops/sec; [INSERT AverageLatency(us)=462.3] 
+2014-07-13 19:56:58:821 1122 sec: 29898473 operations; 6538.05 current ops/sec; [INSERT AverageLatency(us)=1442.68] 
+2014-07-13 19:57:08:821 1132 sec: 30289180 operations; 39070.7 current ops/sec; [INSERT AverageLatency(us)=556.97] 
+2014-07-13 19:57:18:822 1142 sec: 30716516 operations; 42729.33 current ops/sec; [INSERT AverageLatency(us)=547.72] 
+2014-07-13 19:57:28:823 1152 sec: 30716516 operations; 0 current ops/sec;  
+2014-07-13 19:57:38:823 1162 sec: 30921839 operations; 20530.25 current ops/sec; [INSERT AverageLatency(us)=2237.15] 
+2014-07-13 19:57:48:868 1172 sec: 31506236 operations; 58177.9 current ops/sec; [INSERT AverageLatency(us)=327.98] 
+2014-07-13 19:57:58:868 1182 sec: 31749636 operations; 24340 current ops/sec; [INSERT AverageLatency(us)=392.55] 
+2014-07-13 19:58:08:869 1192 sec: 32087748 operations; 33807.82 current ops/sec; [INSERT AverageLatency(us)=847.94] 
+2014-07-13 19:58:18:869 1202 sec: 32524476 operations; 43672.8 current ops/sec; [INSERT AverageLatency(us)=488.09] 
+2014-07-13 19:58:28:870 1212 sec: 32533868 operations; 939.11 current ops/sec; [INSERT AverageLatency(us)=153.87] 
+2014-07-13 19:58:38:870 1222 sec: 32594916 operations; 6104.8 current ops/sec; [INSERT AverageLatency(us)=2859.03] 
+2014-07-13 19:58:48:871 1232 sec: 33120868 operations; 52589.94 current ops/sec; [INSERT AverageLatency(us)=772.34] 
+2014-07-13 19:58:58:871 1242 sec: 33530696 operations; 40982.8 current ops/sec; [INSERT AverageLatency(us)=474.19] 
+2014-07-13 19:59:08:881 1252 sec: 33611655 operations; 8087.81 current ops/sec; [INSERT AverageLatency(us)=530.89] 
+2014-07-13 19:59:18:882 1262 sec: 34130508 operations; 51880.11 current ops/sec; [INSERT AverageLatency(us)=681.39] 
+2014-07-13 19:59:28:882 1272 sec: 34421660 operations; 29115.2 current ops/sec; [INSERT AverageLatency(us)=452.38] 
+2014-07-13 19:59:38:883 1282 sec: 34421660 operations; 0 current ops/sec;  
+2014-07-13 19:59:48:883 1292 sec: 34750380 operations; 32872 current ops/sec; [INSERT AverageLatency(us)=1428.47] 
+2014-07-13 19:59:58:884 1302 sec: 35219980 operations; 46955.3 current ops/sec; [INSERT AverageLatency(us)=413.68] 
+2014-07-13 20:00:08:884 1312 sec: 35412516 operations; 19253.6 current ops/sec; [INSERT AverageLatency(us)=385.47] 
+2014-07-13 20:00:18:925 1322 sec: 35550217 operations; 13713.87 current ops/sec; [INSERT AverageLatency(us)=2477.16] 
+2014-07-13 20:00:28:926 1332 sec: 36074652 operations; 52438.26 current ops/sec; [INSERT AverageLatency(us)=325.36] 
+2014-07-13 20:00:38:926 1342 sec: 36304756 operations; 23010.4 current ops/sec; [INSERT AverageLatency(us)=447.41] 
+2014-07-13 20:00:48:927 1352 sec: 36633476 operations; 32868.71 current ops/sec; [INSERT AverageLatency(us)=764.55] 
+2014-07-13 20:00:58:927 1362 sec: 36680436 operations; 4696 current ops/sec; [INSERT AverageLatency(us)=1107.9] 
+2014-07-13 20:01:08:928 1372 sec: 37192300 operations; 51181.28 current ops/sec; [INSERT AverageLatency(us)=770.4] 
+2014-07-13 20:01:18:928 1382 sec: 37243956 operations; 5165.6 current ops/sec; [INSERT AverageLatency(us)=291.51] 
+2014-07-13 20:01:28:929 1392 sec: 37699468 operations; 45546.65 current ops/sec; [INSERT AverageLatency(us)=847.07] 
+2014-07-13 20:01:38:929 1402 sec: 38090834 operations; 39136.6 current ops/sec; [INSERT AverageLatency(us)=506.51] 
+2014-07-13 20:01:48:930 1412 sec: 38225420 operations; 13457.25 current ops/sec; [INSERT AverageLatency(us)=301.72] 
+2014-07-13 20:01:58:930 1422 sec: 38422652 operations; 19723.2 current ops/sec; [INSERT AverageLatency(us)=1863.14] 
+2014-07-13 20:02:08:931 1432 sec: 38887556 operations; 46485.75 current ops/sec; [INSERT AverageLatency(us)=379.96] 
+2014-07-13 20:02:18:932 1442 sec: 39136444 operations; 24886.31 current ops/sec; [INSERT AverageLatency(us)=468.74] 
+2014-07-13 20:02:28:932 1452 sec: 39136444 operations; 0 current ops/sec;  
+2014-07-13 20:02:38:933 1462 sec: 39361852 operations; 22538.55 current ops/sec; [INSERT AverageLatency(us)=2155.01] 
+2014-07-13 20:02:48:933 1472 sec: 39901892 operations; 54004 current ops/sec; [INSERT AverageLatency(us)=343.58] 
+2014-07-13 20:02:58:934 1482 sec: 40155476 operations; 25355.86 current ops/sec; [INSERT AverageLatency(us)=386.25] 
+2014-07-13 20:03:09:102 1492 sec: 40505549 operations; 34428.89 current ops/sec; [INSERT AverageLatency(us)=905.63] 
+2014-07-13 20:03:19:103 1502 sec: 41053936 operations; 54833.22 current ops/sec; [INSERT AverageLatency(us)=336.42] 
+2014-07-13 20:03:29:103 1512 sec: 41136940 operations; 8300.4 current ops/sec; [INSERT AverageLatency(us)=2128.64] 
+2014-07-13 20:03:39:104 1522 sec: 41700460 operations; 56346.37 current ops/sec; [INSERT AverageLatency(us)=407.62] 
+2014-07-13 20:03:49:104 1532 sec: 41965907 operations; 26544.7 current ops/sec; [INSERT AverageLatency(us)=724.88] 
+2014-07-13 20:03:59:105 1542 sec: 42179452 operations; 21352.36 current ops/sec; [INSERT AverageLatency(us)=996.5] 
+2014-07-13 20:04:09:105 1552 sec: 42362596 operations; 18314.4 current ops/sec; [INSERT AverageLatency(us)=394.97] 
+2014-07-13 20:04:19:106 1562 sec: 42484692 operations; 12208.38 current ops/sec; [INSERT AverageLatency(us)=1878.98] 
+2014-07-13 20:04:29:107 1572 sec: 42484692 operations; 0 current ops/sec;  
+2014-07-13 20:04:39:107 1582 sec: 42484692 operations; 0 current ops/sec;  
+2014-07-13 20:04:49:108 1592 sec: 42484692 operations; 0 current ops/sec;  
+14/07/13 20:04:58 INFO client.AsyncProcess: #18, table=usertable, attempt=10/35 failed 1927 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=21452, waitTime=2712, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014, retrying after 10090 ms, replay 1927 ops.
+14/07/13 20:04:58 INFO client.AsyncProcess: #1, table=usertable, attempt=10/35 failed 1875 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=21452, waitTime=2712, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014, retrying after 10096 ms, replay 1875 ops.
+14/07/13 20:04:58 INFO client.AsyncProcess: #10, table=usertable, attempt=10/35 failed 1890 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=21452, waitTime=2712, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:02 PDT 2014, retrying after 10005 ms, replay 1890 ops.
+14/07/13 20:04:58 INFO client.AsyncProcess: #20, table=usertable, attempt=10/35 failed 1803 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=21452, waitTime=2712, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:02 PDT 2014, retrying after 10032 ms, replay 1803 ops.
+14/07/13 20:04:58 INFO client.AsyncProcess: #7, table=usertable, attempt=10/35 failed 1853 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=21452, waitTime=2712, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014, retrying after 10081 ms, replay 1853 ops.
+14/07/13 20:04:58 INFO client.AsyncProcess: #14, table=usertable, attempt=10/35 failed 1861 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=21452, waitTime=2712, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014, retrying after 10092 ms, replay 1861 ops.
+14/07/13 20:04:58 INFO client.AsyncProcess: #8, table=usertable, attempt=10/35 failed 1859 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=21452, waitTime=2712, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014, retrying after 10014 ms, replay 1859 ops.
+14/07/13 20:04:58 INFO client.AsyncProcess: #4, table=usertable, attempt=10/35 failed 1891 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=21452, waitTime=2712, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:02 PDT 2014, retrying after 10002 ms, replay 1891 ops.
+14/07/13 20:04:58 INFO client.AsyncProcess: #16, table=usertable, attempt=10/35 failed 1835 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=21452, waitTime=2712, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014, retrying after 10046 ms, replay 1835 ops.
+14/07/13 20:04:58 INFO client.AsyncProcess: #4, table=usertable, attempt=10/35 failed 1882 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=21452, waitTime=2712, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014, retrying after 10014 ms, replay 1882 ops.
+14/07/13 20:04:58 INFO client.AsyncProcess: #11, table=usertable, attempt=10/35 failed 1871 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=21452, waitTime=2712, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014, retrying after 10031 ms, replay 1871 ops.
+14/07/13 20:04:58 INFO client.AsyncProcess: #15, table=usertable, attempt=10/35 failed 1868 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=21452, waitTime=2712, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:02 PDT 2014, retrying after 10023 ms, replay 1868 ops.
+14/07/13 20:04:58 INFO client.AsyncProcess: #12, table=usertable, attempt=10/35 failed 1866 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=21452, waitTime=2712, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014, retrying after 10057 ms, replay 1866 ops.
+2014-07-13 20:04:59:108 1602 sec: 42526956 operations; 4225.98 current ops/sec; [INSERT AverageLatency(us)=4270.53] 
+2014-07-13 20:05:09:109 1612 sec: 42944900 operations; 41794.4 current ops/sec; [INSERT AverageLatency(us)=218.82] 
+14/07/13 20:05:09 INFO client.AsyncProcess: #10, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:02 PDT 2014
+14/07/13 20:05:09 INFO client.AsyncProcess: #4, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:02 PDT 2014
+14/07/13 20:05:09 INFO client.AsyncProcess: #11, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014
+14/07/13 20:05:09 INFO client.AsyncProcess: #20, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:02 PDT 2014
+14/07/13 20:05:09 INFO client.AsyncProcess: #15, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:02 PDT 2014
+14/07/13 20:05:09 INFO client.AsyncProcess: #8, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014
+14/07/13 20:05:09 INFO client.AsyncProcess: #4, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014
+14/07/13 20:05:09 INFO client.AsyncProcess: #1, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014
+14/07/13 20:05:09 INFO client.AsyncProcess: #14, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014
+14/07/13 20:05:09 INFO client.AsyncProcess: #18, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014
+14/07/13 20:05:09 INFO client.AsyncProcess: #7, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014
+14/07/13 20:05:10 INFO client.AsyncProcess: #12, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014
+14/07/13 20:05:10 INFO client.AsyncProcess: #16, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:04:01 PDT 2014
+2014-07-13 20:05:19:109 1622 sec: 43480244 operations; 53529.05 current ops/sec; [INSERT AverageLatency(us)=1903.54] 
+2014-07-13 20:05:29:193 1633 sec: 43911052 operations; 42721.94 current ops/sec; [INSERT AverageLatency(us)=353.63] 
+2014-07-13 20:05:39:194 1643 sec: 44465336 operations; 55422.86 current ops/sec; [INSERT AverageLatency(us)=428.65] 
+2014-07-13 20:05:49:194 1653 sec: 44527452 operations; 6211.6 current ops/sec; [INSERT AverageLatency(us)=119.54] 
+2014-07-13 20:05:59:282 1663 sec: 44783798 operations; 25410.98 current ops/sec; [INSERT AverageLatency(us)=1534.27] 
+2014-07-13 20:06:09:282 1673 sec: 44837388 operations; 5359 current ops/sec; [INSERT AverageLatency(us)=319.46] 
+2014-07-13 20:06:19:283 1683 sec: 44959484 operations; 12208.38 current ops/sec; [INSERT AverageLatency(us)=824.12] 
+2014-07-13 20:06:29:283 1693 sec: 44959484 operations; 0 current ops/sec;  
+2014-07-13 20:06:39:284 1703 sec: 44959484 operations; 0 current ops/sec;  
+2014-07-13 20:06:49:284 1713 sec: 44959484 operations; 0 current ops/sec;  
+14/07/13 20:06:53 INFO client.AsyncProcess: #7, table=usertable, attempt=10/35 failed 1907 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=23117, waitTime=2015, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:05:57 PDT 2014, retrying after 10070 ms, replay 1907 ops.
+2014-07-13 20:06:59:947 1723 sec: 45376208 operations; 39081.31 current ops/sec; [INSERT AverageLatency(us)=2478.95] 
+14/07/13 20:07:04 INFO client.AsyncProcess: #7, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:05:57 PDT 2014
+2014-07-13 20:07:09:948 1733 sec: 45816479 operations; 44022.7 current ops/sec; [INSERT AverageLatency(us)=535.85] 
+2014-07-13 20:07:19:948 1743 sec: 45879900 operations; 6342.1 current ops/sec; [INSERT AverageLatency(us)=93.74] 
+2014-07-13 20:07:29:949 1753 sec: 45879900 operations; 0 current ops/sec;  
+2014-07-13 20:07:39:949 1763 sec: 45879900 operations; 0 current ops/sec;  
+2014-07-13 20:07:49:950 1773 sec: 45879900 operations; 0 current ops/sec;  
+2014-07-13 20:07:59:950 1783 sec: 46069469 operations; 18956.9 current ops/sec; [UPDATE AverageLatency(us)=818191] [INSERT AverageLatency(us)=1085.52] [CLEANUP AverageLatency(us)=818414] 
+14/07/13 20:08:06 INFO client.AsyncProcess: #10, table=usertable, attempt=10/35 failed 1912 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24224, waitTime=2082, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:08 PDT 2014, retrying after 10004 ms, replay 1912 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #19, table=usertable, attempt=10/35 failed 1823 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24224, waitTime=2082, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:08 PDT 2014, retrying after 10077 ms, replay 1823 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #18, table=usertable, attempt=10/35 failed 1866 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24224, waitTime=2082, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 10095 ms, replay 1866 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #10, table=usertable, attempt=10/35 failed 1856 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24224, waitTime=2082, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:10 PDT 2014, retrying after 10027 ms, replay 1856 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #15, table=usertable, attempt=10/35 failed 1870 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24224, waitTime=2082, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 10021 ms, replay 1870 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #8, table=usertable, attempt=10/35 failed 1866 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24224, waitTime=2082, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 10073 ms, replay 1866 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #2, table=usertable, attempt=10/35 failed 1886 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24224, waitTime=2082, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 10012 ms, replay 1886 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #13, table=usertable, attempt=10/35 failed 1854 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24224, waitTime=2082, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:08 PDT 2014, retrying after 10063 ms, replay 1854 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #8, table=usertable, attempt=10/35 failed 1886 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24224, waitTime=2082, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:10 PDT 2014, retrying after 10065 ms, replay 1886 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #10, table=usertable, attempt=10/35 failed 1867 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24224, waitTime=2082, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:12 PDT 2014, retrying after 10076 ms, replay 1867 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #7, table=usertable, attempt=10/35 failed 1850 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24237, waitTime=2147, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 10004 ms, replay 1850 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #3, table=usertable, attempt=10/35 failed 1875 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24237, waitTime=2147, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 10081 ms, replay 1875 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #17, table=usertable, attempt=10/35 failed 1899 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24237, waitTime=2147, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 10043 ms, replay 1899 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #1, table=usertable, attempt=10/35 failed 1913 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24237, waitTime=2147, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:08 PDT 2014, retrying after 10033 ms, replay 1913 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #11, table=usertable, attempt=10/35 failed 1844 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24237, waitTime=2147, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:08 PDT 2014, retrying after 10039 ms, replay 1844 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #10, table=usertable, attempt=10/35 failed 1842 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24237, waitTime=2147, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:11 PDT 2014, retrying after 10018 ms, replay 1842 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #10, table=usertable, attempt=10/35 failed 1873 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24237, waitTime=2147, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:09 PDT 2014, retrying after 10005 ms, replay 1873 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #15, table=usertable, attempt=10/35 failed 1782 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24237, waitTime=2147, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:08 PDT 2014, retrying after 10028 ms, replay 1782 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #20, table=usertable, attempt=10/35 failed 1854 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24237, waitTime=2147, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:09 PDT 2014, retrying after 10011 ms, replay 1854 ops.
+14/07/13 20:08:06 INFO client.AsyncProcess: #2, table=usertable, attempt=10/35 failed 1885 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24237, waitTime=2147, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:09 PDT 2014, retrying after 10054 ms, replay 1885 ops.
+14/07/13 20:08:07 INFO client.AsyncProcess: #11, table=usertable, attempt=10/35 failed 1872 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24251, waitTime=2791, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:09 PDT 2014, retrying after 10035 ms, replay 1872 ops.
+2014-07-13 20:08:09:951 1793 sec: 46421669 operations; 35216.48 current ops/sec;  [INSERT AverageLatency(us)=634.02]  
+14/07/13 20:08:17 INFO client.AsyncProcess: #10, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:08 PDT 2014
+14/07/13 20:08:17 INFO client.AsyncProcess: #2, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014
+14/07/13 20:08:17 INFO client.AsyncProcess: #15, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014
+14/07/13 20:08:17 INFO client.AsyncProcess: #10, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:10 PDT 2014
+14/07/13 20:08:17 INFO client.AsyncProcess: #19, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:08 PDT 2014
+14/07/13 20:08:17 INFO client.AsyncProcess: #10, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:12 PDT 2014
+14/07/13 20:08:17 INFO client.AsyncProcess: #8, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014
+14/07/13 20:08:17 INFO client.AsyncProcess: #8, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:10 PDT 2014
+14/07/13 20:08:17 INFO client.AsyncProcess: #13, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:08 PDT 2014
+14/07/13 20:08:17 INFO client.AsyncProcess: #2, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:09 PDT 2014
+14/07/13 20:08:17 INFO client.AsyncProcess: #11, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:08 PDT 2014
+14/07/13 20:08:17 INFO client.AsyncProcess: #17, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014
+14/07/13 20:08:17 INFO client.AsyncProcess: #1, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:08 PDT 2014
+14/07/13 20:08:17 INFO client.AsyncProcess: #15, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:08 PDT 2014
+14/07/13 20:08:17 INFO client.AsyncProcess: #10, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:11 PDT 2014
+14/07/13 20:08:18 INFO client.AsyncProcess: #10, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:09 PDT 2014
+14/07/13 20:08:18 INFO client.AsyncProcess: #20, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:09 PDT 2014
+14/07/13 20:08:18 INFO client.AsyncProcess: #7, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014
+14/07/13 20:08:18 INFO client.AsyncProcess: #18, table=usertable, attempt=11/35 failed 1866 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24471, waitTime=2481, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 10023 ms, replay 1866 ops.
+14/07/13 20:08:18 INFO client.AsyncProcess: #3, table=usertable, attempt=11/35 failed 1875 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24471, waitTime=2481, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 10069 ms, replay 1875 ops.
+14/07/13 20:08:18 INFO client.AsyncProcess: #11, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:09 PDT 2014
+2014-07-13 20:08:19:951 1803 sec: 46946311 operations; 52464.2 current ops/sec; [UPDATE AverageLatency(us)=663306] [INSERT AverageLatency(us)=1560.86] [CLEANUP AverageLatency(us)=663719] 
+2014-07-13 20:08:29:952 1813 sec: 47193542 operations; 24720.63 current ops/sec;  [INSERT AverageLatency(us)=225.92]  
+14/07/13 20:08:31 INFO client.AsyncProcess: #18, table=usertable, attempt=12/35 failed 1866 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24782, waitTime=2778, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 20032 ms, replay 1866 ops.
+14/07/13 20:08:31 INFO client.AsyncProcess: #3, table=usertable, attempt=12/35 failed 1875 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=24782, waitTime=2778, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 20063 ms, replay 1875 ops.
+2014-07-13 20:08:39:988 1823 sec: 47193542 operations; 0 current ops/sec;    
+2014-07-13 20:08:49:989 1833 sec: 47193542 operations; 0 current ops/sec;    
+14/07/13 20:08:54 INFO client.AsyncProcess: #18, table=usertable, attempt=13/35 failed 1866 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25091, waitTime=3041, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 20131 ms, replay 1866 ops.
+14/07/13 20:08:54 INFO client.AsyncProcess: #3, table=usertable, attempt=13/35 failed 1875 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25091, waitTime=3041, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 20087 ms, replay 1875 ops.
+2014-07-13 20:08:59:989 1843 sec: 47193542 operations; 0 current ops/sec;    
+2014-07-13 20:09:09:990 1853 sec: 47193542 operations; 0 current ops/sec;    
+14/07/13 20:09:13 INFO client.AsyncProcess: #7, table=usertable, attempt=10/35 failed 1840 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25187, waitTime=2415, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014, retrying after 10097 ms, replay 1840 ops.
+14/07/13 20:09:13 INFO client.AsyncProcess: #16, table=usertable, attempt=10/35 failed 1851 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25187, waitTime=2415, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014, retrying after 10002 ms, replay 1851 ops.
+14/07/13 20:09:13 INFO client.AsyncProcess: #8, table=usertable, attempt=10/35 failed 1846 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25187, waitTime=2415, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014, retrying after 10089 ms, replay 1846 ops.
+14/07/13 20:09:16 INFO client.AsyncProcess: #1, table=usertable, attempt=10/35 failed 1821 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25190, waitTime=3438, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:20 PDT 2014, retrying after 10041 ms, replay 1821 ops.
+14/07/13 20:09:16 INFO client.AsyncProcess: #13, table=usertable, attempt=10/35 failed 1881 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25190, waitTime=3438, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:20 PDT 2014, retrying after 10023 ms, replay 1881 ops.
+14/07/13 20:09:16 INFO client.AsyncProcess: #20, table=usertable, attempt=10/35 failed 1836 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25190, waitTime=3438, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014, retrying after 10043 ms, replay 1836 ops.
+14/07/13 20:09:16 INFO client.AsyncProcess: #17, table=usertable, attempt=10/35 failed 1885 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25190, waitTime=3438, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014, retrying after 10073 ms, replay 1885 ops.
+14/07/13 20:09:16 INFO client.AsyncProcess: #10, table=usertable, attempt=10/35 failed 1861 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25190, waitTime=3438, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014, retrying after 10001 ms, replay 1861 ops.
+14/07/13 20:09:16 INFO client.AsyncProcess: #11, table=usertable, attempt=10/35 failed 1890 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25190, waitTime=3438, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014, retrying after 10066 ms, replay 1890 ops.
+14/07/13 20:09:16 INFO client.AsyncProcess: #5, table=usertable, attempt=10/35 failed 1879 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25190, waitTime=3438, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014, retrying after 10083 ms, replay 1879 ops.
+14/07/13 20:09:16 INFO client.AsyncProcess: #1, table=usertable, attempt=10/35 failed 1891 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25190, waitTime=3438, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014, retrying after 10025 ms, replay 1891 ops.
+14/07/13 20:09:16 INFO client.AsyncProcess: #8, table=usertable, attempt=10/35 failed 1888 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25190, waitTime=3438, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:20 PDT 2014, retrying after 10037 ms, replay 1888 ops.
+14/07/13 20:09:16 INFO client.AsyncProcess: #15, table=usertable, attempt=10/35 failed 1891 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25190, waitTime=3438, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:20 PDT 2014, retrying after 10074 ms, replay 1891 ops.
+14/07/13 20:09:16 INFO client.AsyncProcess: #19, table=usertable, attempt=10/35 failed 1852 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25190, waitTime=3438, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:22 PDT 2014, retrying after 10013 ms, replay 1852 ops.
+14/07/13 20:09:16 INFO client.AsyncProcess: #10, table=usertable, attempt=10/35 failed 1881 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25190, waitTime=3438, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:22 PDT 2014, retrying after 10074 ms, replay 1881 ops.
+14/07/13 20:09:16 INFO client.AsyncProcess: #3, table=usertable, attempt=14/35 failed 1875 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25190, waitTime=3438, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 20075 ms, replay 1875 ops.
+14/07/13 20:09:16 INFO client.AsyncProcess: #18, table=usertable, attempt=14/35 failed 1866 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:60020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$CallTimeoutException: Call id=25190, waitTime=3438, rpcTimetout=2000 on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014, retrying after 20174 ms, replay 1866 ops.
+2014-07-13 20:09:19:990 1863 sec: 47235806 operations; 4225.98 current ops/sec;  [INSERT AverageLatency(us)=2703.73]  
+14/07/13 20:09:24 INFO client.AsyncProcess: #16, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014
+14/07/13 20:09:24 INFO client.AsyncProcess: #8, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014
+14/07/13 20:09:24 INFO client.AsyncProcess: #7, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014
+14/07/13 20:09:28 INFO client.AsyncProcess: #10, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014
+14/07/13 20:09:28 INFO client.AsyncProcess: #19, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:22 PDT 2014
+14/07/13 20:09:28 INFO client.AsyncProcess: #1, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014
+14/07/13 20:09:28 INFO client.AsyncProcess: #13, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:20 PDT 2014
+14/07/13 20:09:28 INFO client.AsyncProcess: #15, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:20 PDT 2014
+14/07/13 20:09:28 INFO client.AsyncProcess: #5, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014
+14/07/13 20:09:28 INFO client.AsyncProcess: #17, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014
+14/07/13 20:09:28 INFO client.AsyncProcess: #10, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:22 PDT 2014
+14/07/13 20:09:28 INFO client.AsyncProcess: #11, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014
+14/07/13 20:09:28 INFO client.AsyncProcess: #1, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:20 PDT 2014
+14/07/13 20:09:28 INFO client.AsyncProcess: #20, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:21 PDT 2014
+14/07/13 20:09:28 INFO client.AsyncProcess: #8, table=usertable, attempt=11/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:08:20 PDT 2014
+2014-07-13 20:09:29:990 1873 sec: 47676343 operations; 44053.7 current ops/sec; [UPDATE AverageLatency(us)=699197.5] [INSERT AverageLatency(us)=2126.45] [CLEANUP AverageLatency(us)=699208.5] 
+14/07/13 20:09:38 INFO client.AsyncProcess: #18, table=usertable, attempt=15/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014
+14/07/13 20:09:38 INFO client.AsyncProcess: #3, table=usertable, attempt=15/35 SUCCEEDED on slave1,60020,1405333554898, tracking started Sun Jul 13 20:07:07 PDT 2014
+2014-07-13 20:09:39:991 1883 sec: 48171292 operations; 49489.95 current ops/sec; [UPDATE AverageLatency(us)=1552411.75] [INSERT AverageLatency(us)=835.58] [CLEANUP AverageLatency(us)=1552423] 
+2014-07-13 20:09:49:992 1893 sec: 48504708 operations; 33338.27 current ops/sec;  [INSERT AverageLatency(us)=247.03]  
+2014-07-13 20:09:59:992 1903 sec: 48504708 operations; 0 current ops/sec;    
+2014-07-13 20:10:09:993 1913 sec: 48504708 operations; 0 current ops/sec;    
+2014-07-13 20:10:19:993 1923 sec: 48805251 operations; 30054.3 current ops/sec; [UPDATE AverageLatency(us)=651478] [INSERT AverageLatency(us)=1314.02] [CLEANUP AverageLatency(us)=651492] 
+2014-07-13 20:10:29:994 1933 sec: 49314640 operations; 50933.81 current ops/sec; [UPDATE AverageLatency(us)=1486269.33] [INSERT AverageLatency(us)=163.23] [CLEANUP AverageLatency(us)=1486282] 
+2014-07-13 20:10:39:994 1943 sec: 49744196 operations; 42955.6 current ops/sec; [UPDATE AverageLatency(us)=1086616.25] [INSERT AverageLatency(us)=144.99] [CLEANUP AverageLatency(us)=1086634.5] 
+2014-07-13 20:10:49:995 1953 sec: 49993575 operations; 24935.41 current ops/sec; [UPDATE AverageLatency(us)=603082.33] [INSERT AverageLatency(us)=99.5] [CLEANUP AverageLatency(us)=603093.33] 
+2014-07-13 20:10:59:996 1963 sec: 49993575 operations; 0 current ops/sec;    
+2014-07-13 20:11:02:883 1966 sec: 50000000 operations; 2225.49 current ops/sec; [UPDATE AverageLatency(us)=392199] [INSERT AverageLatency(us)=2037.84] [CLEANUP AverageLatency(us)=392211] 
++ echo 'end time:'
+end time:
+++ date +%s
++ echo 1405307463
+1405307463
++ echo 'sleeping for 10 sec ...'
+sleeping for 10 sec ...
++ sleep 10
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ let counter=1+1
++ read line
++ set +x

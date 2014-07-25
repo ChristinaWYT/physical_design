@@ -10,6 +10,7 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("-caseresult_dir", "--caseresult_dir", help="Result Dir")
 parser.add_argument("-cases", "--cases", help="Cases")
+parser.add_argument("-plot_dir", "--plot_dir", help="Plot Directory")
 
 args = parser.parse_args()
 
@@ -27,7 +28,7 @@ load_end_timestamp = []
 cases = args.cases.split(':')
 
 for case in cases:
-	with open('case'+case+'.log', 'r') as file:
+	with open(args.caseresult_dir + '/case'+ case  + '/case'+case+'.log', 'r') as file:
 		m = re.findall("\+ echo (\d+)", file.read())
 		print(m)
 		load_end_timestamp.append(int(m[1]))
@@ -74,7 +75,7 @@ def metricstats(file_name, master, metric):
 					if found:
 						metric_val_list.append(metric_val)
 						break
-				stamp = stamp+1
+				stamp = stamp-1
 				count=count+1
 	return(metric_val_list)
 
@@ -191,7 +192,5 @@ lines = [p1, p2, p3, p4, p5]
 
 ax1.legend(lines, [l.get_label() for l in lines])
 
-#pyplot.tight_layout()
-#fig.subplots_adjust(right=1)
-pyplot.savefig('load_' + args.cases, bbox_inches='tight', pad_inches=0.2)
+pyplot.savefig(args.plot_dir + 'load_' + args.cases, bbox_inches='tight', pad_inches=0.2)
 #pyplot.show()

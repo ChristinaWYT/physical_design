@@ -3,22 +3,23 @@
 set -x
 
 filename="case"`ls caseresult/ -ltr | wc -l`
+requestdistribution=''
 mkdir caseresult/$filename
 ssh hadoop@master mkdir /home/hadoop/git/physical_design/caseresult/$filename
 RESULT_DIR=/home/hadoop/git/physical_design/caseresult/$filename
 TEN=10
 SIXTY=60
 #TEN=0
-SLEEP_TIME=300
+SLEEP_TIME=200
 #SLEEP_TIME=0
 YCSB_DIR=/home/hadoop/ycsb-0.1.4
 #number_of_operations=10000000
-number_of_operations=50000000
+number_of_operations=10000000
 #number_of_operations=100000000
 #number_of_operations=100
 number_of_threads=20
 #number_of_records=10000000
-number_of_records=50000000
+number_of_records=10000000
 #number_of_records=100000000
 #number_of_records=100
 output_file_suffix='.dat'
@@ -62,6 +63,12 @@ do
 	elif [ "$i" == "workloadc" ]
 	then
 		workloadc=true
+	elif [ "$i" == "zipfian" ]
+	then
+		requestdistribution="zipfian"
+	elif [ "$i" == "uniform" ]
+	then
+		requestdistribution="uniform"
 	fi
 done
 
@@ -126,24 +133,24 @@ do
 		sleep $TEN
 	fi
 
-	#if $all || $scan
-	#then
-	#	echo "scan..."
-	#	echo "start time: "
-	#	echo `date +%s`
-	#	./scan $number_of_operations $number_of_threads `echo $RESULT_DIR/scan_$counter.dat`
-	#	echo "end time:"
-	##	echo `date +%s`
-	#	echo "sleeping for 10 sec ..."
-	#	sleep $TEN
-	#fi
+	if $all || $scan
+	then
+		echo "scan..."
+		echo "start time: "
+		echo `date +%s`
+		./scan $number_of_operations $number_of_threads `echo $RESULT_DIR/scan_$counter.dat`
+		echo "end time:"
+		echo `date +%s`
+		echo "sleeping for 10 sec ..."
+		sleep $TEN
+	fi
 
 	if $all || $workloada
 	then
 		echo "workloada..."
 		echo "start time: "
 		echo `date +%s`
-		./workloada $number_of_operations $number_of_threads `echo $RESULT_DIR/workloada_$counter.dat`
+		./workloada $number_of_operations $number_of_threads `echo $RESULT_DIR/workloada_$counter.dat` $requestdistribution
 		echo "end time:"
 		echo `date +%s`
 		echo "sleeping for 10 sec ..."
