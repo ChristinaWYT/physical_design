@@ -1,0 +1,864 @@
+++ ls caseresult/ -ltr
+++ wc -l
++ filename=case307
++ requestdistribution=
++ mkdir caseresult/case307
++ ssh hadoop@master mkdir /home/hadoop/git/physical_design/caseresult/case307
++ RESULT_DIR=/home/hadoop/git/physical_design/caseresult/case307
++ TEN=10
++ SIXTY=6
++ SLEEP_TIME=20
++ YCSB_DIR=/home/hadoop/ycsb-0.1.4
++ number_of_operations=50000000
++ number_of_threads=20
++ number_of_records=50000000
++ output_file_suffix=.dat
++ experiment_list_file=/home/hadoop/git/physical_design/case307.list
++ clean=false
++ create=false
++ load=false
++ random_read=false
++ workloada=false
++ workloadb=false
++ workloadc=false
++ scan=false
++ all=false
++ for i in '$@'
++ '[' clean == all ']'
++ '[' clean == clean ']'
++ clean=true
++ for i in '$@'
++ '[' create == all ']'
++ '[' create == clean ']'
++ '[' create == create ']'
++ create=true
++ for i in '$@'
++ '[' workloadc == all ']'
++ '[' workloadc == clean ']'
++ '[' workloadc == create ']'
++ '[' workloadc == load ']'
++ '[' workloadc == random_read ']'
++ '[' workloadc == scan ']'
++ '[' workloadc == workloada ']'
++ '[' workloadc == workloadb ']'
++ '[' workloadc == workloadc ']'
++ workloadc=true
++ for i in '$@'
++ '[' zipfian == all ']'
++ '[' zipfian == clean ']'
++ '[' zipfian == create ']'
++ '[' zipfian == load ']'
++ '[' zipfian == random_read ']'
++ '[' zipfian == scan ']'
++ '[' zipfian == workloada ']'
++ '[' zipfian == workloadb ']'
++ '[' zipfian == workloadc ']'
++ '[' zipfian == zipfian ']'
++ requestdistribution=zipfian
++ let counter=1
++ cd /home/hadoop/ycsb-0.1.4
+++ pwd
++ echo /home/hadoop/ycsb-0.1.4
+/home/hadoop/ycsb-0.1.4
++ read line
++ false
++ true
++ echo 'sleeping for 6 ...'
+sleeping for 6 ...
++ sleep 6
++ echo 'droping usertable...'
+droping usertable...
++ ssh hadoop@slave1 /home/hadoop/hbase/bin/hbase-daemon.sh start regionserver
+regionserver running as process 430. Stop it first.
++ ssh hadoop@master /home/hadoop/hbase/bin/hbase shell /home/hadoop/git/physical_design/delete_table
+2014-08-04 07:54:21,107 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+0 row(s) in 20.0130 seconds
+
+0 row(s) in 38.2810 seconds
+
+0 row(s) in 0.0980 seconds
+
++ echo 'sleeping for 20 ...'
+sleeping for 20 ...
++ sleep 20
++ false
++ true
++ echo 'creating usertable...'
+creating usertable...
++ create_statement='create '\''usertable'\'', { NAME=>'\''family'\'', COMPRESSION=>'\''GZ'\''}, SPLITS => ['\''user1'\'', '\''user2'\'', '\''user3'\'', '\''user4'\'', '\''user5'\'', '\''user6'\'', '\''user7'\'', '\''user8'\'', '\''user9'\'']'
++ echo create ''\''usertable'\'',' '{' 'NAME=>'\''family'\'',' 'COMPRESSION=>'\''GZ'\''},' SPLITS '=>' '['\''user1'\'',' ''\''user2'\'',' ''\''user3'\'',' ''\''user4'\'',' ''\''user5'\'',' ''\''user6'\'',' ''\''user7'\'',' ''\''user8'\'',' ''\''user9'\'']'
++ echo 'exit '
++ scp /home/hadoop/git/physical_design/caseresult/case307/create_1.script hadoop@master:/home/hadoop/git/physical_design/caseresult/case307/create_1.script
++ create_table /home/hadoop/git/physical_design/caseresult/case307/create_1.script
++ echo 'creating table...'
+creating table...
++ echo /home/hadoop/git/physical_design/caseresult/case307/create_1.script
+/home/hadoop/git/physical_design/caseresult/case307/create_1.script
++ ssh hadoop@master /home/hadoop/hbase/bin/hbase shell /home/hadoop/git/physical_design/caseresult/case307/create_1.script
+2014-08-04 07:55:46,618 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+0 row(s) in 4.0180 seconds
+
++ echo 'sleeping for 10 sec ...'
+sleeping for 10 sec ...
++ sleep 10
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ true
++ echo workloadc...
+workloadc...
++ echo 'start time: '
+start time: 
+++ date +%s
++ echo 1407135699
+1407135699
+++ echo /home/hadoop/git/physical_design/caseresult/case307/workloadc_1.dat
++ ./workloadc 50000000 20 /home/hadoop/git/physical_design/caseresult/case307/workloadc_1.dat
+Loading workload...
+Starting test.
+2014-08-04 00:01:39:840 0 sec: 0 operations; 
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:zookeeper.version=3.4.6-1569965, built on 02/20/2014 09:09 GMT
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:host.name=sceplus-vm43.almaden.ibm.com
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:java.version=1.6.0_31
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:java.vendor=Sun Microsystems Inc.
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:java.home=/usr/lib/jvm/java-6-openjdk-amd64/jre
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:java.class.path=/home/hadoop/ycsb-0.1.4/hbase-binding/lib/hbase-binding-0.1.4.jar:/home/hadoop/ycsb-0.1.4/hbase-binding/conf:/home/hadoop/ycsb-0.1.4/core/lib/core-0.1.4.jar:/home/hadoop/ycsb-0.1.4/jdbc-binding/conf
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:java.library.path=/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk-amd64/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib/jni:/lib:/usr/lib
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:java.io.tmpdir=/tmp
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:java.compiler=<NA>
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:os.name=Linux
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:os.arch=amd64
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:os.version=3.13.0-24-generic
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:user.name=hadoop
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:user.home=/home/hadoop
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Client environment:user.dir=/home/hadoop/ycsb-0.1.4
+14/08/04 00:01:40 INFO zookeeper.ZooKeeper: Initiating client connection, connectString=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181 sessionTimeout=90000 watcher=hconnection-0x689d16c2, quorum=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181, baseZNode=/hbase
+14/08/04 00:01:40 INFO zookeeper.RecoverableZooKeeper: Process identifier=hconnection-0x689d16c2 connecting to ZooKeeper ensemble=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181
+14/08/04 00:01:40 INFO zookeeper.ClientCnxn: Opening socket connection to server master/9.1.143.58:2181. Will not attempt to authenticate using SASL (unknown error)
+14/08/04 00:01:40 INFO zookeeper.ClientCnxn: Socket connection established to master/9.1.143.58:2181, initiating session
+14/08/04 00:01:40 INFO zookeeper.ClientCnxn: Session establishment complete on server master/9.1.143.58:2181, sessionid = 0x47a1835bde000b, negotiated timeout = 90000
+14/08/04 00:01:40 WARN util.DynamicClassLoader: Failed to identify the fs of dir hdfs://master:54310/hbase/lib, ignored
+org.apache.hadoop.ipc.RemoteException: Server IPC version 9 cannot communicate with client version 4
+	at org.apache.hadoop.ipc.Client.call(Client.java:1113)
+	at org.apache.hadoop.ipc.RPC$Invoker.invoke(RPC.java:229)
+	at com.sun.proxy.$Proxy5.getProtocolVersion(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:622)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler.invokeMethod(RetryInvocationHandler.java:85)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler.invoke(RetryInvocationHandler.java:62)
+	at com.sun.proxy.$Proxy5.getProtocolVersion(Unknown Source)
+	at org.apache.hadoop.ipc.RPC.checkVersion(RPC.java:422)
+	at org.apache.hadoop.hdfs.DFSClient.createNamenode(DFSClient.java:183)
+	at org.apache.hadoop.hdfs.DFSClient.<init>(DFSClient.java:281)
+	at org.apache.hadoop.hdfs.DFSClient.<init>(DFSClient.java:245)
+	at org.apache.hadoop.hdfs.DistributedFileSystem.initialize(DistributedFileSystem.java:100)
+	at org.apache.hadoop.fs.FileSystem.createFileSystem(FileSystem.java:1446)
+	at org.apache.hadoop.fs.FileSystem.access$200(FileSystem.java:67)
+	at org.apache.hadoop.fs.FileSystem$Cache.get(FileSystem.java:1464)
+	at org.apache.hadoop.fs.FileSystem.get(FileSystem.java:263)
+	at org.apache.hadoop.fs.Path.getFileSystem(Path.java:187)
+	at org.apache.hadoop.hbase.util.DynamicClassLoader.<init>(DynamicClassLoader.java:104)
+	at org.apache.hadoop.hbase.protobuf.ProtobufUtil.<clinit>(ProtobufUtil.java:202)
+	at org.apache.hadoop.hbase.ClusterId.parseFrom(ClusterId.java:64)
+	at org.apache.hadoop.hbase.zookeeper.ZKClusterId.readClusterIdZNode(ZKClusterId.java:69)
+	at org.apache.hadoop.hbase.client.ZooKeeperRegistry.getClusterId(ZooKeeperRegistry.java:83)
+	at org.apache.hadoop.hbase.client.HConnectionManager$HConnectionImplementation.retrieveClusterId(HConnectionManager.java:858)
+	at org.apache.hadoop.hbase.client.HConnectionManager$HConnectionImplementation.<init>(HConnectionManager.java:663)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:534)
+	at org.apache.hadoop.hbase.client.HConnectionManager.createConnection(HConnectionManager.java:415)
+	at org.apache.hadoop.hbase.client.HConnectionManager.createConnection(HConnectionManager.java:394)
+	at org.apache.hadoop.hbase.client.HConnectionManager.getConnection(HConnectionManager.java:275)
+	at org.apache.hadoop.hbase.client.HTable.<init>(HTable.java:197)
+	at org.apache.hadoop.hbase.client.HTable.<init>(HTable.java:159)
+	at com.yahoo.ycsb.db.HBaseClient.getHTable(HBaseClient.java:118)
+	at com.yahoo.ycsb.db.HBaseClient.update(HBaseClient.java:302)
+	at com.yahoo.ycsb.db.HBaseClient.insert(HBaseClient.java:357)
+	at com.yahoo.ycsb.DBWrapper.insert(DBWrapper.java:148)
+	at com.yahoo.ycsb.workloads.CoreWorkload.doTransactionInsert(CoreWorkload.java:639)
+	at com.yahoo.ycsb.workloads.CoreWorkload.doTransaction(CoreWorkload.java:487)
+	at com.yahoo.ycsb.ClientThread.run(Client.java:241)
+2014-08-04 00:01:49:841 10 sec: 66773 operations; 6676.63 current ops/sec; [INSERT AverageLatency(us)=250.39] [READ AverageLatency(us)=7526.48] 
+2014-08-04 00:01:59:842 20 sec: 208538 operations; 14175.08 current ops/sec; [INSERT AverageLatency(us)=64.68] [READ AverageLatency(us)=10151.14] 
+2014-08-04 00:02:09:843 30 sec: 396596 operations; 18803.92 current ops/sec; [INSERT AverageLatency(us)=248.49] [READ AverageLatency(us)=9602.78] 
+2014-08-04 00:02:19:843 40 sec: 620647 operations; 22405.1 current ops/sec; [INSERT AverageLatency(us)=11.66] [READ AverageLatency(us)=8441.88] 
+2014-08-04 00:02:29:844 50 sec: 827579 operations; 20691.13 current ops/sec; [INSERT AverageLatency(us)=12.9] [READ AverageLatency(us)=9269.92] 
+2014-08-04 00:02:39:844 60 sec: 1036660 operations; 20908.1 current ops/sec; [INSERT AverageLatency(us)=12.3] [READ AverageLatency(us)=9443.71] 
+2014-08-04 00:02:49:845 70 sec: 1244097 operations; 20741.63 current ops/sec; [INSERT AverageLatency(us)=12.43] [READ AverageLatency(us)=9345.23] 
+2014-08-04 00:02:59:845 80 sec: 1434037 operations; 18994 current ops/sec; [INSERT AverageLatency(us)=11.85] [READ AverageLatency(us)=10409.44] 
+2014-08-04 00:03:09:846 90 sec: 1605085 operations; 17103.09 current ops/sec; [INSERT AverageLatency(us)=16.96] [READ AverageLatency(us)=11388.25] 
+2014-08-04 00:03:19:847 100 sec: 1790466 operations; 18536.25 current ops/sec; [INSERT AverageLatency(us)=12.2] [READ AverageLatency(us)=10584.29] 
+2014-08-04 00:03:29:847 110 sec: 1988505 operations; 19803.9 current ops/sec; [INSERT AverageLatency(us)=14.01] [READ AverageLatency(us)=9793.69] 
+2014-08-04 00:03:39:862 120 sec: 2188087 operations; 19928.31 current ops/sec; [INSERT AverageLatency(us)=12.62] [READ AverageLatency(us)=9840.42] 
+2014-08-04 00:03:49:862 130 sec: 2366437 operations; 17835 current ops/sec; [INSERT AverageLatency(us)=13.26] [READ AverageLatency(us)=11075.86] 
+2014-08-04 00:03:59:863 140 sec: 2533031 operations; 16657.73 current ops/sec; [INSERT AverageLatency(us)=11.93] [READ AverageLatency(us)=11783.28] 
+2014-08-04 00:04:09:864 150 sec: 2722424 operations; 18937.41 current ops/sec; [INSERT AverageLatency(us)=14.96] [READ AverageLatency(us)=10390.74] 
+2014-08-04 00:04:19:864 160 sec: 2908327 operations; 18590.3 current ops/sec; [INSERT AverageLatency(us)=14.55] [READ AverageLatency(us)=10397.01] 
+2014-08-04 00:04:29:865 170 sec: 3103823 operations; 19547.65 current ops/sec; [INSERT AverageLatency(us)=12.57] [READ AverageLatency(us)=10448.45] 
+2014-08-04 00:04:39:898 180 sec: 3270520 operations; 16614.87 current ops/sec; [INSERT AverageLatency(us)=13.28] [READ AverageLatency(us)=12011.16] 
+2014-08-04 00:04:49:898 190 sec: 3453817 operations; 18329.7 current ops/sec; [INSERT AverageLatency(us)=11.16] [READ AverageLatency(us)=10569.27] 
+2014-08-04 00:04:59:899 200 sec: 3649111 operations; 19527.45 current ops/sec; [INSERT AverageLatency(us)=13.51] [READ AverageLatency(us)=10102.14] 
+2014-08-04 00:05:09:899 210 sec: 3827667 operations; 17855.6 current ops/sec; [INSERT AverageLatency(us)=11.88] [READ AverageLatency(us)=11050.84] 
+2014-08-04 00:05:19:900 220 sec: 4002486 operations; 17480.15 current ops/sec; [INSERT AverageLatency(us)=12.42] [READ AverageLatency(us)=10943.73] 
+2014-08-04 00:05:29:901 230 sec: 4165743 operations; 16325.7 current ops/sec; [INSERT AverageLatency(us)=18.06] [READ AverageLatency(us)=12048.55] 
+2014-08-04 00:05:39:901 240 sec: 4398083 operations; 23231.68 current ops/sec; [INSERT AverageLatency(us)=13.1] [READ AverageLatency(us)=8084.32] 
+2014-08-04 00:05:49:902 250 sec: 4496683 operations; 9859.01 current ops/sec; [INSERT AverageLatency(us)=1115.45] [READ AverageLatency(us)=11489.08] 
+2014-08-04 00:05:59:902 260 sec: 4638101 operations; 14141.8 current ops/sec; [INSERT AverageLatency(us)=12.86] [READ AverageLatency(us)=14176.08] 
+2014-08-04 00:06:09:903 270 sec: 4817389 operations; 17927.01 current ops/sec; [INSERT AverageLatency(us)=13.03] [READ AverageLatency(us)=10824.59] 
+2014-08-04 00:06:19:903 280 sec: 5023836 operations; 20644.7 current ops/sec; [INSERT AverageLatency(us)=12.22] [READ AverageLatency(us)=7966.46] 
+2014-08-04 00:06:29:904 290 sec: 5126196 operations; 10234.98 current ops/sec; [INSERT AverageLatency(us)=1117.96] [READ AverageLatency(us)=12056.53] 
+2014-08-04 00:06:39:905 300 sec: 5280279 operations; 15406.76 current ops/sec; [INSERT AverageLatency(us)=13.02] [READ AverageLatency(us)=13181.86] 
+2014-08-04 00:06:49:905 310 sec: 5442475 operations; 16219.6 current ops/sec; [INSERT AverageLatency(us)=13.01] [READ AverageLatency(us)=12056.74] 
+2014-08-04 00:06:59:906 320 sec: 5593400 operations; 15090.99 current ops/sec; [INSERT AverageLatency(us)=13.96] [READ AverageLatency(us)=13203.9] 
+2014-08-04 00:07:10:362 330 sec: 5792136 operations; 19006.89 current ops/sec; [INSERT AverageLatency(us)=17.03] [READ AverageLatency(us)=9436.83] 
+2014-08-04 00:07:20:363 340 sec: 5817054 operations; 2491.55 current ops/sec; [INSERT AverageLatency(us)=10.21] [READ AverageLatency(us)=5003.89] 
+2014-08-04 00:07:30:363 350 sec: 5817054 operations; 0 current ops/sec;   
+2014-08-04 00:07:40:364 360 sec: 5817054 operations; 0 current ops/sec;   
+2014-08-04 00:07:50:364 370 sec: 5817054 operations; 0 current ops/sec;   
+2014-08-04 00:08:00:364 380 sec: 5817054 operations; 0 current ops/sec;   
+2014-08-04 00:08:10:365 390 sec: 5817054 operations; 0 current ops/sec;   
+2014-08-04 00:08:20:365 400 sec: 5817054 operations; 0 current ops/sec;   
+2014-08-04 00:08:30:366 410 sec: 5817054 operations; 0 current ops/sec;   
+2014-08-04 00:08:40:366 420 sec: 5817054 operations; 0 current ops/sec;   
+2014-08-04 00:08:50:366 430 sec: 5817054 operations; 0 current ops/sec;   
+2014-08-04 00:09:00:379 440 sec: 5817054 operations; 0 current ops/sec;   
+2014-08-04 00:09:10:379 450 sec: 5817054 operations; 0 current ops/sec;   
+2014-08-04 00:09:20:379 460 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:09:20 INFO client.AsyncProcess: #3, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 10054 ms, replay 4696 ops.
+14/08/04 00:09:21 INFO client.AsyncProcess: #17, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 10026 ms, replay 4696 ops.
+14/08/04 00:09:21 INFO client.AsyncProcess: #16, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 10038 ms, replay 4696 ops.
+14/08/04 00:09:21 INFO client.AsyncProcess: #8, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 10088 ms, replay 4696 ops.
+14/08/04 00:09:25 INFO client.AsyncProcess: #5, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 10056 ms, replay 4696 ops.
+14/08/04 00:09:25 INFO client.AsyncProcess: #7, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 10074 ms, replay 4696 ops.
+14/08/04 00:09:25 INFO client.AsyncProcess: #18, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 10035 ms, replay 4696 ops.
+14/08/04 00:09:25 INFO client.AsyncProcess: #6, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 10023 ms, replay 4696 ops.
+14/08/04 00:09:25 INFO client.AsyncProcess: #19, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 10063 ms, replay 4696 ops.
+14/08/04 00:09:28 INFO client.AsyncProcess: #2, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 10065 ms, replay 4696 ops.
+14/08/04 00:09:28 INFO client.AsyncProcess: #11, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 10048 ms, replay 4696 ops.
+14/08/04 00:09:28 INFO client.AsyncProcess: #12, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 10054 ms, replay 4696 ops.
+14/08/04 00:09:28 INFO client.AsyncProcess: #9, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:09 PDT 2014, retrying after 10025 ms, replay 4696 ops.
+14/08/04 00:09:28 INFO client.AsyncProcess: #4, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 10022 ms, replay 4696 ops.
+14/08/04 00:09:28 INFO client.AsyncProcess: #20, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 10033 ms, replay 4696 ops.
+14/08/04 00:09:28 INFO client.AsyncProcess: #1, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 10093 ms, replay 4696 ops.
+14/08/04 00:09:28 INFO client.AsyncProcess: #13, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 10066 ms, replay 4696 ops.
+14/08/04 00:09:28 INFO client.AsyncProcess: #10, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 10089 ms, replay 4696 ops.
+14/08/04 00:09:29 INFO client.AsyncProcess: #15, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 10040 ms, replay 4696 ops.
+14/08/04 00:09:29 INFO client.AsyncProcess: #14, table=usertable, attempt=10/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 10002 ms, replay 4696 ops.
+2014-08-04 00:09:30:380 470 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:09:31 INFO client.AsyncProcess: #3, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 10069 ms, replay 4696 ops.
+14/08/04 00:09:31 INFO client.AsyncProcess: #17, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 10086 ms, replay 4696 ops.
+14/08/04 00:09:31 INFO client.AsyncProcess: #16, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 10047 ms, replay 4696 ops.
+14/08/04 00:09:32 INFO client.AsyncProcess: #8, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 10085 ms, replay 4696 ops.
+14/08/04 00:09:35 INFO client.AsyncProcess: #5, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 10095 ms, replay 4696 ops.
+14/08/04 00:09:35 INFO client.AsyncProcess: #7, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 10004 ms, replay 4696 ops.
+14/08/04 00:09:35 INFO client.AsyncProcess: #18, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 10032 ms, replay 4696 ops.
+14/08/04 00:09:35 INFO client.AsyncProcess: #6, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 10008 ms, replay 4696 ops.
+14/08/04 00:09:35 INFO client.AsyncProcess: #19, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 10079 ms, replay 4696 ops.
+14/08/04 00:09:38 INFO client.AsyncProcess: #2, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 10081 ms, replay 4696 ops.
+14/08/04 00:09:38 INFO client.AsyncProcess: #11, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 10008 ms, replay 4696 ops.
+14/08/04 00:09:38 INFO client.AsyncProcess: #12, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 10066 ms, replay 4696 ops.
+14/08/04 00:09:38 INFO client.AsyncProcess: #9, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:09 PDT 2014, retrying after 10080 ms, replay 4696 ops.
+14/08/04 00:09:38 INFO client.AsyncProcess: #4, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 10077 ms, replay 4696 ops.
+14/08/04 00:09:38 INFO client.AsyncProcess: #20, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 10032 ms, replay 4696 ops.
+14/08/04 00:09:39 INFO client.AsyncProcess: #1, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 10053 ms, replay 4696 ops.
+14/08/04 00:09:39 INFO client.AsyncProcess: #13, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 10025 ms, replay 4696 ops.
+14/08/04 00:09:39 INFO client.AsyncProcess: #10, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 10020 ms, replay 4696 ops.
+14/08/04 00:09:39 INFO client.AsyncProcess: #14, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 10025 ms, replay 4696 ops.
+14/08/04 00:09:39 INFO client.AsyncProcess: #15, table=usertable, attempt=11/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 10030 ms, replay 4696 ops.
+2014-08-04 00:09:40:387 480 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:09:41 INFO client.AsyncProcess: #3, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20190 ms, replay 4696 ops.
+14/08/04 00:09:42 INFO client.AsyncProcess: #17, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20022 ms, replay 4696 ops.
+14/08/04 00:09:42 INFO client.AsyncProcess: #16, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20007 ms, replay 4696 ops.
+14/08/04 00:09:42 INFO client.AsyncProcess: #8, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20127 ms, replay 4696 ops.
+14/08/04 00:09:45 INFO client.AsyncProcess: #7, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20038 ms, replay 4696 ops.
+14/08/04 00:09:45 INFO client.AsyncProcess: #5, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20034 ms, replay 4696 ops.
+14/08/04 00:09:45 INFO client.AsyncProcess: #18, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20199 ms, replay 4696 ops.
+14/08/04 00:09:45 INFO client.AsyncProcess: #6, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20012 ms, replay 4696 ops.
+14/08/04 00:09:46 INFO client.AsyncProcess: #19, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20011 ms, replay 4696 ops.
+14/08/04 00:09:48 INFO client.AsyncProcess: #11, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20170 ms, replay 4696 ops.
+14/08/04 00:09:49 INFO client.AsyncProcess: #2, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20175 ms, replay 4696 ops.
+14/08/04 00:09:49 INFO client.AsyncProcess: #12, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20078 ms, replay 4696 ops.
+14/08/04 00:09:49 INFO client.AsyncProcess: #15, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20000 ms, replay 4696 ops.
+14/08/04 00:09:50 INFO client.AsyncProcess: #14, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20129 ms, replay 4696 ops.
+14/08/04 00:09:50 INFO client.AsyncProcess: #10, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20048 ms, replay 4696 ops.
+14/08/04 00:09:50 INFO client.AsyncProcess: #13, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20043 ms, replay 4696 ops.
+14/08/04 00:09:50 INFO client.AsyncProcess: #1, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20119 ms, replay 4696 ops.
+14/08/04 00:09:50 INFO client.AsyncProcess: #20, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20075 ms, replay 4696 ops.
+14/08/04 00:09:50 INFO client.AsyncProcess: #4, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20107 ms, replay 4696 ops.
+14/08/04 00:09:50 INFO client.AsyncProcess: #9, table=usertable, attempt=12/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: org.apache.hadoop.hbase.regionserver.RegionServerStoppedException: Server slave1,16020,1407164109260 not running, aborting on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:09 PDT 2014, retrying after 20185 ms, replay 4696 ops.
+2014-08-04 00:09:50:388 490 sec: 5817054 operations; 0 current ops/sec;   
+2014-08-04 00:10:00:388 500 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:10:01 INFO client.AsyncProcess: #3, table=usertable, attempt=13/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20102 ms, replay 4696 ops.
+14/08/04 00:10:02 INFO client.AsyncProcess: #17, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20193 ms, replay 4696 ops.
+14/08/04 00:10:02 INFO client.AsyncProcess: #16, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20120 ms, replay 4696 ops.
+14/08/04 00:10:02 INFO client.AsyncProcess: #8, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20057 ms, replay 4696 ops.
+14/08/04 00:10:05 INFO client.AsyncProcess: #7, table=usertable, attempt=13/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20009 ms, replay 4696 ops.
+14/08/04 00:10:05 INFO client.AsyncProcess: #5, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20030 ms, replay 4696 ops.
+14/08/04 00:10:06 INFO client.AsyncProcess: #6, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20038 ms, replay 4696 ops.
+14/08/04 00:10:06 INFO client.AsyncProcess: #19, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20120 ms, replay 4696 ops.
+14/08/04 00:10:06 INFO client.AsyncProcess: #18, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20149 ms, replay 4696 ops.
+14/08/04 00:10:08 INFO client.AsyncProcess: #11, table=usertable, attempt=13/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20050 ms, replay 4696 ops.
+14/08/04 00:10:09 INFO client.AsyncProcess: #15, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20059 ms, replay 4696 ops.
+14/08/04 00:10:09 INFO client.AsyncProcess: #12, table=usertable, attempt=13/35 failed 4696 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:16020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20106 ms, replay 4696 ops.
+14/08/04 00:10:10 INFO client.AsyncProcess: #2, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20117 ms, replay 4696 ops.
+14/08/04 00:10:10 INFO client.AsyncProcess: #10, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20108 ms, replay 4696 ops.
+14/08/04 00:10:10 INFO client.AsyncProcess: #14, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20065 ms, replay 4696 ops.
+14/08/04 00:10:10 INFO client.AsyncProcess: #13, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20010 ms, replay 4696 ops.
+14/08/04 00:10:10 INFO client.AsyncProcess: #1, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20033 ms, replay 4696 ops.
+14/08/04 00:10:10 INFO client.AsyncProcess: #20, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20162 ms, replay 4696 ops.
+2014-08-04 00:10:10:389 510 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:10:10 INFO client.AsyncProcess: #4, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20105 ms, replay 4696 ops.
+14/08/04 00:10:10 INFO client.AsyncProcess: #9, table=usertable, attempt=13/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:09 PDT 2014, retrying after 20157 ms, replay 4696 ops.
+2014-08-04 00:10:20:389 520 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:10:21 INFO client.AsyncProcess: #3, table=usertable, attempt=14/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20065 ms, replay 4696 ops.
+14/08/04 00:10:22 INFO client.AsyncProcess: #17, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20106 ms, replay 4696 ops.
+14/08/04 00:10:22 INFO client.AsyncProcess: #16, table=usertable, attempt=14/35 failed 4696 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:16020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20174 ms, replay 4696 ops.
+14/08/04 00:10:22 INFO client.AsyncProcess: #8, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20140 ms, replay 4696 ops.
+14/08/04 00:10:25 INFO client.AsyncProcess: #7, table=usertable, attempt=14/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20052 ms, replay 4696 ops.
+14/08/04 00:10:25 INFO client.AsyncProcess: #5, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20130 ms, replay 4696 ops.
+14/08/04 00:10:26 INFO client.AsyncProcess: #6, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20099 ms, replay 4696 ops.
+14/08/04 00:10:26 INFO client.AsyncProcess: #19, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20025 ms, replay 4696 ops.
+14/08/04 00:10:26 INFO client.AsyncProcess: #18, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20140 ms, replay 4696 ops.
+14/08/04 00:10:28 INFO client.AsyncProcess: #11, table=usertable, attempt=14/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20139 ms, replay 4696 ops.
+14/08/04 00:10:30 INFO client.AsyncProcess: #15, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20119 ms, replay 4696 ops.
+14/08/04 00:10:30 INFO client.AsyncProcess: #12, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20030 ms, replay 4696 ops.
+14/08/04 00:10:30 INFO client.AsyncProcess: #2, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20051 ms, replay 4696 ops.
+14/08/04 00:10:30 INFO client.AsyncProcess: #13, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20044 ms, replay 4696 ops.
+14/08/04 00:10:30 INFO client.AsyncProcess: #14, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20127 ms, replay 4696 ops.
+14/08/04 00:10:30 INFO client.AsyncProcess: #10, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20102 ms, replay 4696 ops.
+2014-08-04 00:10:30:389 530 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:10:30 INFO client.AsyncProcess: #1, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20099 ms, replay 4696 ops.
+14/08/04 00:10:30 INFO client.AsyncProcess: #20, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20054 ms, replay 4696 ops.
+14/08/04 00:10:30 INFO client.AsyncProcess: #4, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20129 ms, replay 4696 ops.
+14/08/04 00:10:30 INFO client.AsyncProcess: #9, table=usertable, attempt=14/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:09 PDT 2014, retrying after 20179 ms, replay 4696 ops.
+2014-08-04 00:10:40:390 540 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:10:41 INFO client.AsyncProcess: #3, table=usertable, attempt=15/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20124 ms, replay 4696 ops.
+14/08/04 00:10:42 INFO client.AsyncProcess: #17, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20163 ms, replay 4696 ops.
+14/08/04 00:10:42 INFO client.AsyncProcess: #16, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20015 ms, replay 4696 ops.
+14/08/04 00:10:42 INFO client.AsyncProcess: #8, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20161 ms, replay 4696 ops.
+14/08/04 00:10:45 INFO client.AsyncProcess: #7, table=usertable, attempt=15/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20040 ms, replay 4696 ops.
+14/08/04 00:10:46 INFO client.AsyncProcess: #5, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20122 ms, replay 4696 ops.
+14/08/04 00:10:46 INFO client.AsyncProcess: #6, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20064 ms, replay 4696 ops.
+14/08/04 00:10:46 INFO client.AsyncProcess: #19, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20188 ms, replay 4696 ops.
+14/08/04 00:10:46 INFO client.AsyncProcess: #18, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20121 ms, replay 4696 ops.
+14/08/04 00:10:49 INFO client.AsyncProcess: #11, table=usertable, attempt=15/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20014 ms, replay 4696 ops.
+14/08/04 00:10:50 INFO client.AsyncProcess: #12, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20125 ms, replay 4696 ops.
+14/08/04 00:10:50 INFO client.AsyncProcess: #15, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20038 ms, replay 4696 ops.
+14/08/04 00:10:50 INFO client.AsyncProcess: #2, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20113 ms, replay 4696 ops.
+14/08/04 00:10:50 INFO client.AsyncProcess: #13, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20163 ms, replay 4696 ops.
+2014-08-04 00:10:50:390 550 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:10:50 INFO client.AsyncProcess: #14, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20124 ms, replay 4696 ops.
+14/08/04 00:10:50 INFO client.AsyncProcess: #10, table=usertable, attempt=15/35 failed 4696 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:16020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20024 ms, replay 4696 ops.
+14/08/04 00:10:50 INFO client.AsyncProcess: #1, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20111 ms, replay 4696 ops.
+14/08/04 00:10:50 INFO client.AsyncProcess: #20, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20105 ms, replay 4696 ops.
+14/08/04 00:10:50 INFO client.AsyncProcess: #4, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20166 ms, replay 4696 ops.
+14/08/04 00:10:50 INFO client.AsyncProcess: #9, table=usertable, attempt=15/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:09 PDT 2014, retrying after 20041 ms, replay 4696 ops.
+2014-08-04 00:11:00:391 560 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:11:01 INFO client.AsyncProcess: #3, table=usertable, attempt=16/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20165 ms, replay 4696 ops.
+14/08/04 00:11:02 INFO client.AsyncProcess: #16, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20036 ms, replay 4696 ops.
+14/08/04 00:11:02 INFO client.AsyncProcess: #17, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20130 ms, replay 4696 ops.
+14/08/04 00:11:02 INFO client.AsyncProcess: #8, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20031 ms, replay 4696 ops.
+14/08/04 00:11:05 INFO client.AsyncProcess: #7, table=usertable, attempt=16/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20009 ms, replay 4696 ops.
+14/08/04 00:11:06 INFO client.AsyncProcess: #5, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20070 ms, replay 4696 ops.
+14/08/04 00:11:06 INFO client.AsyncProcess: #6, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20062 ms, replay 4696 ops.
+14/08/04 00:11:06 INFO client.AsyncProcess: #19, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20069 ms, replay 4696 ops.
+14/08/04 00:11:06 INFO client.AsyncProcess: #18, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20118 ms, replay 4696 ops.
+14/08/04 00:11:09 INFO client.AsyncProcess: #11, table=usertable, attempt=16/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20037 ms, replay 4696 ops.
+14/08/04 00:11:10 INFO client.AsyncProcess: #15, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20195 ms, replay 4696 ops.
+14/08/04 00:11:10 INFO client.AsyncProcess: #12, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20038 ms, replay 4696 ops.
+2014-08-04 00:11:10:391 570 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:11:10 INFO client.AsyncProcess: #2, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20063 ms, replay 4696 ops.
+14/08/04 00:11:10 INFO client.AsyncProcess: #10, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20033 ms, replay 4696 ops.
+14/08/04 00:11:10 INFO client.AsyncProcess: #13, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20016 ms, replay 4696 ops.
+14/08/04 00:11:10 INFO client.AsyncProcess: #14, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20094 ms, replay 4696 ops.
+14/08/04 00:11:10 INFO client.AsyncProcess: #1, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20197 ms, replay 4696 ops.
+14/08/04 00:11:10 INFO client.AsyncProcess: #20, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20114 ms, replay 4696 ops.
+14/08/04 00:11:10 INFO client.AsyncProcess: #4, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20059 ms, replay 4696 ops.
+14/08/04 00:11:11 INFO client.AsyncProcess: #9, table=usertable, attempt=16/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:09 PDT 2014, retrying after 20071 ms, replay 4696 ops.
+2014-08-04 00:11:20:391 580 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:11:22 INFO client.AsyncProcess: #3, table=usertable, attempt=17/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20192 ms, replay 4696 ops.
+14/08/04 00:11:22 INFO client.AsyncProcess: #16, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20065 ms, replay 4696 ops.
+14/08/04 00:11:22 INFO client.AsyncProcess: #17, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20126 ms, replay 4696 ops.
+14/08/04 00:11:22 INFO client.AsyncProcess: #8, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20066 ms, replay 4696 ops.
+14/08/04 00:11:26 INFO client.AsyncProcess: #7, table=usertable, attempt=17/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20157 ms, replay 4696 ops.
+14/08/04 00:11:26 INFO client.AsyncProcess: #5, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20028 ms, replay 4696 ops.
+14/08/04 00:11:26 INFO client.AsyncProcess: #6, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20179 ms, replay 4696 ops.
+14/08/04 00:11:26 INFO client.AsyncProcess: #19, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20106 ms, replay 4696 ops.
+14/08/04 00:11:26 INFO client.AsyncProcess: #18, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20079 ms, replay 4696 ops.
+14/08/04 00:11:29 INFO client.AsyncProcess: #11, table=usertable, attempt=17/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20193 ms, replay 4696 ops.
+14/08/04 00:11:30 INFO client.AsyncProcess: #12, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20190 ms, replay 4696 ops.
+2014-08-04 00:11:30:392 590 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:11:30 INFO client.AsyncProcess: #15, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20037 ms, replay 4696 ops.
+14/08/04 00:11:30 INFO client.AsyncProcess: #2, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20009 ms, replay 4696 ops.
+14/08/04 00:11:30 INFO client.AsyncProcess: #10, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20083 ms, replay 4696 ops.
+14/08/04 00:11:30 INFO client.AsyncProcess: #13, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20167 ms, replay 4696 ops.
+14/08/04 00:11:30 INFO client.AsyncProcess: #14, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20197 ms, replay 4696 ops.
+14/08/04 00:11:30 INFO client.AsyncProcess: #20, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20127 ms, replay 4696 ops.
+14/08/04 00:11:30 INFO client.AsyncProcess: #1, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20038 ms, replay 4696 ops.
+14/08/04 00:11:31 INFO client.AsyncProcess: #4, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20000 ms, replay 4696 ops.
+14/08/04 00:11:31 INFO client.AsyncProcess: #9, table=usertable, attempt=17/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:09 PDT 2014, retrying after 20028 ms, replay 4696 ops.
+2014-08-04 00:11:40:392 600 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:11:42 INFO client.AsyncProcess: #3, table=usertable, attempt=18/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20148 ms, replay 4696 ops.
+14/08/04 00:11:42 INFO client.AsyncProcess: #16, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20094 ms, replay 4696 ops.
+14/08/04 00:11:42 INFO client.AsyncProcess: #17, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20088 ms, replay 4696 ops.
+14/08/04 00:11:43 INFO client.AsyncProcess: #8, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20072 ms, replay 4696 ops.
+14/08/04 00:11:46 INFO client.AsyncProcess: #7, table=usertable, attempt=18/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20174 ms, replay 4696 ops.
+14/08/04 00:11:46 INFO client.AsyncProcess: #5, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20009 ms, replay 4696 ops.
+14/08/04 00:11:46 INFO client.AsyncProcess: #6, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20000 ms, replay 4696 ops.
+14/08/04 00:11:46 INFO client.AsyncProcess: #19, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20062 ms, replay 4696 ops.
+14/08/04 00:11:46 INFO client.AsyncProcess: #18, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20118 ms, replay 4696 ops.
+14/08/04 00:11:49 INFO client.AsyncProcess: #11, table=usertable, attempt=18/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20190 ms, replay 4696 ops.
+2014-08-04 00:11:50:393 610 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:11:50 INFO client.AsyncProcess: #2, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20003 ms, replay 4696 ops.
+14/08/04 00:11:50 INFO client.AsyncProcess: #15, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20121 ms, replay 4696 ops.
+14/08/04 00:11:50 INFO client.AsyncProcess: #12, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20027 ms, replay 4696 ops.
+14/08/04 00:11:50 INFO client.AsyncProcess: #10, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20146 ms, replay 4696 ops.
+14/08/04 00:11:50 INFO client.AsyncProcess: #13, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20068 ms, replay 4696 ops.
+14/08/04 00:11:50 INFO client.AsyncProcess: #14, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20046 ms, replay 4696 ops.
+14/08/04 00:11:50 INFO client.AsyncProcess: #1, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20169 ms, replay 4696 ops.
+14/08/04 00:11:51 INFO client.AsyncProcess: #20, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20113 ms, replay 4696 ops.
+14/08/04 00:11:51 INFO client.AsyncProcess: #4, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20036 ms, replay 4696 ops.
+14/08/04 00:11:51 INFO client.AsyncProcess: #9, table=usertable, attempt=18/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:09 PDT 2014, retrying after 20030 ms, replay 4696 ops.
+2014-08-04 00:12:00:393 620 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:12:02 INFO client.AsyncProcess: #3, table=usertable, attempt=19/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20050 ms, replay 4696 ops.
+14/08/04 00:12:02 INFO client.AsyncProcess: #16, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20164 ms, replay 4696 ops.
+14/08/04 00:12:03 INFO client.AsyncProcess: #17, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20043 ms, replay 4696 ops.
+14/08/04 00:12:03 INFO client.AsyncProcess: #8, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20084 ms, replay 4696 ops.
+14/08/04 00:12:06 INFO client.AsyncProcess: #5, table=usertable, attempt=19/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20018 ms, replay 4696 ops.
+14/08/04 00:12:06 INFO client.AsyncProcess: #7, table=usertable, attempt=19/35 failed 4696 ops, last exception: java.net.ConnectException: Call to slave1/9.1.143.59:16020 failed on connection exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20010 ms, replay 4696 ops.
+14/08/04 00:12:06 INFO client.AsyncProcess: #6, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20013 ms, replay 4696 ops.
+14/08/04 00:12:06 INFO client.AsyncProcess: #19, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20193 ms, replay 4696 ops.
+14/08/04 00:12:06 INFO client.AsyncProcess: #18, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20187 ms, replay 4696 ops.
+14/08/04 00:12:09 INFO client.AsyncProcess: #11, table=usertable, attempt=19/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20047 ms, replay 4696 ops.
+2014-08-04 00:12:10:393 630 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:12:10 INFO client.AsyncProcess: #2, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20109 ms, replay 4696 ops.
+14/08/04 00:12:10 INFO client.AsyncProcess: #12, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20077 ms, replay 4696 ops.
+14/08/04 00:12:10 INFO client.AsyncProcess: #15, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20058 ms, replay 4696 ops.
+14/08/04 00:12:10 INFO client.AsyncProcess: #10, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20069 ms, replay 4696 ops.
+14/08/04 00:12:10 INFO client.AsyncProcess: #13, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20073 ms, replay 4696 ops.
+14/08/04 00:12:10 INFO client.AsyncProcess: #14, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20014 ms, replay 4696 ops.
+14/08/04 00:12:11 INFO client.AsyncProcess: #4, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20036 ms, replay 4696 ops.
+14/08/04 00:12:11 INFO client.AsyncProcess: #1, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20042 ms, replay 4696 ops.
+14/08/04 00:12:11 INFO client.AsyncProcess: #20, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20173 ms, replay 4696 ops.
+14/08/04 00:12:11 INFO client.AsyncProcess: #9, table=usertable, attempt=19/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:09 PDT 2014, retrying after 20184 ms, replay 4696 ops.
+2014-08-04 00:12:20:394 640 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:12:22 INFO client.AsyncProcess: #3, table=usertable, attempt=20/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20172 ms, replay 4696 ops.
+14/08/04 00:12:23 INFO client.AsyncProcess: #16, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20011 ms, replay 4696 ops.
+14/08/04 00:12:23 INFO client.AsyncProcess: #17, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20070 ms, replay 4696 ops.
+14/08/04 00:12:23 INFO client.AsyncProcess: #8, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20126 ms, replay 4696 ops.
+14/08/04 00:12:26 INFO client.AsyncProcess: #5, table=usertable, attempt=20/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20181 ms, replay 4696 ops.
+14/08/04 00:12:26 INFO client.AsyncProcess: #7, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20151 ms, replay 4696 ops.
+14/08/04 00:12:26 INFO client.AsyncProcess: #6, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20150 ms, replay 4696 ops.
+14/08/04 00:12:27 INFO client.AsyncProcess: #19, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20061 ms, replay 4696 ops.
+14/08/04 00:12:27 INFO client.AsyncProcess: #18, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20027 ms, replay 4696 ops.
+14/08/04 00:12:29 INFO client.AsyncProcess: #11, table=usertable, attempt=20/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20108 ms, replay 4696 ops.
+2014-08-04 00:12:30:394 650 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:12:30 INFO client.AsyncProcess: #2, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20131 ms, replay 4696 ops.
+14/08/04 00:12:30 INFO client.AsyncProcess: #12, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20151 ms, replay 4696 ops.
+14/08/04 00:12:30 INFO client.AsyncProcess: #15, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20043 ms, replay 4696 ops.
+14/08/04 00:12:30 INFO client.AsyncProcess: #10, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20046 ms, replay 4696 ops.
+14/08/04 00:12:30 INFO client.AsyncProcess: #13, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20189 ms, replay 4696 ops.
+14/08/04 00:12:31 INFO client.AsyncProcess: #14, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20124 ms, replay 4696 ops.
+14/08/04 00:12:31 INFO client.AsyncProcess: #1, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20178 ms, replay 4696 ops.
+14/08/04 00:12:31 INFO client.AsyncProcess: #4, table=usertable, attempt=20/35 failed 4696 ops, last exception: java.io.IOException: Call to slave1/9.1.143.59:16020 failed on local exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20187 ms, replay 4696 ops.
+14/08/04 00:12:31 INFO client.AsyncProcess: #20, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20023 ms, replay 4696 ops.
+14/08/04 00:12:31 INFO client.AsyncProcess: #9, table=usertable, attempt=20/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:09 PDT 2014, retrying after 20189 ms, replay 4696 ops.
+2014-08-04 00:12:40:395 660 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:12:42 INFO client.AsyncProcess: #3, table=usertable, attempt=21/35 failed 4696 ops, last exception: java.net.ConnectException: Connection refused on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20147 ms, replay 4696 ops.
+14/08/04 00:12:43 INFO client.AsyncProcess: #16, table=usertable, attempt=21/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20018 ms, replay 4696 ops.
+14/08/04 00:12:43 INFO client.AsyncProcess: #17, table=usertable, attempt=21/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014, retrying after 20089 ms, replay 4696 ops.
+14/08/04 00:12:43 INFO client.AsyncProcess: #8, table=usertable, attempt=21/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.RpcClient$FailedServerException: This server is in the failed servers list: slave1/9.1.143.59:16020 on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20132 ms, replay 4696 ops.
+14/08/04 00:12:48 INFO client.AsyncProcess: #7, table=usertable, attempt=21/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.ServerNotRunningYetException: org.apache.hadoop.hbase.ipc.ServerNotRunningYetException: Server is not running yet on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20180 ms, replay 4696 ops.
+14/08/04 00:12:48 INFO client.AsyncProcess: #18, table=usertable, attempt=21/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.ServerNotRunningYetException: org.apache.hadoop.hbase.ipc.ServerNotRunningYetException: Server is not running yet on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20059 ms, replay 4696 ops.
+14/08/04 00:12:48 INFO client.AsyncProcess: #19, table=usertable, attempt=21/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.ServerNotRunningYetException: org.apache.hadoop.hbase.ipc.ServerNotRunningYetException: Server is not running yet on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014, retrying after 20179 ms, replay 4696 ops.
+14/08/04 00:12:48 INFO client.AsyncProcess: #6, table=usertable, attempt=21/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.ServerNotRunningYetException: org.apache.hadoop.hbase.ipc.ServerNotRunningYetException: Server is not running yet on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20199 ms, replay 4696 ops.
+14/08/04 00:12:48 INFO client.AsyncProcess: #5, table=usertable, attempt=21/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.ServerNotRunningYetException: org.apache.hadoop.hbase.ipc.ServerNotRunningYetException: Server is not running yet on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20073 ms, replay 4696 ops.
+14/08/04 00:12:50 INFO client.AsyncProcess: #11, table=usertable, attempt=21/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.ipc.ServerNotRunningYetException: org.apache.hadoop.hbase.ipc.ServerNotRunningYetException: Server is not running yet on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014, retrying after 20192 ms, replay 4696 ops.
+2014-08-04 00:12:50:395 670 sec: 5817054 operations; 0 current ops/sec;   
+14/08/04 00:12:50 INFO client.AsyncProcess: #15, table=usertable, attempt=21/35 failed 4696 ops, last exception: org.apache.hadoop.hbase.exceptions.RegionOpeningException: org.apache.hadoop.hbase.exceptions.RegionOpeningException: Region usertable,user9,1407164147821.9e39dd4a553932b6730f19ab8f94ec90. is opening on slave1,16020,1407164827090
+	at org.apache.hadoop.hbase.regionserver.HRegionServer.getRegionByEncodedName(HRegionServer.java:2602)
+	at org.apache.hadoop.hbase.regionserver.RSRpcServices.getRegion(RSRpcServices.java:795)
+	at org.apache.hadoop.hbase.regionserver.RSRpcServices.multi(RSRpcServices.java:1682)
+	at org.apache.hadoop.hbase.protobuf.generated.ClientProtos$ClientService$2.callBlockingMethod(ClientProtos.java:30090)
+	at org.apache.hadoop.hbase.ipc.RpcServer.call(RpcServer.java:2013)
+	at org.apache.hadoop.hbase.ipc.CallRunner.run(CallRunner.java:98)
+	at org.apache.hadoop.hbase.ipc.RpcExecutor.consumerLoop(RpcExecutor.java:114)
+	at org.apache.hadoop.hbase.ipc.RpcExecutor$1.run(RpcExecutor.java:94)
+	at java.lang.Thread.run(Thread.java:744)
+ on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014, retrying after 20043 ms, replay 4696 ops.
+14/08/04 00:12:53 INFO client.AsyncProcess: #2, table=usertable, attempt=21/35 failed 3416 ops, last exception: org.apache.hadoop.hbase.exceptions.RegionOpeningException: org.apache.hadoop.hbase.exceptions.RegionOpeningException: Region usertable,user6,1407164147821.2b9f522e7f5863abacba6eed038e0de6. is opening on slave1,16020,1407164827090
+	at org.apache.hadoop.hbase.regionserver.HRegionServer.getRegionByEncodedName(HRegionServer.java:2602)
+	at org.apache.hadoop.hbase.regionserver.RSRpcServices.getRegion(RSRpcServices.java:795)
+	at org.apache.hadoop.hbase.regionserver.RSRpcServices.multi(RSRpcServices.java:1682)
+	at org.apache.hadoop.hbase.protobuf.generated.ClientProtos$ClientService$2.callBlockingMethod(ClientProtos.java:30090)
+	at org.apache.hadoop.hbase.ipc.RpcServer.call(RpcServer.java:2013)
+	at org.apache.hadoop.hbase.ipc.CallRunner.run(CallRunner.java:98)
+	at org.apache.hadoop.hbase.ipc.RpcExecutor.consumerLoop(RpcExecutor.java:114)
+	at org.apache.hadoop.hbase.ipc.RpcExecutor$1.run(RpcExecutor.java:94)
+	at java.lang.Thread.run(Thread.java:744)
+ on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014, retrying after 20094 ms, replay 3416 ops.
+14/08/04 00:12:54 INFO client.AsyncProcess: #1, table=usertable, attempt=21/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014
+14/08/04 00:12:54 INFO client.AsyncProcess: #12, table=usertable, attempt=21/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014
+14/08/04 00:12:54 INFO client.AsyncProcess: #13, table=usertable, attempt=21/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014
+14/08/04 00:12:54 INFO client.AsyncProcess: #4, table=usertable, attempt=21/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014
+14/08/04 00:12:54 INFO client.AsyncProcess: #10, table=usertable, attempt=21/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014
+14/08/04 00:12:54 INFO client.AsyncProcess: #14, table=usertable, attempt=21/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014
+14/08/04 00:12:54 INFO client.AsyncProcess: #9, table=usertable, attempt=21/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:09 PDT 2014
+14/08/04 00:12:54 INFO client.AsyncProcess: #20, table=usertable, attempt=21/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014
+2014-08-04 00:13:00:396 680 sec: 5817108 operations; 5.4 current ops/sec; [INSERT AverageLatency(us)=50966226.44]  
+14/08/04 00:13:04 INFO client.AsyncProcess: #3, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014
+14/08/04 00:13:04 INFO client.AsyncProcess: #16, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014
+14/08/04 00:13:04 INFO client.AsyncProcess: #3, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164827090, tracking started Mon Aug 04 00:07:04 PDT 2014
+14/08/04 00:13:04 INFO client.AsyncProcess: #17, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:08 PDT 2014
+14/08/04 00:13:04 INFO client.AsyncProcess: #8, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014
+14/08/04 00:13:04 INFO client.AsyncProcess: #16, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164827090, tracking started Mon Aug 04 00:07:08 PDT 2014
+14/08/04 00:13:04 INFO client.AsyncProcess: #17, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164827090, tracking started Mon Aug 04 00:07:08 PDT 2014
+14/08/04 00:13:04 INFO client.AsyncProcess: #8, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164827090, tracking started Mon Aug 04 00:07:04 PDT 2014
+14/08/04 00:13:09 INFO client.AsyncProcess: #18, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014
+14/08/04 00:13:10 INFO client.AsyncProcess: #7, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014
+2014-08-04 00:13:10:396 690 sec: 5817179 operations; 7.1 current ops/sec; [INSERT AverageLatency(us)=30125882.49]  
+14/08/04 00:13:10 INFO client.AsyncProcess: #5, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014
+14/08/04 00:13:10 INFO client.AsyncProcess: #18, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164827090, tracking started Mon Aug 04 00:07:07 PDT 2014
+14/08/04 00:13:10 INFO client.AsyncProcess: #7, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164827090, tracking started Mon Aug 04 00:07:05 PDT 2014
+14/08/04 00:13:10 INFO client.AsyncProcess: #5, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164827090, tracking started Mon Aug 04 00:07:07 PDT 2014
+14/08/04 00:13:10 INFO client.AsyncProcess: #19, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:05 PDT 2014
+14/08/04 00:13:11 INFO client.AsyncProcess: #6, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:04 PDT 2014
+14/08/04 00:13:11 INFO client.AsyncProcess: #19, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164827090, tracking started Mon Aug 04 00:07:05 PDT 2014
+14/08/04 00:13:11 INFO client.AsyncProcess: #6, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164827090, tracking started Mon Aug 04 00:07:04 PDT 2014
+14/08/04 00:13:12 INFO client.AsyncProcess: #11, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:07 PDT 2014
+14/08/04 00:13:12 INFO client.AsyncProcess: #15, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164109260, tracking started Mon Aug 04 00:07:06 PDT 2014
+14/08/04 00:13:12 INFO client.AsyncProcess: #11, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164827090, tracking started Mon Aug 04 00:07:07 PDT 2014
+14/08/04 00:13:12 INFO client.AsyncProcess: #15, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164827090, tracking started Mon Aug 04 00:07:06 PDT 2014
+14/08/04 00:13:15 INFO client.AsyncProcess: #2, table=usertable, attempt=22/35 SUCCEEDED on slave1,16020,1407164827090, tracking started Mon Aug 04 00:07:04 PDT 2014
+2014-08-04 00:13:20:397 700 sec: 5817235 operations; 5.6 current ops/sec; [INSERT AverageLatency(us)=38825046.36]  
+2014-08-04 00:13:30:408 710 sec: 5817235 operations; 0 current ops/sec;   
+2014-08-04 00:13:40:408 720 sec: 5817235 operations; 0 current ops/sec;   
+2014-08-04 00:13:50:408 730 sec: 5817235 operations; 0 current ops/sec;   
+2014-08-04 00:14:00:409 740 sec: 5817235 operations; 0 current ops/sec;   
+2014-08-04 00:14:10:409 750 sec: 5901459 operations; 8422.4 current ops/sec; [INSERT AverageLatency(us)=11.27] [READ AverageLatency(us)=85732.49] 
+2014-08-04 00:14:20:410 760 sec: 6012989 operations; 11151.88 current ops/sec; [INSERT AverageLatency(us)=10.93] [READ AverageLatency(us)=66982.32] 
+2014-08-04 00:14:30:410 770 sec: 6167664 operations; 15467.5 current ops/sec; [INSERT AverageLatency(us)=10.8] [READ AverageLatency(us)=17395.95] 
+2014-08-04 00:14:40:411 780 sec: 6320028 operations; 15234.88 current ops/sec; [INSERT AverageLatency(us)=12.17] [READ AverageLatency(us)=12547.84] 
+2014-08-04 00:14:50:411 790 sec: 6453271 operations; 13324.3 current ops/sec; [INSERT AverageLatency(us)=12.1] [READ AverageLatency(us)=15341.28] 
+2014-08-04 00:15:00:412 800 sec: 6620865 operations; 16757.72 current ops/sec; [INSERT AverageLatency(us)=11.85] [READ AverageLatency(us)=11707.11] 
+2014-08-04 00:15:10:413 810 sec: 6746395 operations; 12551.74 current ops/sec; [INSERT AverageLatency(us)=12.27] [READ AverageLatency(us)=15423.55] 
+2014-08-04 00:15:20:413 820 sec: 6914906 operations; 16851.1 current ops/sec; [INSERT AverageLatency(us)=12.48] [READ AverageLatency(us)=11832.67] 
+2014-08-04 00:15:30:414 830 sec: 7047129 operations; 13220.98 current ops/sec; [INSERT AverageLatency(us)=12.84] [READ AverageLatency(us)=15012.86] 
+2014-08-04 00:15:40:415 840 sec: 7191742 operations; 14459.85 current ops/sec; [INSERT AverageLatency(us)=13.31] [READ AverageLatency(us)=13503.94] 
+2014-08-04 00:15:50:415 850 sec: 7352862 operations; 16112 current ops/sec; [INSERT AverageLatency(us)=13.23] [READ AverageLatency(us)=12155.9] 
+2014-08-04 00:16:00:416 860 sec: 7499446 operations; 14656.93 current ops/sec; [INSERT AverageLatency(us)=11.52] [READ AverageLatency(us)=13140.34] 
+2014-08-04 00:16:10:416 870 sec: 7668050 operations; 16860.4 current ops/sec; [INSERT AverageLatency(us)=12.51] [READ AverageLatency(us)=11780.68] 
+2014-08-04 00:16:20:417 880 sec: 7812767 operations; 14470.25 current ops/sec; [INSERT AverageLatency(us)=13.21] [READ AverageLatency(us)=13401.71] 
+2014-08-04 00:16:30:417 890 sec: 7979922 operations; 16715.5 current ops/sec; [INSERT AverageLatency(us)=13.04] [READ AverageLatency(us)=12017.07] 
+2014-08-04 00:16:40:418 900 sec: 8125088 operations; 14515.15 current ops/sec; [INSERT AverageLatency(us)=11.64] [READ AverageLatency(us)=13592.68] 
+2014-08-04 00:16:50:419 910 sec: 8295787 operations; 17068.19 current ops/sec; [INSERT AverageLatency(us)=11.17] [READ AverageLatency(us)=11564.56] 
+2014-08-04 00:17:00:419 920 sec: 8436081 operations; 14029.4 current ops/sec; [INSERT AverageLatency(us)=12.37] [READ AverageLatency(us)=14303.53] 
+2014-08-04 00:17:10:420 930 sec: 8609909 operations; 17381.06 current ops/sec; [INSERT AverageLatency(us)=12.44] [READ AverageLatency(us)=11379.58] 
+2014-08-04 00:17:20:421 940 sec: 8734718 operations; 12480.9 current ops/sec; [INSERT AverageLatency(us)=12.9] [READ AverageLatency(us)=15528.44] 
+2014-08-04 00:17:30:421 950 sec: 8897046 operations; 16231.18 current ops/sec; [INSERT AverageLatency(us)=13.11] [READ AverageLatency(us)=12013.88] 
+2014-08-04 00:17:40:422 960 sec: 9039983 operations; 14292.27 current ops/sec; [INSERT AverageLatency(us)=11.11] [READ AverageLatency(us)=13941.38] 
+2014-08-04 00:17:50:422 970 sec: 9177916 operations; 13793.3 current ops/sec; [INSERT AverageLatency(us)=12.01] [READ AverageLatency(us)=14531.26] 
+2014-08-04 00:18:00:423 980 sec: 9331877 operations; 15394.56 current ops/sec; [INSERT AverageLatency(us)=14.29] [READ AverageLatency(us)=12808.64] 
+2014-08-04 00:18:10:423 990 sec: 9461273 operations; 12939.6 current ops/sec; [INSERT AverageLatency(us)=11.74] [READ AverageLatency(us)=14663.69] 
+2014-08-04 00:18:20:424 1000 sec: 9596074 operations; 13478.75 current ops/sec; [INSERT AverageLatency(us)=11.93] [READ AverageLatency(us)=15102.01] 
+2014-08-04 00:18:30:425 1010 sec: 9754478 operations; 15838.82 current ops/sec; [INSERT AverageLatency(us)=11.75] [READ AverageLatency(us)=12479.38] 
+2014-08-04 00:18:40:425 1020 sec: 9891976 operations; 13749.8 current ops/sec; [INSERT AverageLatency(us)=12.21] [READ AverageLatency(us)=14506.19] 
+2014-08-04 00:18:50:426 1030 sec: 10023301 operations; 13131.19 current ops/sec; [INSERT AverageLatency(us)=12.21] [READ AverageLatency(us)=14925.43] 
+2014-08-04 00:19:00:427 1040 sec: 10173953 operations; 15065.2 current ops/sec; [INSERT AverageLatency(us)=11.35] [READ AverageLatency(us)=12773.93] 
+2014-08-04 00:19:10:427 1050 sec: 10308312 operations; 13434.56 current ops/sec; [INSERT AverageLatency(us)=13.01] [READ AverageLatency(us)=14921.93] 
+2014-08-04 00:19:20:428 1060 sec: 10440928 operations; 13260.27 current ops/sec; [INSERT AverageLatency(us)=12.32] [READ AverageLatency(us)=15088.45] 
+2014-08-04 00:19:30:428 1070 sec: 10598103 operations; 15717.5 current ops/sec; [INSERT AverageLatency(us)=12.01] [READ AverageLatency(us)=12590.44] 
+2014-08-04 00:19:40:429 1080 sec: 10735863 operations; 13774.62 current ops/sec; [INSERT AverageLatency(us)=12.35] [READ AverageLatency(us)=14300.08] 
+2014-08-04 00:19:50:429 1090 sec: 10882356 operations; 14649.3 current ops/sec; [INSERT AverageLatency(us)=11.79] [READ AverageLatency(us)=13650.93] 
+2014-08-04 00:20:00:430 1100 sec: 11030598 operations; 14822.72 current ops/sec; [INSERT AverageLatency(us)=11.96] [READ AverageLatency(us)=13387.36] 
+2014-08-04 00:20:10:431 1110 sec: 11166043 operations; 13543.15 current ops/sec; [INSERT AverageLatency(us)=11.19] [READ AverageLatency(us)=14423.38] 
+2014-08-04 00:20:20:431 1120 sec: 11311334 operations; 14529.1 current ops/sec; [INSERT AverageLatency(us)=11.29] [READ AverageLatency(us)=13595.96] 
+2014-08-04 00:20:30:432 1130 sec: 11444507 operations; 13315.97 current ops/sec; [INSERT AverageLatency(us)=11.98] [READ AverageLatency(us)=14709.38] 
+2014-08-04 00:20:40:432 1140 sec: 11579090 operations; 13458.3 current ops/sec; [INSERT AverageLatency(us)=10.55] [READ AverageLatency(us)=14729.27] 
+2014-08-04 00:20:50:433 1150 sec: 11713179 operations; 13407.56 current ops/sec; [INSERT AverageLatency(us)=11.43] [READ AverageLatency(us)=14641.29] 
+2014-08-04 00:21:00:434 1160 sec: 11856671 operations; 14347.77 current ops/sec; [INSERT AverageLatency(us)=11.4] [READ AverageLatency(us)=13847.37] 
+2014-08-04 00:21:10:434 1170 sec: 11990812 operations; 13414.1 current ops/sec; [INSERT AverageLatency(us)=12.22] [READ AverageLatency(us)=14875.43] 
+2014-08-04 00:21:20:435 1180 sec: 12124331 operations; 13350.56 current ops/sec; [INSERT AverageLatency(us)=13.06] [READ AverageLatency(us)=14746.95] 
+2014-08-04 00:21:30:436 1190 sec: 12265610 operations; 14127.9 current ops/sec; [INSERT AverageLatency(us)=11.81] [READ AverageLatency(us)=14072.37] 
+2014-08-04 00:21:40:437 1200 sec: 12398394 operations; 13275.74 current ops/sec; [INSERT AverageLatency(us)=12.72] [READ AverageLatency(us)=14999.86] 
+2014-08-04 00:21:50:437 1210 sec: 12536861 operations; 13846.7 current ops/sec; [INSERT AverageLatency(us)=11.22] [READ AverageLatency(us)=14227.04] 
+2014-08-04 00:22:00:438 1220 sec: 12672060 operations; 13518.55 current ops/sec; [INSERT AverageLatency(us)=12.37] [READ AverageLatency(us)=14673.02] 
+2014-08-04 00:22:10:438 1230 sec: 12801749 operations; 12968.9 current ops/sec; [INSERT AverageLatency(us)=11.05] [READ AverageLatency(us)=15136.39] 
+2014-08-04 00:22:20:439 1240 sec: 12946421 operations; 14465.75 current ops/sec; [INSERT AverageLatency(us)=11.28] [READ AverageLatency(us)=13858.8] 
+2014-08-04 00:22:30:439 1250 sec: 13076739 operations; 13031.8 current ops/sec; [INSERT AverageLatency(us)=11.76] [READ AverageLatency(us)=15287.07] 
+2014-08-04 00:22:40:440 1260 sec: 13215237 operations; 13848.42 current ops/sec; [INSERT AverageLatency(us)=11.82] [READ AverageLatency(us)=13833.96] 
+2014-08-04 00:22:50:441 1270 sec: 13291954 operations; 7670.93 current ops/sec; [INSERT AverageLatency(us)=11.27] [READ AverageLatency(us)=15297.09] 
+2014-08-04 00:23:00:441 1280 sec: 13291954 operations; 0 current ops/sec;   
+2014-08-04 00:23:10:442 1290 sec: 13376533 operations; 8457.05 current ops/sec; [INSERT AverageLatency(us)=13.4] [READ AverageLatency(us)=57334.25] 
+2014-08-04 00:23:20:443 1300 sec: 13566649 operations; 19011.6 current ops/sec; [INSERT AverageLatency(us)=11.62] [READ AverageLatency(us)=10549.05] 
+2014-08-04 00:23:30:443 1310 sec: 13758757 operations; 19208.88 current ops/sec; [INSERT AverageLatency(us)=11.74] [READ AverageLatency(us)=10260.73] 
+2014-08-04 00:23:40:444 1320 sec: 13936111 operations; 17735.4 current ops/sec; [INSERT AverageLatency(us)=11.67] [READ AverageLatency(us)=10854.82] 
+2014-08-04 00:23:50:444 1330 sec: 14125826 operations; 18969.6 current ops/sec; [INSERT AverageLatency(us)=11.17] [READ AverageLatency(us)=10788.06] 
+2014-08-04 00:24:00:445 1340 sec: 14314125 operations; 18829.9 current ops/sec; [INSERT AverageLatency(us)=11.97] [READ AverageLatency(us)=9981.85] 
+2014-08-04 00:24:10:445 1350 sec: 14507561 operations; 19341.67 current ops/sec; [INSERT AverageLatency(us)=11.27] [READ AverageLatency(us)=10668.74] 
+2014-08-04 00:24:20:446 1360 sec: 14684106 operations; 17654.5 current ops/sec; [INSERT AverageLatency(us)=11.81] [READ AverageLatency(us)=11199.72] 
+2014-08-04 00:24:30:446 1370 sec: 14860788 operations; 17666.43 current ops/sec; [INSERT AverageLatency(us)=12.53] [READ AverageLatency(us)=11158.45] 
+2014-08-04 00:24:40:447 1380 sec: 15050413 operations; 18960.6 current ops/sec; [INSERT AverageLatency(us)=11.49] [READ AverageLatency(us)=10169.2] 
+2014-08-04 00:24:50:447 1390 sec: 15215912 operations; 16549.9 current ops/sec; [INSERT AverageLatency(us)=11.39] [READ AverageLatency(us)=12220.13] 
+2014-08-04 00:25:00:448 1400 sec: 15363343 operations; 14741.63 current ops/sec; [INSERT AverageLatency(us)=10.99] [READ AverageLatency(us)=13332.58] 
+2014-08-04 00:25:10:448 1410 sec: 15517544 operations; 15420.1 current ops/sec; [INSERT AverageLatency(us)=11.63] [READ AverageLatency(us)=12587.54] 
+2014-08-04 00:25:20:449 1420 sec: 15684120 operations; 16655.93 current ops/sec; [INSERT AverageLatency(us)=12.02] [READ AverageLatency(us)=11816.89] 
+2014-08-04 00:25:30:449 1430 sec: 15845266 operations; 16114.6 current ops/sec; [INSERT AverageLatency(us)=11.89] [READ AverageLatency(us)=12310.83] 
+2014-08-04 00:25:40:450 1440 sec: 16000763 operations; 15548.15 current ops/sec; [INSERT AverageLatency(us)=12.51] [READ AverageLatency(us)=12632.68] 
+2014-08-04 00:25:50:451 1450 sec: 16165571 operations; 16479.15 current ops/sec; [INSERT AverageLatency(us)=10.72] [READ AverageLatency(us)=12016.75] 
+2014-08-04 00:26:00:451 1460 sec: 16329055 operations; 16348.4 current ops/sec; [INSERT AverageLatency(us)=11.87] [READ AverageLatency(us)=12131.26] 
+2014-08-04 00:26:10:452 1470 sec: 16513389 operations; 18431.56 current ops/sec; [INSERT AverageLatency(us)=11.33] [READ AverageLatency(us)=10672.16] 
+2014-08-04 00:26:20:453 1480 sec: 16693824 operations; 18043.5 current ops/sec; [INSERT AverageLatency(us)=11.55] [READ AverageLatency(us)=10967.85] 
+2014-08-04 00:26:30:453 1490 sec: 16868554 operations; 17471.25 current ops/sec; [INSERT AverageLatency(us)=11.54] [READ AverageLatency(us)=11324.04] 
+2014-08-04 00:26:40:454 1500 sec: 17050790 operations; 18221.78 current ops/sec; [INSERT AverageLatency(us)=11.3] [READ AverageLatency(us)=10974.28] 
+2014-08-04 00:26:50:454 1510 sec: 17228427 operations; 17763.7 current ops/sec; [INSERT AverageLatency(us)=10.53] [READ AverageLatency(us)=10965.68] 
+2014-08-04 00:27:00:455 1520 sec: 17388101 operations; 15965.8 current ops/sec; [INSERT AverageLatency(us)=12.37] [READ AverageLatency(us)=12102.34] 
+2014-08-04 00:27:10:455 1530 sec: 17555976 operations; 16787.5 current ops/sec; [INSERT AverageLatency(us)=12.22] [READ AverageLatency(us)=11996.7] 
+2014-08-04 00:27:20:456 1540 sec: 17729628 operations; 17363.46 current ops/sec; [INSERT AverageLatency(us)=11.07] [READ AverageLatency(us)=11057.42] 
+2014-08-04 00:27:30:457 1550 sec: 17894389 operations; 16474.45 current ops/sec; [INSERT AverageLatency(us)=11.71] [READ AverageLatency(us)=12409.56] 
+2014-08-04 00:27:40:457 1560 sec: 18057077 operations; 16268.8 current ops/sec; [INSERT AverageLatency(us)=12.03] [READ AverageLatency(us)=12144.89] 
+2014-08-04 00:27:50:458 1570 sec: 18219031 operations; 16193.78 current ops/sec; [INSERT AverageLatency(us)=12.28] [READ AverageLatency(us)=12233.62] 
+2014-08-04 00:28:00:458 1580 sec: 18381433 operations; 16240.2 current ops/sec; [INSERT AverageLatency(us)=11.45] [READ AverageLatency(us)=12049.85] 
+2014-08-04 00:28:10:459 1590 sec: 18554873 operations; 17342.27 current ops/sec; [INSERT AverageLatency(us)=11.28] [READ AverageLatency(us)=11274.34] 
+2014-08-04 00:28:20:459 1600 sec: 18721468 operations; 16659.5 current ops/sec; [INSERT AverageLatency(us)=10.37] [READ AverageLatency(us)=11806.49] 
+2014-08-04 00:28:30:460 1610 sec: 18886866 operations; 16538.15 current ops/sec; [INSERT AverageLatency(us)=12.01] [READ AverageLatency(us)=11935.78] 
+2014-08-04 00:28:40:461 1620 sec: 19056733 operations; 16985 current ops/sec; [INSERT AverageLatency(us)=11.64] [READ AverageLatency(us)=11615.39] 
+2014-08-04 00:28:50:461 1630 sec: 19174501 operations; 11776.8 current ops/sec; [INSERT AverageLatency(us)=12.06] [READ AverageLatency(us)=10941.01] 
+2014-08-04 00:29:00:462 1640 sec: 19230840 operations; 5633.34 current ops/sec; [INSERT AverageLatency(us)=11.77] [READ AverageLatency(us)=47277.08] 
+2014-08-04 00:29:10:462 1650 sec: 19413157 operations; 18231.7 current ops/sec; [INSERT AverageLatency(us)=12.5] [READ AverageLatency(us)=10737.49] 
+2014-08-04 00:29:20:463 1660 sec: 19608569 operations; 19539.25 current ops/sec; [INSERT AverageLatency(us)=11.39] [READ AverageLatency(us)=9966.78] 
+2014-08-04 00:29:30:464 1670 sec: 19783901 operations; 17531.45 current ops/sec; [INSERT AverageLatency(us)=11.42] [READ AverageLatency(us)=11372.32] 
+2014-08-04 00:29:40:464 1680 sec: 19957369 operations; 17346.8 current ops/sec; [INSERT AverageLatency(us)=11.33] [READ AverageLatency(us)=10974.77] 
+2014-08-04 00:29:50:465 1690 sec: 20137852 operations; 18046.5 current ops/sec; [INSERT AverageLatency(us)=11.25] [READ AverageLatency(us)=11295.71] 
+2014-08-04 00:30:00:465 1700 sec: 20294687 operations; 15683.5 current ops/sec; [INSERT AverageLatency(us)=10.77] [READ AverageLatency(us)=12677.64] 
+2014-08-04 00:30:10:466 1710 sec: 20468579 operations; 17387.46 current ops/sec; [INSERT AverageLatency(us)=10.98] [READ AverageLatency(us)=11215.43] 
+2014-08-04 00:30:20:467 1720 sec: 20643322 operations; 17474.3 current ops/sec; [INSERT AverageLatency(us)=11.97] [READ AverageLatency(us)=11273.06] 
+2014-08-04 00:30:30:467 1730 sec: 20802791 operations; 15945.31 current ops/sec; [INSERT AverageLatency(us)=11.5] [READ AverageLatency(us)=12037.91] 
+2014-08-04 00:30:40:468 1740 sec: 20963346 operations; 16053.89 current ops/sec; [INSERT AverageLatency(us)=11.4] [READ AverageLatency(us)=12559.34] 
+2014-08-04 00:30:50:468 1750 sec: 21122066 operations; 15872 current ops/sec; [INSERT AverageLatency(us)=12.87] [READ AverageLatency(us)=11588.68] 
+2014-08-04 00:31:00:469 1760 sec: 21238003 operations; 11592.54 current ops/sec; [INSERT AverageLatency(us)=456.26] [READ AverageLatency(us)=14142.38] 
+2014-08-04 00:31:10:469 1770 sec: 21388512 operations; 15050.9 current ops/sec; [INSERT AverageLatency(us)=11.99] [READ AverageLatency(us)=12496.85] 
+2014-08-04 00:31:20:470 1780 sec: 21516657 operations; 12813.22 current ops/sec; [INSERT AverageLatency(us)=13.09] [READ AverageLatency(us)=16362.65] 
+2014-08-04 00:31:30:471 1790 sec: 21706337 operations; 18966.1 current ops/sec; [INSERT AverageLatency(us)=10.47] [READ AverageLatency(us)=10286.12] 
+2014-08-04 00:31:40:471 1800 sec: 21880222 operations; 17388.5 current ops/sec; [INSERT AverageLatency(us)=11.48] [READ AverageLatency(us)=11329.58] 
+2014-08-04 00:31:50:472 1810 sec: 22035991 operations; 15575.34 current ops/sec; [INSERT AverageLatency(us)=12.83] [READ AverageLatency(us)=12317.81] 
+2014-08-04 00:32:00:472 1820 sec: 22201535 operations; 16554.4 current ops/sec; [INSERT AverageLatency(us)=11.48] [READ AverageLatency(us)=11534.55] 
+2014-08-04 00:32:10:473 1830 sec: 22363159 operations; 16160.78 current ops/sec; [INSERT AverageLatency(us)=12.07] [READ AverageLatency(us)=12861.7] 
+2014-08-04 00:32:20:474 1840 sec: 22536922 operations; 17374.56 current ops/sec; [INSERT AverageLatency(us)=11.8] [READ AverageLatency(us)=11334.52] 
+2014-08-04 00:32:30:474 1850 sec: 22679695 operations; 14277.3 current ops/sec; [INSERT AverageLatency(us)=11.32] [READ AverageLatency(us)=13706.57] 
+2014-08-04 00:32:40:475 1860 sec: 22847609 operations; 16789.72 current ops/sec; [INSERT AverageLatency(us)=11.84] [READ AverageLatency(us)=11934.62] 
+2014-08-04 00:32:50:475 1870 sec: 22998794 operations; 15118.5 current ops/sec; [INSERT AverageLatency(us)=12.15] [READ AverageLatency(us)=12980.63] 
+2014-08-04 00:33:00:476 1880 sec: 23160605 operations; 16179.48 current ops/sec; [INSERT AverageLatency(us)=11.24] [READ AverageLatency(us)=12354.4] 
+2014-08-04 00:33:10:477 1890 sec: 23308671 operations; 14805.12 current ops/sec; [INSERT AverageLatency(us)=13.84] [READ AverageLatency(us)=13454.12] 
+2014-08-04 00:33:20:477 1900 sec: 23472147 operations; 16347.6 current ops/sec; [INSERT AverageLatency(us)=11.21] [READ AverageLatency(us)=12101.23] 
+2014-08-04 00:33:30:478 1910 sec: 23633072 operations; 16090.89 current ops/sec; [INSERT AverageLatency(us)=11.14] [READ AverageLatency(us)=12289.48] 
+2014-08-04 00:33:40:478 1920 sec: 23810459 operations; 17738.7 current ops/sec; [INSERT AverageLatency(us)=11.66] [READ AverageLatency(us)=11093] 
+2014-08-04 00:33:50:479 1930 sec: 23976982 operations; 16650.63 current ops/sec; [INSERT AverageLatency(us)=15.06] [READ AverageLatency(us)=12017.3] 
+2014-08-04 00:34:00:480 1940 sec: 24102074 operations; 12509.2 current ops/sec; [INSERT AverageLatency(us)=73.87] [READ AverageLatency(us)=15307.59] 
+2014-08-04 00:34:10:480 1950 sec: 24225448 operations; 12336.17 current ops/sec; [INSERT AverageLatency(us)=258.3] [READ AverageLatency(us)=13670.78] 
+2014-08-04 00:34:20:481 1960 sec: 24359179 operations; 13371.76 current ops/sec; [INSERT AverageLatency(us)=10.99] [READ AverageLatency(us)=14968.63] 
+2014-08-04 00:34:30:481 1970 sec: 24534134 operations; 17495.5 current ops/sec; [INSERT AverageLatency(us)=11.9] [READ AverageLatency(us)=11306.65] 
+2014-08-04 00:34:40:482 1980 sec: 24688462 operations; 15431.26 current ops/sec; [INSERT AverageLatency(us)=10.16] [READ AverageLatency(us)=12903.32] 
+2014-08-04 00:34:50:482 1990 sec: 24840092 operations; 15163 current ops/sec; [INSERT AverageLatency(us)=10.62] [READ AverageLatency(us)=12339.38] 
+2014-08-04 00:35:00:483 2000 sec: 24980775 operations; 14066.89 current ops/sec; [INSERT AverageLatency(us)=11.66] [READ AverageLatency(us)=14740.71] 
+2014-08-04 00:35:10:484 2010 sec: 25144405 operations; 16361.36 current ops/sec; [INSERT AverageLatency(us)=11.62] [READ AverageLatency(us)=12063.17] 
+2014-08-04 00:35:20:484 2020 sec: 25304570 operations; 16016.5 current ops/sec; [INSERT AverageLatency(us)=11.11] [READ AverageLatency(us)=12160.94] 
+2014-08-04 00:35:30:485 2030 sec: 25457732 operations; 15314.67 current ops/sec; [INSERT AverageLatency(us)=11.42] [READ AverageLatency(us)=13236.01] 
+2014-08-04 00:35:40:485 2040 sec: 25619026 operations; 16129.4 current ops/sec; [INSERT AverageLatency(us)=12.69] [READ AverageLatency(us)=12440.79] 
+2014-08-04 00:35:50:486 2050 sec: 25773512 operations; 15447.06 current ops/sec; [INSERT AverageLatency(us)=12.4] [READ AverageLatency(us)=12839.76] 
+2014-08-04 00:36:00:486 2060 sec: 25932781 operations; 15926.9 current ops/sec; [INSERT AverageLatency(us)=10.74] [READ AverageLatency(us)=12286.24] 
+2014-08-04 00:36:10:487 2070 sec: 26085352 operations; 15255.57 current ops/sec; [INSERT AverageLatency(us)=11.48] [READ AverageLatency(us)=12478.57] 
+2014-08-04 00:36:20:488 2080 sec: 26253076 operations; 16770.72 current ops/sec; [INSERT AverageLatency(us)=11.63] [READ AverageLatency(us)=12344.25] 
+2014-08-04 00:36:30:488 2090 sec: 26384768 operations; 13169.2 current ops/sec; [INSERT AverageLatency(us)=11.47] [READ AverageLatency(us)=15078.75] 
+2014-08-04 00:36:40:489 2100 sec: 26532522 operations; 14773.92 current ops/sec; [INSERT AverageLatency(us)=11.23] [READ AverageLatency(us)=13259.34] 
+2014-08-04 00:36:50:490 2110 sec: 26677708 operations; 14518.6 current ops/sec; [INSERT AverageLatency(us)=11.76] [READ AverageLatency(us)=13582.76] 
+2014-08-04 00:37:00:490 2120 sec: 26828094 operations; 15037.1 current ops/sec; [INSERT AverageLatency(us)=10.89] [READ AverageLatency(us)=12758.66] 
+2014-08-04 00:37:10:491 2130 sec: 26980642 operations; 15253.27 current ops/sec; [INSERT AverageLatency(us)=11.62] [READ AverageLatency(us)=13227.13] 
+2014-08-04 00:37:20:491 2140 sec: 27131352 operations; 15071 current ops/sec; [INSERT AverageLatency(us)=11.51] [READ AverageLatency(us)=12982.64] 
+2014-08-04 00:37:30:492 2150 sec: 27274433 operations; 14306.67 current ops/sec; [INSERT AverageLatency(us)=11.98] [READ AverageLatency(us)=13479.23] 
+2014-08-04 00:37:40:493 2160 sec: 27417542 operations; 14309.47 current ops/sec; [INSERT AverageLatency(us)=10.55] [READ AverageLatency(us)=13825.25] 
+2014-08-04 00:37:50:493 2170 sec: 27580267 operations; 16272.5 current ops/sec; [INSERT AverageLatency(us)=12] [READ AverageLatency(us)=12475.73] 
+2014-08-04 00:38:00:494 2180 sec: 27736509 operations; 15622.64 current ops/sec; [INSERT AverageLatency(us)=11.32] [READ AverageLatency(us)=12553.97] 
+2014-08-04 00:38:10:494 2190 sec: 27897075 operations; 16056.6 current ops/sec; [INSERT AverageLatency(us)=11.72] [READ AverageLatency(us)=12353.07] 
+2014-08-04 00:38:20:495 2200 sec: 28034634 operations; 13754.52 current ops/sec; [INSERT AverageLatency(us)=12.41] [READ AverageLatency(us)=14171.96] 
+2014-08-04 00:38:30:495 2210 sec: 28186572 operations; 15193.8 current ops/sec; [INSERT AverageLatency(us)=11.28] [READ AverageLatency(us)=12797.24] 
+2014-08-04 00:38:40:496 2220 sec: 28341114 operations; 15452.65 current ops/sec; [INSERT AverageLatency(us)=11.65] [READ AverageLatency(us)=12925.72] 
+2014-08-04 00:38:50:497 2230 sec: 28501507 operations; 16037.7 current ops/sec; [INSERT AverageLatency(us)=12.51] [READ AverageLatency(us)=12238.95] 
+2014-08-04 00:39:00:497 2240 sec: 28651958 operations; 15045.1 current ops/sec; [INSERT AverageLatency(us)=10.61] [READ AverageLatency(us)=13273.67] 
+2014-08-04 00:39:10:528 2250 sec: 28791947 operations; 13955.64 current ops/sec; [INSERT AverageLatency(us)=10.44] [READ AverageLatency(us)=14208.66] 
+2014-08-04 00:39:20:529 2260 sec: 28956055 operations; 16409.16 current ops/sec; [INSERT AverageLatency(us)=11.39] [READ AverageLatency(us)=11768.79] 
+2014-08-04 00:39:30:530 2270 sec: 29088833 operations; 13276.47 current ops/sec; [INSERT AverageLatency(us)=11.39] [READ AverageLatency(us)=14906.44] 
+2014-08-04 00:39:40:530 2280 sec: 29236239 operations; 14740.6 current ops/sec; [INSERT AverageLatency(us)=11.22] [READ AverageLatency(us)=13513.08] 
+2014-08-04 00:39:50:531 2290 sec: 29394384 operations; 15812.92 current ops/sec; [INSERT AverageLatency(us)=11.53] [READ AverageLatency(us)=12534.55] 
+2014-08-04 00:40:00:531 2300 sec: 29552758 operations; 15837.4 current ops/sec; [INSERT AverageLatency(us)=11.49] [READ AverageLatency(us)=12488.61] 
+2014-08-04 00:40:10:532 2310 sec: 29698870 operations; 14609.74 current ops/sec; [INSERT AverageLatency(us)=13.2] [READ AverageLatency(us)=13532.52] 
+2014-08-04 00:40:20:533 2320 sec: 29859132 operations; 16026.2 current ops/sec; [INSERT AverageLatency(us)=11.76] [READ AverageLatency(us)=12570.95] 
+2014-08-04 00:40:30:533 2330 sec: 29999312 operations; 14016.6 current ops/sec; [INSERT AverageLatency(us)=11.04] [READ AverageLatency(us)=13546.07] 
+2014-08-04 00:40:40:534 2340 sec: 30147070 operations; 14774.32 current ops/sec; [INSERT AverageLatency(us)=11.26] [READ AverageLatency(us)=13826.27] 
+2014-08-04 00:40:50:534 2350 sec: 30308085 operations; 16101.5 current ops/sec; [INSERT AverageLatency(us)=11.46] [READ AverageLatency(us)=12469.15] 
+2014-08-04 00:41:00:535 2360 sec: 30443973 operations; 13587.44 current ops/sec; [INSERT AverageLatency(us)=12.43] [READ AverageLatency(us)=14722.35] 
+2014-08-04 00:41:10:536 2370 sec: 30609294 operations; 16530.45 current ops/sec; [INSERT AverageLatency(us)=12.89] [READ AverageLatency(us)=11974.98] 
+2014-08-04 00:41:20:536 2380 sec: 30767195 operations; 15790.1 current ops/sec; [INSERT AverageLatency(us)=11.59] [READ AverageLatency(us)=12493.71] 
+2014-08-04 00:41:30:537 2390 sec: 30894556 operations; 12734.83 current ops/sec; [INSERT AverageLatency(us)=11.39] [READ AverageLatency(us)=15782.18] 
+2014-08-04 00:41:40:537 2400 sec: 31053428 operations; 15887.2 current ops/sec; [INSERT AverageLatency(us)=11.64] [READ AverageLatency(us)=12359.82] 
+2014-08-04 00:41:50:538 2410 sec: 31203767 operations; 15032.4 current ops/sec; [INSERT AverageLatency(us)=11.12] [READ AverageLatency(us)=13309.68] 
+2014-08-04 00:42:00:538 2420 sec: 31363527 operations; 15976 current ops/sec; [INSERT AverageLatency(us)=11.41] [READ AverageLatency(us)=12462.45] 
+2014-08-04 00:42:10:539 2430 sec: 31498284 operations; 13474.35 current ops/sec; [INSERT AverageLatency(us)=11.55] [READ AverageLatency(us)=14538.05] 
+2014-08-04 00:42:20:539 2440 sec: 31640886 operations; 14260.2 current ops/sec; [INSERT AverageLatency(us)=10.8] [READ AverageLatency(us)=13886.33] 
+2014-08-04 00:42:30:540 2450 sec: 31774049 operations; 13314.97 current ops/sec; [INSERT AverageLatency(us)=11.08] [READ AverageLatency(us)=15258.45] 
+2014-08-04 00:42:40:541 2460 sec: 31916010 operations; 14194.68 current ops/sec; [INSERT AverageLatency(us)=11.56] [READ AverageLatency(us)=13949.96] 
+2014-08-04 00:42:50:541 2470 sec: 32075839 operations; 15982.9 current ops/sec; [INSERT AverageLatency(us)=11.66] [READ AverageLatency(us)=12467.21] 
+2014-08-04 00:43:00:542 2480 sec: 32227009 operations; 15115.49 current ops/sec; [INSERT AverageLatency(us)=10.56] [READ AverageLatency(us)=13001.08] 
+2014-08-04 00:43:10:542 2490 sec: 32364126 operations; 13711.7 current ops/sec; [INSERT AverageLatency(us)=10.77] [READ AverageLatency(us)=13370.75] 
+2014-08-04 00:43:20:543 2500 sec: 32513333 operations; 14919.21 current ops/sec; [INSERT AverageLatency(us)=11.62] [READ AverageLatency(us)=14166.79] 
+2014-08-04 00:43:30:543 2510 sec: 32662071 operations; 14873.8 current ops/sec; [INSERT AverageLatency(us)=11.24] [READ AverageLatency(us)=12884.14] 
+2014-08-04 00:43:40:544 2520 sec: 32812656 operations; 15056.99 current ops/sec; [INSERT AverageLatency(us)=11.67] [READ AverageLatency(us)=13855.95] 
+2014-08-04 00:43:50:545 2530 sec: 32941916 operations; 12924.71 current ops/sec; [INSERT AverageLatency(us)=14.28] [READ AverageLatency(us)=15247.61] 
+2014-08-04 00:44:00:545 2540 sec: 33085160 operations; 14324.4 current ops/sec; [INSERT AverageLatency(us)=12.58] [READ AverageLatency(us)=13494.95] 
+2014-08-04 00:44:10:546 2550 sec: 33233851 operations; 14867.61 current ops/sec; [INSERT AverageLatency(us)=11.61] [READ AverageLatency(us)=13405.61] 
+2014-08-04 00:44:20:546 2560 sec: 33356646 operations; 12279.5 current ops/sec; [INSERT AverageLatency(us)=14.15] [READ AverageLatency(us)=16463.67] 
+2014-08-04 00:44:30:547 2570 sec: 33495260 operations; 13860.01 current ops/sec; [INSERT AverageLatency(us)=12.3] [READ AverageLatency(us)=14342.57] 
+2014-08-04 00:44:40:548 2580 sec: 33631548 operations; 13628.8 current ops/sec; [INSERT AverageLatency(us)=11.33] [READ AverageLatency(us)=13999.66] 
+2014-08-04 00:44:50:548 2590 sec: 33631548 operations; 0 current ops/sec;   
+2014-08-04 00:45:00:548 2600 sec: 33689703 operations; 5815.5 current ops/sec; [INSERT AverageLatency(us)=10.97] [READ AverageLatency(us)=69316.81] 
+2014-08-04 00:45:10:549 2610 sec: 33856952 operations; 16723.23 current ops/sec; [INSERT AverageLatency(us)=10.38] [READ AverageLatency(us)=11884.89] 
+2014-08-04 00:45:20:550 2620 sec: 34007683 operations; 15071.59 current ops/sec; [INSERT AverageLatency(us)=11.93] [READ AverageLatency(us)=13037.58] 
+2014-08-04 00:45:30:550 2630 sec: 34171375 operations; 16369.2 current ops/sec; [INSERT AverageLatency(us)=10.84] [READ AverageLatency(us)=12193.72] 
+2014-08-04 00:45:40:551 2640 sec: 34315509 operations; 14411.96 current ops/sec; [INSERT AverageLatency(us)=11.25] [READ AverageLatency(us)=13586.64] 
+2014-08-04 00:45:50:551 2650 sec: 34478529 operations; 16302 current ops/sec; [INSERT AverageLatency(us)=11.43] [READ AverageLatency(us)=12016.97] 
+2014-08-04 00:46:00:552 2660 sec: 34628309 operations; 14976.5 current ops/sec; [INSERT AverageLatency(us)=10.9] [READ AverageLatency(us)=13339.37] 
+2014-08-04 00:46:10:553 2670 sec: 34792748 operations; 16443.9 current ops/sec; [INSERT AverageLatency(us)=11.63] [READ AverageLatency(us)=12017.81] 
+2014-08-04 00:46:20:553 2680 sec: 34937858 operations; 14509.55 current ops/sec; [INSERT AverageLatency(us)=10.78] [READ AverageLatency(us)=13071.39] 
+2014-08-04 00:46:30:554 2690 sec: 35081478 operations; 14360.56 current ops/sec; [INSERT AverageLatency(us)=11.36] [READ AverageLatency(us)=13888.82] 
+2014-08-04 00:46:40:554 2700 sec: 35242037 operations; 16055.9 current ops/sec; [INSERT AverageLatency(us)=12.27] [READ AverageLatency(us)=12552.74] 
+2014-08-04 00:46:50:555 2710 sec: 35399792 operations; 15773.92 current ops/sec; [INSERT AverageLatency(us)=11.67] [READ AverageLatency(us)=12631.81] 
+2014-08-04 00:47:00:555 2720 sec: 35543960 operations; 14416.8 current ops/sec; [INSERT AverageLatency(us)=10.96] [READ AverageLatency(us)=13764.39] 
+2014-08-04 00:47:10:556 2730 sec: 35701857 operations; 15788.12 current ops/sec; [INSERT AverageLatency(us)=11] [READ AverageLatency(us)=12446.66] 
+2014-08-04 00:47:20:557 2740 sec: 35846061 operations; 14420.4 current ops/sec; [INSERT AverageLatency(us)=11.23] [READ AverageLatency(us)=13595.12] 
+2014-08-04 00:47:30:557 2750 sec: 36006575 operations; 16049.8 current ops/sec; [INSERT AverageLatency(us)=10.74] [READ AverageLatency(us)=12528.57] 
+2014-08-04 00:47:40:558 2760 sec: 36154724 operations; 14813.42 current ops/sec; [INSERT AverageLatency(us)=11.34] [READ AverageLatency(us)=13219.31] 
+2014-08-04 00:47:50:558 2770 sec: 36303047 operations; 14832.3 current ops/sec; [INSERT AverageLatency(us)=15.27] [READ AverageLatency(us)=13235.6] 
+2014-08-04 00:48:00:559 2780 sec: 36443102 operations; 14004.1 current ops/sec; [INSERT AverageLatency(us)=49.34] [READ AverageLatency(us)=13744.32] 
+2014-08-04 00:48:10:559 2790 sec: 36566807 operations; 12370.5 current ops/sec; [INSERT AverageLatency(us)=18.01] [READ AverageLatency(us)=16171.04] 
+2014-08-04 00:48:20:560 2800 sec: 36699842 operations; 13302.17 current ops/sec; [INSERT AverageLatency(us)=11.46] [READ AverageLatency(us)=14899.91] 
+2014-08-04 00:48:30:560 2810 sec: 36859666 operations; 15982.4 current ops/sec; [INSERT AverageLatency(us)=10.54] [READ AverageLatency(us)=11759] 
+2014-08-04 00:48:40:561 2820 sec: 37014141 operations; 15445.96 current ops/sec; [INSERT AverageLatency(us)=11.52] [READ AverageLatency(us)=13381.28] 
+2014-08-04 00:48:50:562 2830 sec: 37134675 operations; 12053.4 current ops/sec; [INSERT AverageLatency(us)=11.35] [READ AverageLatency(us)=16497.7] 
+2014-08-04 00:49:00:562 2840 sec: 37293634 operations; 15894.31 current ops/sec; [INSERT AverageLatency(us)=11.42] [READ AverageLatency(us)=12639.98] 
+2014-08-04 00:49:10:563 2850 sec: 37435292 operations; 14165.8 current ops/sec; [INSERT AverageLatency(us)=11.42] [READ AverageLatency(us)=13603.17] 
+2014-08-04 00:49:20:563 2860 sec: 37583950 operations; 14864.31 current ops/sec; [INSERT AverageLatency(us)=12.71] [READ AverageLatency(us)=13692.4] 
+2014-08-04 00:49:30:564 2870 sec: 37732380 operations; 14841.52 current ops/sec; [INSERT AverageLatency(us)=11.7] [READ AverageLatency(us)=13194.09] 
+2014-08-04 00:49:40:564 2880 sec: 37878627 operations; 14624.7 current ops/sec; [INSERT AverageLatency(us)=11.58] [READ AverageLatency(us)=13675.87] 
+2014-08-04 00:49:50:565 2890 sec: 38041488 operations; 16284.47 current ops/sec; [INSERT AverageLatency(us)=11.24] [READ AverageLatency(us)=12038.63] 
+2014-08-04 00:50:00:565 2900 sec: 38193960 operations; 15247.2 current ops/sec; [INSERT AverageLatency(us)=10.97] [READ AverageLatency(us)=13271.67] 
+2014-08-04 00:50:10:566 2910 sec: 38344650 operations; 15067.49 current ops/sec; [INSERT AverageLatency(us)=11.58] [READ AverageLatency(us)=13103.53] 
+2014-08-04 00:50:20:566 2920 sec: 38484130 operations; 13948 current ops/sec; [INSERT AverageLatency(us)=11.49] [READ AverageLatency(us)=14223.39] 
+2014-08-04 00:50:30:567 2930 sec: 38640027 operations; 15588.14 current ops/sec; [INSERT AverageLatency(us)=11.28] [READ AverageLatency(us)=12666.31] 
+2014-08-04 00:50:40:568 2940 sec: 38787202 operations; 14717.5 current ops/sec; [INSERT AverageLatency(us)=11.3] [READ AverageLatency(us)=13776.42] 
+2014-08-04 00:50:50:568 2950 sec: 38953115 operations; 16589.64 current ops/sec; [INSERT AverageLatency(us)=11.26] [READ AverageLatency(us)=11932.6] 
+2014-08-04 00:51:00:569 2960 sec: 39076797 operations; 12366.96 current ops/sec; [INSERT AverageLatency(us)=11.31] [READ AverageLatency(us)=15845.87] 
+2014-08-04 00:51:10:569 2970 sec: 39217355 operations; 14055.8 current ops/sec; [INSERT AverageLatency(us)=10.97] [READ AverageLatency(us)=14228.39] 
+2014-08-04 00:51:20:570 2980 sec: 39365957 operations; 14858.71 current ops/sec; [INSERT AverageLatency(us)=10.59] [READ AverageLatency(us)=13260.56] 
+2014-08-04 00:51:30:570 2990 sec: 39485899 operations; 11994.2 current ops/sec; [INSERT AverageLatency(us)=11.28] [READ AverageLatency(us)=16429.49] 
+2014-08-04 00:51:40:571 3000 sec: 39620254 operations; 13434.16 current ops/sec; [INSERT AverageLatency(us)=10.96] [READ AverageLatency(us)=13969.92] 
+2014-08-04 00:51:50:571 3010 sec: 39772414 operations; 15216 current ops/sec; [INSERT AverageLatency(us)=11.5] [READ AverageLatency(us)=13646.89] 
+2014-08-04 00:52:00:572 3020 sec: 39909125 operations; 13669.73 current ops/sec; [INSERT AverageLatency(us)=11.01] [READ AverageLatency(us)=14236.57] 
+2014-08-04 00:52:10:573 3030 sec: 40059047 operations; 14990.7 current ops/sec; [INSERT AverageLatency(us)=10.99] [READ AverageLatency(us)=13264.25] 
+2014-08-04 00:52:20:573 3040 sec: 40203498 operations; 14445.1 current ops/sec; [INSERT AverageLatency(us)=10.46] [READ AverageLatency(us)=13379.58] 
+2014-08-04 00:52:30:574 3050 sec: 40341101 operations; 13758.92 current ops/sec; [INSERT AverageLatency(us)=11.19] [READ AverageLatency(us)=14979.82] 
+2014-08-04 00:52:40:574 3060 sec: 40462567 operations; 12146.6 current ops/sec; [INSERT AverageLatency(us)=11.84] [READ AverageLatency(us)=16121.52] 
+2014-08-04 00:52:50:575 3070 sec: 40619005 operations; 15642.24 current ops/sec; [INSERT AverageLatency(us)=10.9] [READ AverageLatency(us)=12634.06] 
+2014-08-04 00:53:00:576 3080 sec: 40771700 operations; 15269.5 current ops/sec; [INSERT AverageLatency(us)=10.59] [READ AverageLatency(us)=12950.19] 
+2014-08-04 00:53:10:576 3090 sec: 40923229 operations; 15151.38 current ops/sec; [INSERT AverageLatency(us)=10.22] [READ AverageLatency(us)=13218.31] 
+2014-08-04 00:53:20:577 3100 sec: 41073772 operations; 15054.3 current ops/sec; [INSERT AverageLatency(us)=10.91] [READ AverageLatency(us)=13146.51] 
+2014-08-04 00:53:30:577 3110 sec: 41229154 operations; 15536.65 current ops/sec; [INSERT AverageLatency(us)=10.93] [READ AverageLatency(us)=13000.16] 
+2014-08-04 00:53:40:577 3120 sec: 41358693 operations; 12953.9 current ops/sec; [INSERT AverageLatency(us)=11.12] [READ AverageLatency(us)=15148.48] 
+2014-08-04 00:53:50:578 3130 sec: 41496010 operations; 13730.33 current ops/sec; [INSERT AverageLatency(us)=10.93] [READ AverageLatency(us)=14703.23] 
+2014-08-04 00:54:00:579 3140 sec: 41648531 operations; 15250.57 current ops/sec; [INSERT AverageLatency(us)=11.02] [READ AverageLatency(us)=12956.94] 
+2014-08-04 00:54:10:579 3150 sec: 41780354 operations; 13182.3 current ops/sec; [INSERT AverageLatency(us)=11.06] [READ AverageLatency(us)=14796.49] 
+2014-08-04 00:54:20:580 3160 sec: 41913596 operations; 13322.87 current ops/sec; [INSERT AverageLatency(us)=12.24] [READ AverageLatency(us)=14907.98] 
+2014-08-04 00:54:30:580 3170 sec: 42066932 operations; 15333.6 current ops/sec; [INSERT AverageLatency(us)=11.67] [READ AverageLatency(us)=12907.25] 
+2014-08-04 00:54:40:581 3180 sec: 42214373 operations; 14744.1 current ops/sec; [INSERT AverageLatency(us)=10.68] [READ AverageLatency(us)=13250.08] 
+2014-08-04 00:54:50:581 3190 sec: 42373373 operations; 15898.41 current ops/sec; [INSERT AverageLatency(us)=11.87] [READ AverageLatency(us)=12542.23] 
+2014-08-04 00:55:00:582 3200 sec: 42516824 operations; 14345.1 current ops/sec; [INSERT AverageLatency(us)=11.77] [READ AverageLatency(us)=13775.72] 
+2014-08-04 00:55:10:582 3210 sec: 42649508 operations; 13267.07 current ops/sec; [INSERT AverageLatency(us)=11.07] [READ AverageLatency(us)=14818.36] 
+2014-08-04 00:55:20:583 3220 sec: 42786404 operations; 13689.6 current ops/sec; [INSERT AverageLatency(us)=11.69] [READ AverageLatency(us)=14541.68] 
+2014-08-04 00:55:30:583 3230 sec: 42936560 operations; 15014.1 current ops/sec; [INSERT AverageLatency(us)=10.76] [READ AverageLatency(us)=13126.75] 
+2014-08-04 00:55:40:584 3240 sec: 43058118 operations; 12154.58 current ops/sec; [INSERT AverageLatency(us)=11.5] [READ AverageLatency(us)=16106.34] 
+2014-08-04 00:55:50:584 3250 sec: 43201028 operations; 14291 current ops/sec; [INSERT AverageLatency(us)=10.77] [READ AverageLatency(us)=13760.87] 
+2014-08-04 00:56:00:585 3260 sec: 43340676 operations; 13963.4 current ops/sec; [INSERT AverageLatency(us)=10.65] [READ AverageLatency(us)=14208.32] 
+2014-08-04 00:56:10:585 3270 sec: 43492214 operations; 15153.8 current ops/sec; [INSERT AverageLatency(us)=10.54] [READ AverageLatency(us)=13591.3] 
+2014-08-04 00:56:20:586 3280 sec: 43643390 operations; 15116.09 current ops/sec; [INSERT AverageLatency(us)=11.43] [READ AverageLatency(us)=13002.39] 
+2014-08-04 00:56:30:586 3290 sec: 43785038 operations; 14164.8 current ops/sec; [INSERT AverageLatency(us)=11.85] [READ AverageLatency(us)=14066.85] 
+2014-08-04 00:56:40:587 3300 sec: 43943485 operations; 15843.12 current ops/sec; [INSERT AverageLatency(us)=10.8] [READ AverageLatency(us)=12399.79] 
+2014-08-04 00:56:50:587 3310 sec: 44076489 operations; 13300.4 current ops/sec; [INSERT AverageLatency(us)=11.25] [READ AverageLatency(us)=14853.79] 
+2014-08-04 00:57:00:588 3320 sec: 44223032 operations; 14652.83 current ops/sec; [INSERT AverageLatency(us)=11.75] [READ AverageLatency(us)=13478.87] 
+2014-08-04 00:57:10:589 3330 sec: 44382248 operations; 15920.01 current ops/sec; [INSERT AverageLatency(us)=11.04] [READ AverageLatency(us)=12508.86] 
+2014-08-04 00:57:20:589 3340 sec: 44524787 operations; 14253.9 current ops/sec; [INSERT AverageLatency(us)=12.06] [READ AverageLatency(us)=13445.59] 
+2014-08-04 00:57:30:590 3350 sec: 44675639 operations; 15085.2 current ops/sec; [INSERT AverageLatency(us)=12.3] [READ AverageLatency(us)=13315.09] 
+2014-08-04 00:57:40:590 3360 sec: 44820467 operations; 14481.35 current ops/sec; [INSERT AverageLatency(us)=10.96] [READ AverageLatency(us)=13635.31] 
+2014-08-04 00:57:50:591 3370 sec: 44961666 operations; 14118.49 current ops/sec; [INSERT AverageLatency(us)=11.42] [READ AverageLatency(us)=14005.74] 
+2014-08-04 00:58:00:591 3380 sec: 45112382 operations; 15071.6 current ops/sec; [INSERT AverageLatency(us)=11.48] [READ AverageLatency(us)=13020.49] 
+2014-08-04 00:58:10:592 3390 sec: 45239440 operations; 12704.53 current ops/sec; [INSERT AverageLatency(us)=12.4] [READ AverageLatency(us)=14739.35] 
+2014-08-04 00:58:20:592 3400 sec: 45395058 operations; 15561.8 current ops/sec; [INSERT AverageLatency(us)=12.1] [READ AverageLatency(us)=13433.18] 
+2014-08-04 00:58:30:593 3410 sec: 45541181 operations; 14610.84 current ops/sec; [INSERT AverageLatency(us)=11] [READ AverageLatency(us)=13625.19] 
+2014-08-04 00:58:40:593 3420 sec: 45682514 operations; 14133.3 current ops/sec; [INSERT AverageLatency(us)=10.65] [READ AverageLatency(us)=13996.52] 
+2014-08-04 00:58:50:594 3430 sec: 45834386 operations; 15185.68 current ops/sec; [INSERT AverageLatency(us)=11.61] [READ AverageLatency(us)=13058.51] 
+2014-08-04 00:59:00:594 3440 sec: 45978968 operations; 14458.2 current ops/sec; [INSERT AverageLatency(us)=11.09] [READ AverageLatency(us)=13640.48] 
+2014-08-04 00:59:10:595 3450 sec: 46124125 operations; 14514.25 current ops/sec; [INSERT AverageLatency(us)=11.08] [READ AverageLatency(us)=13524.65] 
+2014-08-04 00:59:20:595 3460 sec: 46248611 operations; 12448.6 current ops/sec; [INSERT AverageLatency(us)=11.03] [READ AverageLatency(us)=15896.16] 
+2014-08-04 00:59:30:596 3470 sec: 46402032 operations; 15340.57 current ops/sec; [INSERT AverageLatency(us)=10.53] [READ AverageLatency(us)=12910] 
+2014-08-04 00:59:40:596 3480 sec: 46542460 operations; 14042.8 current ops/sec; [INSERT AverageLatency(us)=11.11] [READ AverageLatency(us)=14184.26] 
+2014-08-04 00:59:50:597 3490 sec: 46684960 operations; 14248.58 current ops/sec; [INSERT AverageLatency(us)=11.07] [READ AverageLatency(us)=13840.59] 
+2014-08-04 01:00:00:597 3500 sec: 46812366 operations; 12740.6 current ops/sec; [INSERT AverageLatency(us)=10.65] [READ AverageLatency(us)=15537.23] 
+2014-08-04 01:00:10:598 3510 sec: 46943807 operations; 13142.79 current ops/sec; [INSERT AverageLatency(us)=11.2] [READ AverageLatency(us)=15141.5] 
+2014-08-04 01:00:20:598 3520 sec: 47080203 operations; 13639.6 current ops/sec; [INSERT AverageLatency(us)=11.25] [READ AverageLatency(us)=14375.29] 
+2014-08-04 01:00:30:599 3530 sec: 47207207 operations; 12699.13 current ops/sec; [INSERT AverageLatency(us)=11.78] [READ AverageLatency(us)=15863.38] 
+2014-08-04 01:00:40:599 3540 sec: 47343267 operations; 13606 current ops/sec; [INSERT AverageLatency(us)=11.67] [READ AverageLatency(us)=14722.65] 
+2014-08-04 01:00:50:600 3550 sec: 47482406 operations; 13912.51 current ops/sec; [INSERT AverageLatency(us)=10.82] [READ AverageLatency(us)=14133.92] 
+2014-08-04 01:01:00:600 3560 sec: 47559862 operations; 7745.6 current ops/sec; [INSERT AverageLatency(us)=11.62] [READ AverageLatency(us)=14894.41] 
+2014-08-04 01:01:10:601 3570 sec: 47559862 operations; 0 current ops/sec;   
+2014-08-04 01:01:20:601 3580 sec: 47622382 operations; 6252 current ops/sec; [INSERT AverageLatency(us)=11.36] [READ AverageLatency(us)=78189.94] 
+2014-08-04 01:01:30:602 3590 sec: 47762478 operations; 14008.2 current ops/sec; [INSERT AverageLatency(us)=10.9] [READ AverageLatency(us)=14132.25] 
+2014-08-04 01:01:40:602 3600 sec: 47918965 operations; 15648.7 current ops/sec; [INSERT AverageLatency(us)=11.02] [READ AverageLatency(us)=12514.51] 
+2014-08-04 01:01:50:603 3610 sec: 48047619 operations; 12864.11 current ops/sec; [INSERT AverageLatency(us)=11.66] [READ AverageLatency(us)=15682.17] 
+2014-08-04 01:02:00:603 3620 sec: 48204931 operations; 15731.2 current ops/sec; [INSERT AverageLatency(us)=11.22] [READ AverageLatency(us)=12641.61] 
+2014-08-04 01:02:10:604 3630 sec: 48340628 operations; 13568.34 current ops/sec; [INSERT AverageLatency(us)=72.45] [READ AverageLatency(us)=14193.54] 
+2014-08-04 01:02:20:604 3640 sec: 48465921 operations; 12529.3 current ops/sec; [INSERT AverageLatency(us)=11.06] [READ AverageLatency(us)=15925.2] 
+2014-08-04 01:02:30:605 3650 sec: 48594865 operations; 12893.11 current ops/sec; [INSERT AverageLatency(us)=13.17] [READ AverageLatency(us)=14675.05] 
+2014-08-04 01:02:40:606 3660 sec: 48734451 operations; 13958.6 current ops/sec; [INSERT AverageLatency(us)=10.67] [READ AverageLatency(us)=14599.61] 
+2014-08-04 01:02:50:606 3670 sec: 48884731 operations; 15026.5 current ops/sec; [INSERT AverageLatency(us)=10.58] [READ AverageLatency(us)=13179.98] 
+2014-08-04 01:03:00:607 3680 sec: 49013751 operations; 12900.71 current ops/sec; [INSERT AverageLatency(us)=12.19] [READ AverageLatency(us)=15477.88] 
+2014-08-04 01:03:10:607 3690 sec: 49161536 operations; 14778.5 current ops/sec; [INSERT AverageLatency(us)=11.28] [READ AverageLatency(us)=13428.56] 
+2014-08-04 01:03:20:608 3700 sec: 49294989 operations; 13345.3 current ops/sec; [INSERT AverageLatency(us)=11.38] [READ AverageLatency(us)=14982.91] 
+2014-08-04 01:03:30:608 3710 sec: 49416175 operations; 12117.39 current ops/sec; [INSERT AverageLatency(us)=11.91] [READ AverageLatency(us)=16441.64] 
+2014-08-04 01:03:40:609 3720 sec: 49554845 operations; 13865.61 current ops/sec; [INSERT AverageLatency(us)=11.38] [READ AverageLatency(us)=14138.46] 
+2014-08-04 01:03:50:609 3730 sec: 49686575 operations; 13173 current ops/sec; [UPDATE AverageLatency(us)=245739.67] [INSERT AverageLatency(us)=10.44] [READ AverageLatency(us)=13986.5] [CLEANUP AverageLatency(us)=246085] 
+2014-08-04 01:04:00:610 3740 sec: 49807420 operations; 12083.29 current ops/sec; [UPDATE AverageLatency(us)=300110.25] [INSERT AverageLatency(us)=11.79] [READ AverageLatency(us)=12061.75] [CLEANUP AverageLatency(us)=300119] 
+2014-08-04 01:04:10:610 3750 sec: 49910742 operations; 10332.2 current ops/sec; [UPDATE AverageLatency(us)=405845.67] [INSERT AverageLatency(us)=11] [READ AverageLatency(us)=11548.44] [CLEANUP AverageLatency(us)=405854.33] 
+2014-08-04 01:04:20:611 3760 sec: 49973007 operations; 6225.88 current ops/sec; [UPDATE AverageLatency(us)=267346] [INSERT AverageLatency(us)=11.08] [READ AverageLatency(us)=9023.32] [CLEANUP AverageLatency(us)=267354.57] 
+2014-08-04 01:04:30:611 3770 sec: 49996250 operations; 2324.3 current ops/sec; [UPDATE AverageLatency(us)=328816.5] [INSERT AverageLatency(us)=8.92] [READ AverageLatency(us)=6966.13] [CLEANUP AverageLatency(us)=328825.5] 
+2014-08-04 01:04:33:887 3774 sec: 50000000 operations; 1144.69 current ops/sec; [UPDATE AverageLatency(us)=739735] [INSERT AverageLatency(us)=8.37] [READ AverageLatency(us)=6267.89] [CLEANUP AverageLatency(us)=739745] 
++ echo 'end time:'
+end time:
+++ date +%s
++ echo 1407139474
+1407139474
++ echo 'sleeping for 10 sec ...'
+sleeping for 10 sec ...
++ sleep 10
++ let counter=1+1
++ read line
++ set +x

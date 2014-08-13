@@ -1,29 +1,18 @@
 #!/bin/bash
 
 set -x
-
-filename="case"`ls caseresult/ -ltr | wc -l`
+filename=$1
 requestdistribution=''
-mkdir caseresult/$filename
-ssh hadoop@master mkdir /home/hadoop/git/physical_design/caseresult/$filename
 RESULT_DIR=/home/hadoop/git/physical_design/caseresult/$filename
 TEN=10
 SIXTY=60
-#TEN=0
-SLEEP_TIME=200
-#SLEEP_TIME=0
+SLEEP_TIME=60
 YCSB_DIR=/home/hadoop/ycsb-0.1.4
-#number_of_operations=10000000
-number_of_operations=10000000
-#number_of_operations=100000000
-#number_of_operations=100
+number_of_operations=25000000
 number_of_threads=20
-#number_of_records=10000000
-number_of_records=10000000
-#number_of_records=100000000
-#number_of_records=100
+number_of_records=25000000
 output_file_suffix='.dat'
-experiment_list_file=/home/hadoop/git/physical_design/$filename".list"
+experiment_list_file=/home/hadoop/git/physical_design/case_dir/$filename".list"
 clean=false
 create=false
 load=false
@@ -31,6 +20,7 @@ random_read=false
 workloada=false
 workloadb=false
 workloadc=false
+workloadc1=false
 scan=false
 all=false
 
@@ -63,6 +53,9 @@ do
 	elif [ "$i" == "workloadc" ]
 	then
 		workloadc=true
+	elif [ "$i" == "workloadc1" ]
+	then
+		workloadc1=true
 	elif [ "$i" == "zipfian" ]
 	then
 		requestdistribution="zipfian"
@@ -91,6 +84,7 @@ do
 		echo "sleeping for $SIXTY ..."
 		sleep $SIXTY
 		echo "droping usertable..."
+		ssh hadoop@slave1 /home/hadoop/hbase/bin/hbase-daemon.sh start regionserver
 		ssh hadoop@master /home/hadoop/hbase/bin/hbase shell ~/git/physical_design/delete_table
 		echo "sleeping for $SLEEP_TIME ..."
 		sleep $SLEEP_TIME
@@ -182,6 +176,20 @@ do
 		echo "sleeping for 10 sec ..."
 		sleep $TEN
 	fi
+
+
+	if $all || $workloadc1
+	then
+		echo "workloadc1..."
+		echo "start time: "
+		echo `date +%s`
+		./workloadc1 $number_of_operations $number_of_threads `echo $RESULT_DIR/workloadc1_$counter.dat`
+		echo "end time:"
+		echo `date +%s`
+		echo "sleeping for 10 sec ..."
+		sleep $TEN
+	fi
+
 
 	let counter=$counter+1
 done < $experiment_list_file

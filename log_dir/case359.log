@@ -1,0 +1,475 @@
++ filename=case359
++ requestdistribution=
++ RESULT_DIR=/home/hadoop/git/physical_design/caseresult/case359
++ TEN=10
++ SIXTY=60
++ SLEEP_TIME=60
++ YCSB_DIR=/home/hadoop/ycsb-0.1.4
++ number_of_operations=25000000
++ number_of_threads=20
++ number_of_records=25000000
++ output_file_suffix=.dat
++ experiment_list_file=/home/hadoop/git/physical_design/case359.list
++ clean=false
++ create=false
++ load=false
++ random_read=false
++ workloada=false
++ workloadb=false
++ workloadc=false
++ workloadc1=false
++ scan=false
++ all=false
++ for i in '$@'
++ '[' case359 == all ']'
++ '[' case359 == clean ']'
++ '[' case359 == create ']'
++ '[' case359 == load ']'
++ '[' case359 == random_read ']'
++ '[' case359 == scan ']'
++ '[' case359 == workloada ']'
++ '[' case359 == workloadb ']'
++ '[' case359 == workloadc ']'
++ '[' case359 == workloadc1 ']'
++ '[' case359 == zipfian ']'
++ '[' case359 == uniform ']'
++ for i in '$@'
++ '[' clean == all ']'
++ '[' clean == clean ']'
++ clean=true
++ for i in '$@'
++ '[' create == all ']'
++ '[' create == clean ']'
++ '[' create == create ']'
++ create=true
++ for i in '$@'
++ '[' workloadc1 == all ']'
++ '[' workloadc1 == clean ']'
++ '[' workloadc1 == create ']'
++ '[' workloadc1 == load ']'
++ '[' workloadc1 == random_read ']'
++ '[' workloadc1 == scan ']'
++ '[' workloadc1 == workloada ']'
++ '[' workloadc1 == workloadb ']'
++ '[' workloadc1 == workloadc ']'
++ '[' workloadc1 == workloadc1 ']'
++ workloadc1=true
++ for i in '$@'
++ '[' zipfian == all ']'
++ '[' zipfian == clean ']'
++ '[' zipfian == create ']'
++ '[' zipfian == load ']'
++ '[' zipfian == random_read ']'
++ '[' zipfian == scan ']'
++ '[' zipfian == workloada ']'
++ '[' zipfian == workloadb ']'
++ '[' zipfian == workloadc ']'
++ '[' zipfian == workloadc1 ']'
++ '[' zipfian == zipfian ']'
++ requestdistribution=zipfian
++ let counter=1
++ cd /home/hadoop/ycsb-0.1.4
+++ pwd
++ echo /home/hadoop/ycsb-0.1.4
+/home/hadoop/ycsb-0.1.4
++ read line
++ false
++ true
++ echo 'sleeping for 60 ...'
+sleeping for 60 ...
++ sleep 60
++ echo 'droping usertable...'
+droping usertable...
++ ssh hadoop@slave1 /home/hadoop/hbase/bin/hbase-daemon.sh start regionserver
+starting regionserver, logging to /home/hadoop/hbase/bin/../logs/hbase-hadoop-regionserver-sceplus-vm49.out
++ ssh hadoop@master /home/hadoop/hbase/bin/hbase shell /home/hadoop/git/physical_design/delete_table
+2014-08-11 20:30:45,851 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+0 row(s) in 3.0950 seconds
+
+0 row(s) in 2.3280 seconds
+
+0 row(s) in 0.0860 seconds
+
++ echo 'sleeping for 60 ...'
+sleeping for 60 ...
++ sleep 60
++ false
++ true
++ echo 'creating usertable...'
+creating usertable...
++ create_statement='create '\''usertable'\'', { NAME=>'\''family'\'', COMPRESSION=>'\''GZ'\''}, SPLITS => ['\''user1'\'', '\''user2'\'', '\''user3'\'', '\''user4'\'', '\''user5'\'', '\''user6'\'', '\''user7'\'', '\''user8'\'', '\''user9'\'']'
++ echo create ''\''usertable'\'',' '{' 'NAME=>'\''family'\'',' 'COMPRESSION=>'\''GZ'\''},' SPLITS '=>' '['\''user1'\'',' ''\''user2'\'',' ''\''user3'\'',' ''\''user4'\'',' ''\''user5'\'',' ''\''user6'\'',' ''\''user7'\'',' ''\''user8'\'',' ''\''user9'\'']'
++ echo 'exit '
++ scp /home/hadoop/git/physical_design/caseresult/case359/create_1.script hadoop@master:/home/hadoop/git/physical_design/caseresult/case359/create_1.script
++ create_table /home/hadoop/git/physical_design/caseresult/case359/create_1.script
++ echo 'creating table...'
+creating table...
++ echo /home/hadoop/git/physical_design/caseresult/case359/create_1.script
+/home/hadoop/git/physical_design/caseresult/case359/create_1.script
++ ssh hadoop@master /home/hadoop/hbase/bin/hbase shell /home/hadoop/git/physical_design/caseresult/case359/create_1.script
+2014-08-11 20:31:58,497 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+0 row(s) in 2.4640 seconds
+
++ echo 'sleeping for 10 sec ...'
+sleeping for 10 sec ...
++ sleep 10
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ true
++ echo workloadc1...
+workloadc1...
++ echo 'start time: '
+start time: 
+++ date +%s
++ echo 1407785865
+1407785865
+++ echo /home/hadoop/git/physical_design/caseresult/case359/workloadc1_1.dat
++ ./workloadc1 25000000 20 /home/hadoop/git/physical_design/caseresult/case359/workloadc1_1.dat
+Loading workload...
+Starting test.
+2014-08-11 12:37:46:080 0 sec: 0 operations; 
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:zookeeper.version=3.4.6-1569965, built on 02/20/2014 09:09 GMT
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:host.name=sceplus-vm43.almaden.ibm.com
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:java.version=1.6.0_31
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:java.vendor=Sun Microsystems Inc.
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:java.home=/usr/lib/jvm/java-6-openjdk-amd64/jre
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:java.class.path=/home/hadoop/ycsb-0.1.4/hbase-binding/lib/hbase-binding-0.1.4.jar:/home/hadoop/ycsb-0.1.4/hbase-binding/conf:/home/hadoop/ycsb-0.1.4/core/lib/core-0.1.4.jar:/home/hadoop/ycsb-0.1.4/jdbc-binding/conf
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:java.library.path=/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk-amd64/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib/jni:/lib:/usr/lib
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:java.io.tmpdir=/tmp
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:java.compiler=<NA>
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:os.name=Linux
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:os.arch=amd64
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:os.version=3.13.0-24-generic
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:user.name=hadoop
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:user.home=/home/hadoop
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Client environment:user.dir=/home/hadoop/ycsb-0.1.4
+14/08/11 12:37:46 INFO zookeeper.ZooKeeper: Initiating client connection, connectString=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181 sessionTimeout=90000 watcher=hconnection-0x29ee65b1, quorum=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181, baseZNode=/hbase
+14/08/11 12:37:46 INFO zookeeper.RecoverableZooKeeper: Process identifier=hconnection-0x29ee65b1 connecting to ZooKeeper ensemble=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181
+14/08/11 12:37:46 INFO zookeeper.ClientCnxn: Opening socket connection to server slave1/9.1.143.59:2181. Will not attempt to authenticate using SASL (unknown error)
+14/08/11 12:37:46 INFO zookeeper.ClientCnxn: Socket connection established to slave1/9.1.143.59:2181, initiating session
+14/08/11 12:37:46 INFO zookeeper.ClientCnxn: Session establishment complete on server slave1/9.1.143.59:2181, sessionid = 0x147c84380260009, negotiated timeout = 90000
+14/08/11 12:37:46 WARN util.DynamicClassLoader: Failed to identify the fs of dir hdfs://master:54310/hbase/lib, ignored
+org.apache.hadoop.ipc.RemoteException: Server IPC version 9 cannot communicate with client version 4
+	at org.apache.hadoop.ipc.Client.call(Client.java:1113)
+	at org.apache.hadoop.ipc.RPC$Invoker.invoke(RPC.java:229)
+	at com.sun.proxy.$Proxy5.getProtocolVersion(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:622)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler.invokeMethod(RetryInvocationHandler.java:85)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler.invoke(RetryInvocationHandler.java:62)
+	at com.sun.proxy.$Proxy5.getProtocolVersion(Unknown Source)
+	at org.apache.hadoop.ipc.RPC.checkVersion(RPC.java:422)
+	at org.apache.hadoop.hdfs.DFSClient.createNamenode(DFSClient.java:183)
+	at org.apache.hadoop.hdfs.DFSClient.<init>(DFSClient.java:281)
+	at org.apache.hadoop.hdfs.DFSClient.<init>(DFSClient.java:245)
+	at org.apache.hadoop.hdfs.DistributedFileSystem.initialize(DistributedFileSystem.java:100)
+	at org.apache.hadoop.fs.FileSystem.createFileSystem(FileSystem.java:1446)
+	at org.apache.hadoop.fs.FileSystem.access$200(FileSystem.java:67)
+	at org.apache.hadoop.fs.FileSystem$Cache.get(FileSystem.java:1464)
+	at org.apache.hadoop.fs.FileSystem.get(FileSystem.java:263)
+	at org.apache.hadoop.fs.Path.getFileSystem(Path.java:187)
+	at org.apache.hadoop.hbase.util.DynamicClassLoader.<init>(DynamicClassLoader.java:104)
+	at org.apache.hadoop.hbase.protobuf.ProtobufUtil.<clinit>(ProtobufUtil.java:202)
+	at org.apache.hadoop.hbase.ClusterId.parseFrom(ClusterId.java:64)
+	at org.apache.hadoop.hbase.zookeeper.ZKClusterId.readClusterIdZNode(ZKClusterId.java:69)
+	at org.apache.hadoop.hbase.client.ZooKeeperRegistry.getClusterId(ZooKeeperRegistry.java:83)
+	at org.apache.hadoop.hbase.client.HConnectionManager$HConnectionImplementation.retrieveClusterId(HConnectionManager.java:858)
+	at org.apache.hadoop.hbase.client.HConnectionManager$HConnectionImplementation.<init>(HConnectionManager.java:663)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:534)
+	at org.apache.hadoop.hbase.client.HConnectionManager.createConnection(HConnectionManager.java:415)
+	at org.apache.hadoop.hbase.client.HConnectionManager.createConnection(HConnectionManager.java:394)
+	at org.apache.hadoop.hbase.client.HConnectionManager.getConnection(HConnectionManager.java:275)
+	at org.apache.hadoop.hbase.client.HTable.<init>(HTable.java:197)
+	at org.apache.hadoop.hbase.client.HTable.<init>(HTable.java:159)
+	at com.yahoo.ycsb.db.HBaseClient.getHTable(HBaseClient.java:118)
+	at com.yahoo.ycsb.db.HBaseClient.update(HBaseClient.java:302)
+	at com.yahoo.ycsb.db.HBaseClient.insert(HBaseClient.java:357)
+	at com.yahoo.ycsb.DBWrapper.insert(DBWrapper.java:148)
+	at com.yahoo.ycsb.workloads.CoreWorkload.doTransactionInsert(CoreWorkload.java:639)
+	at com.yahoo.ycsb.workloads.CoreWorkload.doTransaction(CoreWorkload.java:487)
+	at com.yahoo.ycsb.ClientThread.run(Client.java:241)
+2014-08-11 12:37:56:081 10 sec: 198084 operations; 19806.42 current ops/sec; [INSERT AverageLatency(us)=667] [READ AverageLatency(us)=25141.12] 
+2014-08-11 12:38:06:082 20 sec: 455192 operations; 25708.23 current ops/sec; [INSERT AverageLatency(us)=18.81] [READ AverageLatency(us)=76372.69] 
+2014-08-11 12:38:16:083 30 sec: 690143 operations; 23492.75 current ops/sec; [INSERT AverageLatency(us)=15.14] [READ AverageLatency(us)=79159.66] 
+2014-08-11 12:38:26:084 40 sec: 931838 operations; 24167.08 current ops/sec; [INSERT AverageLatency(us)=20.15] [READ AverageLatency(us)=80791.76] 
+2014-08-11 12:38:36:084 50 sec: 1153064 operations; 22122.6 current ops/sec; [INSERT AverageLatency(us)=16.12] [READ AverageLatency(us)=86857.64] 
+2014-08-11 12:38:46:085 60 sec: 1339455 operations; 18637.24 current ops/sec; [INSERT AverageLatency(us)=21.55] [READ AverageLatency(us)=105990.48] 
+2014-08-11 12:38:56:085 70 sec: 1535049 operations; 19559.4 current ops/sec; [INSERT AverageLatency(us)=16.34] [READ AverageLatency(us)=100671.03] 
+2014-08-11 12:39:06:086 80 sec: 1712909 operations; 17784.22 current ops/sec; [INSERT AverageLatency(us)=15.48] [READ AverageLatency(us)=112576.77] 
+2014-08-11 12:39:16:086 90 sec: 1714258 operations; 134.9 current ops/sec; [INSERT AverageLatency(us)=14.03] [READ AverageLatency(us)=555352.79] 
+2014-08-11 12:39:26:087 100 sec: 1714258 operations; 0 current ops/sec;   
+2014-08-11 12:39:36:088 110 sec: 1714258 operations; 0 current ops/sec;   
+2014-08-11 12:39:46:088 120 sec: 1714258 operations; 0 current ops/sec;   
+2014-08-11 12:39:56:088 130 sec: 1714258 operations; 0 current ops/sec;   
+2014-08-11 12:40:06:089 140 sec: 1714258 operations; 0 current ops/sec;   
+2014-08-11 12:40:16:089 150 sec: 1714258 operations; 0 current ops/sec;   
+2014-08-11 12:40:26:090 160 sec: 1714258 operations; 0 current ops/sec;   
+2014-08-11 12:40:36:090 170 sec: 1714258 operations; 0 current ops/sec;   
+2014-08-11 12:40:46:091 180 sec: 1714258 operations; 0 current ops/sec;   
+2014-08-11 12:40:56:091 190 sec: 1714258 operations; 0 current ops/sec;   
+2014-08-11 12:41:06:091 200 sec: 1714258 operations; 0 current ops/sec;   
+2014-08-11 12:41:16:092 210 sec: 1714258 operations; 0 current ops/sec;   
+2014-08-11 12:41:26:092 220 sec: 1714258 operations; 0 current ops/sec;   
+14/08/11 12:41:35 INFO client.AsyncProcess: #6, table=usertable, attempt=10/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 10082 ms, replay 4696 ops.
+14/08/11 12:41:35 INFO client.AsyncProcess: #15, table=usertable, attempt=10/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 10077 ms, replay 4696 ops.
+14/08/11 12:41:35 INFO client.AsyncProcess: #13, table=usertable, attempt=10/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014, retrying after 10074 ms, replay 4696 ops.
+14/08/11 12:41:35 INFO client.AsyncProcess: #16, table=usertable, attempt=10/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 10018 ms, replay 4696 ops.
+14/08/11 12:41:35 INFO client.AsyncProcess: #19, table=usertable, attempt=10/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:02 PDT 2014, retrying after 10027 ms, replay 4696 ops.
+14/08/11 12:41:35 INFO client.AsyncProcess: #3, table=usertable, attempt=10/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:03 PDT 2014, retrying after 10046 ms, replay 4696 ops.
+14/08/11 12:41:35 INFO client.AsyncProcess: #1, table=usertable, attempt=10/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:02 PDT 2014, retrying after 10079 ms, replay 4696 ops.
+14/08/11 12:41:35 INFO client.AsyncProcess: #18, table=usertable, attempt=10/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 10029 ms, replay 4696 ops.
+14/08/11 12:41:35 INFO client.AsyncProcess: #11, table=usertable, attempt=10/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 10030 ms, replay 4696 ops.
+14/08/11 12:41:35 INFO client.AsyncProcess: #20, table=usertable, attempt=10/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014, retrying after 10018 ms, replay 4696 ops.
+14/08/11 12:41:35 INFO client.AsyncProcess: #10, table=usertable, attempt=10/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014, retrying after 10000 ms, replay 4696 ops.
+14/08/11 12:41:35 INFO client.AsyncProcess: #12, table=usertable, attempt=10/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:06 PDT 2014, retrying after 10084 ms, replay 4696 ops.
+14/08/11 12:41:35 INFO client.AsyncProcess: #8, table=usertable, attempt=10/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:03 PDT 2014, retrying after 10015 ms, replay 4696 ops.
+14/08/11 12:41:35 INFO client.AsyncProcess: #7, table=usertable, attempt=10/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014, retrying after 10076 ms, replay 4696 ops.
+2014-08-11 12:41:36:093 230 sec: 1714258 operations; 0 current ops/sec;   
+14/08/11 12:41:45 INFO client.AsyncProcess: #15, table=usertable, attempt=11/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 10096 ms, replay 4696 ops.
+14/08/11 12:41:45 INFO client.AsyncProcess: #6, table=usertable, attempt=11/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 10069 ms, replay 4696 ops.
+14/08/11 12:41:45 INFO client.AsyncProcess: #16, table=usertable, attempt=11/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 10002 ms, replay 4696 ops.
+14/08/11 12:41:45 INFO client.AsyncProcess: #13, table=usertable, attempt=11/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014, retrying after 10081 ms, replay 4696 ops.
+14/08/11 12:41:45 INFO client.AsyncProcess: #19, table=usertable, attempt=11/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:02 PDT 2014, retrying after 10029 ms, replay 4696 ops.
+14/08/11 12:41:45 INFO client.AsyncProcess: #18, table=usertable, attempt=11/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 10067 ms, replay 4696 ops.
+14/08/11 12:41:45 INFO client.AsyncProcess: #11, table=usertable, attempt=11/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 10048 ms, replay 4696 ops.
+14/08/11 12:41:45 INFO client.AsyncProcess: #3, table=usertable, attempt=11/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:03 PDT 2014, retrying after 10063 ms, replay 4696 ops.
+14/08/11 12:41:45 INFO client.AsyncProcess: #1, table=usertable, attempt=11/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:02 PDT 2014, retrying after 10020 ms, replay 4696 ops.
+14/08/11 12:41:45 INFO client.AsyncProcess: #10, table=usertable, attempt=11/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014, retrying after 10050 ms, replay 4696 ops.
+14/08/11 12:41:45 INFO client.AsyncProcess: #20, table=usertable, attempt=11/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014, retrying after 10085 ms, replay 4696 ops.
+14/08/11 12:41:45 INFO client.AsyncProcess: #8, table=usertable, attempt=11/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:03 PDT 2014, retrying after 10066 ms, replay 4696 ops.
+14/08/11 12:41:45 INFO client.AsyncProcess: #12, table=usertable, attempt=11/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:06 PDT 2014, retrying after 10086 ms, replay 4696 ops.
+14/08/11 12:41:45 INFO client.AsyncProcess: #7, table=usertable, attempt=11/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014, retrying after 10080 ms, replay 4696 ops.
+2014-08-11 12:41:46:093 240 sec: 1714258 operations; 0 current ops/sec;   
+14/08/11 12:41:55 INFO client.AsyncProcess: #16, table=usertable, attempt=12/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 20064 ms, replay 4696 ops.
+14/08/11 12:41:55 INFO client.AsyncProcess: #19, table=usertable, attempt=12/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:02 PDT 2014, retrying after 20056 ms, replay 4696 ops.
+14/08/11 12:41:55 INFO client.AsyncProcess: #6, table=usertable, attempt=12/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 20027 ms, replay 4696 ops.
+14/08/11 12:41:55 INFO client.AsyncProcess: #15, table=usertable, attempt=12/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 20166 ms, replay 4696 ops.
+14/08/11 12:41:55 INFO client.AsyncProcess: #13, table=usertable, attempt=12/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014, retrying after 20035 ms, replay 4696 ops.
+14/08/11 12:41:55 INFO client.AsyncProcess: #11, table=usertable, attempt=12/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 20143 ms, replay 4696 ops.
+14/08/11 12:41:55 INFO client.AsyncProcess: #18, table=usertable, attempt=12/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014, retrying after 20159 ms, replay 4696 ops.
+14/08/11 12:41:55 INFO client.AsyncProcess: #3, table=usertable, attempt=12/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:03 PDT 2014, retrying after 20047 ms, replay 4696 ops.
+14/08/11 12:41:55 INFO client.AsyncProcess: #10, table=usertable, attempt=12/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014, retrying after 20017 ms, replay 4696 ops.
+14/08/11 12:41:55 INFO client.AsyncProcess: #1, table=usertable, attempt=12/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:02 PDT 2014, retrying after 20068 ms, replay 4696 ops.
+14/08/11 12:41:55 INFO client.AsyncProcess: #20, table=usertable, attempt=12/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014, retrying after 20076 ms, replay 4696 ops.
+14/08/11 12:41:55 INFO client.AsyncProcess: #8, table=usertable, attempt=12/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:03 PDT 2014, retrying after 20155 ms, replay 4696 ops.
+14/08/11 12:41:55 INFO client.AsyncProcess: #12, table=usertable, attempt=12/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:06 PDT 2014, retrying after 20188 ms, replay 4696 ops.
+14/08/11 12:41:55 INFO client.AsyncProcess: #7, table=usertable, attempt=12/35 failed 4696 ops, last exception: java.net.SocketTimeoutException: Call to slave1/9.1.143.59:16020 failed because java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/9.1.143.53:48076 remote=slave1/9.1.143.59:16020] on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014, retrying after 20051 ms, replay 4696 ops.
+2014-08-11 12:41:56:094 250 sec: 1714258 operations; 0 current ops/sec;   
+2014-08-11 12:42:06:094 260 sec: 1714258 operations; 0 current ops/sec;   
+2014-08-11 12:42:16:094 270 sec: 1722556 operations; 829.8 current ops/sec; [INSERT AverageLatency(us)=12.67] [READ AverageLatency(us)=26409267.01] 
+14/08/11 12:42:17 INFO client.AsyncProcess: #15, table=usertable, attempt=13/35 SUCCEEDED on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014
+14/08/11 12:42:17 INFO client.AsyncProcess: #10, table=usertable, attempt=13/35 SUCCEEDED on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014
+14/08/11 12:42:17 INFO client.AsyncProcess: #1, table=usertable, attempt=13/35 SUCCEEDED on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:02 PDT 2014
+14/08/11 12:42:17 INFO client.AsyncProcess: #3, table=usertable, attempt=13/35 SUCCEEDED on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:03 PDT 2014
+14/08/11 12:42:17 INFO client.AsyncProcess: #13, table=usertable, attempt=13/35 SUCCEEDED on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014
+14/08/11 12:42:22 INFO client.AsyncProcess: #19, table=usertable, attempt=13/35 SUCCEEDED on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:02 PDT 2014
+14/08/11 12:42:23 INFO client.AsyncProcess: #6, table=usertable, attempt=13/35 SUCCEEDED on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014
+14/08/11 12:42:23 INFO client.AsyncProcess: #16, table=usertable, attempt=13/35 SUCCEEDED on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014
+14/08/11 12:42:23 INFO client.AsyncProcess: #12, table=usertable, attempt=13/35 SUCCEEDED on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:06 PDT 2014
+14/08/11 12:42:23 INFO client.AsyncProcess: #7, table=usertable, attempt=13/35 SUCCEEDED on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014
+14/08/11 12:42:23 INFO client.AsyncProcess: #8, table=usertable, attempt=13/35 SUCCEEDED on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:03 PDT 2014
+14/08/11 12:42:23 INFO client.AsyncProcess: #18, table=usertable, attempt=13/35 SUCCEEDED on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014
+14/08/11 12:42:23 INFO client.AsyncProcess: #20, table=usertable, attempt=13/35 SUCCEEDED on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:05 PDT 2014
+14/08/11 12:42:23 INFO client.AsyncProcess: #11, table=usertable, attempt=13/35 SUCCEEDED on slave1,16020,1407814239389, tracking started Mon Aug 11 12:39:04 PDT 2014
+2014-08-11 12:42:26:095 280 sec: 1792149 operations; 6958.6 current ops/sec; [INSERT AverageLatency(us)=14.54] [READ AverageLatency(us)=1774885.36] 
+2014-08-11 12:42:36:096 290 sec: 1898399 operations; 10623.94 current ops/sec; [INSERT AverageLatency(us)=15.98] [READ AverageLatency(us)=166182.59] 
+2014-08-11 12:42:46:096 300 sec: 2041261 operations; 14286.2 current ops/sec; [INSERT AverageLatency(us)=17.22] [READ AverageLatency(us)=148466.33] 
+2014-08-11 12:42:56:097 310 sec: 2154406 operations; 11313.37 current ops/sec; [INSERT AverageLatency(us)=11.45] [READ AverageLatency(us)=140894.78] 
+2014-08-11 12:43:06:098 320 sec: 2251874 operations; 9745.83 current ops/sec; [INSERT AverageLatency(us)=14.11] [READ AverageLatency(us)=245892.28] 
+2014-08-11 12:43:16:098 330 sec: 2309642 operations; 5776.8 current ops/sec; [INSERT AverageLatency(us)=14.65] [READ AverageLatency(us)=228182.15] 
+2014-08-11 12:43:26:099 340 sec: 2409204 operations; 9955.2 current ops/sec; [INSERT AverageLatency(us)=15.92] [READ AverageLatency(us)=285779.98] 
+2014-08-11 12:43:36:100 350 sec: 2618057 operations; 20885.3 current ops/sec; [INSERT AverageLatency(us)=14.74] [READ AverageLatency(us)=101359.24] 
+2014-08-11 12:43:46:914 360 sec: 2798643 operations; 16697.73 current ops/sec; [INSERT AverageLatency(us)=13.25] [READ AverageLatency(us)=60355.71] 
+2014-08-11 12:43:56:914 370 sec: 2946066 operations; 14742.3 current ops/sec; [INSERT AverageLatency(us)=1134.72] [READ AverageLatency(us)=85459.99] 
+2014-08-11 12:44:07:106 381 sec: 3253496 operations; 30163.85 current ops/sec; [INSERT AverageLatency(us)=16.39] [READ AverageLatency(us)=67833.48] 
+2014-08-11 12:44:17:106 391 sec: 3282387 operations; 2889.1 current ops/sec; [INSERT AverageLatency(us)=9.57] [READ AverageLatency(us)=5919.46] 
+2014-08-11 12:44:27:107 401 sec: 3480148 operations; 19774.12 current ops/sec; [INSERT AverageLatency(us)=1309.75] [READ AverageLatency(us)=70275.72] 
+2014-08-11 12:44:37:579 411 sec: 3735500 operations; 24384.26 current ops/sec; [INSERT AverageLatency(us)=15.45] [READ AverageLatency(us)=73116.74] 
+2014-08-11 12:44:47:579 421 sec: 3756845 operations; 2134.5 current ops/sec; [INSERT AverageLatency(us)=65.15] [READ AverageLatency(us)=30155.27] 
+2014-08-11 12:44:57:580 431 sec: 3889182 operations; 13232.38 current ops/sec; [INSERT AverageLatency(us)=2555.05] [READ AverageLatency(us)=42166.79] 
+2014-08-11 12:45:07:580 441 sec: 4106524 operations; 21734.2 current ops/sec; [INSERT AverageLatency(us)=15.53] [READ AverageLatency(us)=94117.5] 
+2014-08-11 12:45:17:581 451 sec: 4349530 operations; 24298.17 current ops/sec; [INSERT AverageLatency(us)=14.34] [READ AverageLatency(us)=79123.14] 
+2014-08-11 12:45:27:582 461 sec: 4459178 operations; 10963.7 current ops/sec; [INSERT AverageLatency(us)=205.51] [READ AverageLatency(us)=45072.05] 
+2014-08-11 12:45:37:582 471 sec: 4657589 operations; 19841.1 current ops/sec; [INSERT AverageLatency(us)=707.45] [READ AverageLatency(us)=90444.34] 
+2014-08-11 12:45:47:583 481 sec: 4868867 operations; 21125.69 current ops/sec; [INSERT AverageLatency(us)=15.06] [READ AverageLatency(us)=83122.42] 
+2014-08-11 12:45:57:583 491 sec: 4975923 operations; 10705.6 current ops/sec; [INSERT AverageLatency(us)=1003.54] [READ AverageLatency(us)=96777.98] 
+2014-08-11 12:46:07:584 501 sec: 5099313 operations; 12337.77 current ops/sec; [INSERT AverageLatency(us)=13.61] [READ AverageLatency(us)=40066.02] 
+2014-08-11 12:46:17:585 511 sec: 5144398 operations; 4508.05 current ops/sec; [INSERT AverageLatency(us)=7534.51] [READ AverageLatency(us)=25518.28] 
+2014-08-11 12:46:27:586 521 sec: 5417047 operations; 27262.17 current ops/sec; [INSERT AverageLatency(us)=14.36] [READ AverageLatency(us)=68994.39] 
+2014-08-11 12:46:37:586 531 sec: 5448745 operations; 3169.8 current ops/sec; [INSERT AverageLatency(us)=6268.43] [READ AverageLatency(us)=36431.97] 
+2014-08-11 12:46:47:587 541 sec: 5637784 operations; 18902.01 current ops/sec; [INSERT AverageLatency(us)=38.27] [READ AverageLatency(us)=98717.83] 
+2014-08-11 12:46:57:587 551 sec: 5768624 operations; 13084 current ops/sec; [INSERT AverageLatency(us)=313.9] [READ AverageLatency(us)=46575.04] 
+2014-08-11 12:47:07:588 561 sec: 5966307 operations; 19766.32 current ops/sec; [INSERT AverageLatency(us)=744.8] [READ AverageLatency(us)=86020.22] 
+2014-08-11 12:47:17:589 571 sec: 6024177 operations; 5787 current ops/sec; [INSERT AverageLatency(us)=30.15] [READ AverageLatency(us)=47227.82] 
+2014-08-11 12:47:27:589 581 sec: 6228292 operations; 20409.46 current ops/sec; [INSERT AverageLatency(us)=1186.51] [READ AverageLatency(us)=62677.43] 
+2014-08-11 12:47:37:590 591 sec: 6352697 operations; 12439.26 current ops/sec; [INSERT AverageLatency(us)=414.03] [READ AverageLatency(us)=43086.35] 
+2014-08-11 12:47:47:591 601 sec: 6582121 operations; 22942.4 current ops/sec; [INSERT AverageLatency(us)=497.2] [READ AverageLatency(us)=73232.38] 
+2014-08-11 12:47:57:591 611 sec: 6635999 operations; 5387.26 current ops/sec; [INSERT AverageLatency(us)=13.29] [READ AverageLatency(us)=60077.8] 
+2014-08-11 12:48:07:592 621 sec: 6801832 operations; 16581.64 current ops/sec; [INSERT AverageLatency(us)=1535.25] [READ AverageLatency(us)=79154.78] 
+2014-08-11 12:48:17:593 631 sec: 7024436 operations; 22260.4 current ops/sec; [INSERT AverageLatency(us)=200.11] [READ AverageLatency(us)=68245.34] 
+2014-08-11 12:48:27:593 641 sec: 7226984 operations; 20252.77 current ops/sec; [INSERT AverageLatency(us)=17.04] [READ AverageLatency(us)=93913.38] 
+2014-08-11 12:48:37:594 651 sec: 7485062 operations; 25805.22 current ops/sec; [INSERT AverageLatency(us)=15.01] [READ AverageLatency(us)=62418.26] 
+2014-08-11 12:48:47:594 661 sec: 7485062 operations; 0 current ops/sec;   
+2014-08-11 12:48:57:595 671 sec: 7663498 operations; 17841.82 current ops/sec; [INSERT AverageLatency(us)=1678.31] [READ AverageLatency(us)=71277.56] 
+2014-08-11 12:49:07:595 681 sec: 7884695 operations; 22119.7 current ops/sec; [INSERT AverageLatency(us)=37.64] [READ AverageLatency(us)=87022.33] 
+2014-08-11 12:49:17:596 691 sec: 8022798 operations; 13808.92 current ops/sec; [INSERT AverageLatency(us)=15.67] [READ AverageLatency(us)=95965.67] 
+2014-08-11 12:49:27:597 701 sec: 8022798 operations; 0 current ops/sec;   
+2014-08-11 12:49:37:597 711 sec: 8022798 operations; 0 current ops/sec;   
+2014-08-11 12:49:47:597 721 sec: 8022798 operations; 0 current ops/sec;   
+2014-08-11 12:49:57:598 731 sec: 8111219 operations; 8841.22 current ops/sec; [INSERT AverageLatency(us)=27.55] [READ AverageLatency(us)=880582.78] 
+2014-08-11 12:50:07:598 741 sec: 8119262 operations; 804.3 current ops/sec; [INSERT AverageLatency(us)=6746.9] [READ AverageLatency(us)=32785.15] 
+2014-08-11 12:50:17:599 751 sec: 8347878 operations; 22859.31 current ops/sec; [INSERT AverageLatency(us)=1111.31] [READ AverageLatency(us)=68682.12] 
+2014-08-11 12:50:27:600 761 sec: 8538029 operations; 19013.2 current ops/sec; [INSERT AverageLatency(us)=311.25] [READ AverageLatency(us)=75690.71] 
+2014-08-11 12:50:37:600 771 sec: 8742235 operations; 20420.6 current ops/sec; [INSERT AverageLatency(us)=13.88] [READ AverageLatency(us)=63828.65] 
+2014-08-11 12:50:47:601 781 sec: 8742235 operations; 0 current ops/sec;   
+2014-08-11 12:50:57:601 791 sec: 8859464 operations; 11722.9 current ops/sec; [INSERT AverageLatency(us)=3071.1] [READ AverageLatency(us)=90003.88] 
+2014-08-11 12:51:07:602 801 sec: 9109422 operations; 24993.3 current ops/sec; [INSERT AverageLatency(us)=88.12] [READ AverageLatency(us)=53708.79] 
+2014-08-11 12:51:17:603 811 sec: 9235496 operations; 12607.4 current ops/sec; [INSERT AverageLatency(us)=424.01] [READ AverageLatency(us)=65253] 
+2014-08-11 12:51:27:603 821 sec: 9289587 operations; 5408.56 current ops/sec; [INSERT AverageLatency(us)=3068.54] [READ AverageLatency(us)=38914.92] 
+2014-08-11 12:51:37:604 831 sec: 9417998 operations; 12839.82 current ops/sec; [INSERT AverageLatency(us)=1731.76] [READ AverageLatency(us)=81847.68] 
+2014-08-11 12:51:47:604 841 sec: 9663511 operations; 24551.3 current ops/sec; [INSERT AverageLatency(us)=39.61] [READ AverageLatency(us)=78387.85] 
+2014-08-11 12:51:57:605 851 sec: 9666987 operations; 347.57 current ops/sec; [INSERT AverageLatency(us)=10.52] [READ AverageLatency(us)=4866.61] 
+2014-08-11 12:52:07:612 861 sec: 9686356 operations; 1935.55 current ops/sec; [INSERT AverageLatency(us)=20600.8] [READ AverageLatency(us)=50886.16] 
+2014-08-11 12:52:17:636 871 sec: 9941021 operations; 25405.53 current ops/sec; [INSERT AverageLatency(us)=14.86] [READ AverageLatency(us)=75851.23] 
+2014-08-11 12:52:27:636 881 sec: 10129553 operations; 18853.2 current ops/sec; [INSERT AverageLatency(us)=16.48] [READ AverageLatency(us)=95335.49] 
+2014-08-11 12:52:37:637 891 sec: 10340567 operations; 21099.29 current ops/sec; [INSERT AverageLatency(us)=14.2] [READ AverageLatency(us)=89579.22] 
+2014-08-11 12:52:47:637 901 sec: 10340567 operations; 0 current ops/sec;   
+2014-08-11 12:52:57:638 911 sec: 10490373 operations; 14979.1 current ops/sec; [INSERT AverageLatency(us)=1916.96] [READ AverageLatency(us)=89497.43] 
+2014-08-11 12:53:07:638 921 sec: 10683334 operations; 19296.1 current ops/sec; [INSERT AverageLatency(us)=13.19] [READ AverageLatency(us)=82397.78] 
+2014-08-11 12:53:17:639 931 sec: 10683334 operations; 0 current ops/sec;   
+2014-08-11 12:53:27:639 941 sec: 10683334 operations; 0 current ops/sec;   
+2014-08-11 12:53:37:640 951 sec: 10683334 operations; 0 current ops/sec;   
+2014-08-11 12:53:47:640 961 sec: 10683334 operations; 0 current ops/sec;   
+2014-08-11 12:53:57:641 971 sec: 10752869 operations; 6952.8 current ops/sec; [INSERT AverageLatency(us)=16.46] [READ AverageLatency(us)=1309093.62] 
+2014-08-11 12:54:07:641 981 sec: 10928843 operations; 17597.4 current ops/sec; [INSERT AverageLatency(us)=147.4] [READ AverageLatency(us)=112228.72] 
+2014-08-11 12:54:17:642 991 sec: 10928843 operations; 0 current ops/sec;   
+2014-08-11 12:54:27:642 1001 sec: 10931693 operations; 285 current ops/sec; [INSERT AverageLatency(us)=28450.22] [READ AverageLatency(us)=29538.07] 
+2014-08-11 12:54:37:643 1011 sec: 11063739 operations; 13203.28 current ops/sec; [INSERT AverageLatency(us)=3073.8] [READ AverageLatency(us)=102731.56] 
+2014-08-11 12:54:47:644 1021 sec: 11234516 operations; 17075.99 current ops/sec; [INSERT AverageLatency(us)=14.75] [READ AverageLatency(us)=118441.19] 
+2014-08-11 12:54:57:644 1031 sec: 11308370 operations; 7385.4 current ops/sec; [INSERT AverageLatency(us)=15.46] [READ AverageLatency(us)=20962.57] 
+2014-08-11 12:55:07:645 1041 sec: 11313749 operations; 537.85 current ops/sec; [INSERT AverageLatency(us)=10810.33] [READ AverageLatency(us)=9814.74] 
+2014-08-11 12:55:17:646 1051 sec: 11501750 operations; 18798.22 current ops/sec; [INSERT AverageLatency(us)=1862.39] [READ AverageLatency(us)=90038.95] 
+2014-08-11 12:55:27:646 1061 sec: 11733863 operations; 23211.3 current ops/sec; [INSERT AverageLatency(us)=11.53] [READ AverageLatency(us)=81568.25] 
+2014-08-11 12:55:37:647 1071 sec: 11887011 operations; 15313.27 current ops/sec; [INSERT AverageLatency(us)=15.38] [READ AverageLatency(us)=77336.52] 
+2014-08-11 12:55:47:648 1081 sec: 11927144 operations; 4012.9 current ops/sec; [INSERT AverageLatency(us)=6072.36] [READ AverageLatency(us)=121586.96] 
+2014-08-11 12:55:57:648 1091 sec: 12183265 operations; 25612.1 current ops/sec; [INSERT AverageLatency(us)=11.85] [READ AverageLatency(us)=76229.21] 
+2014-08-11 12:56:07:649 1101 sec: 12384962 operations; 20167.68 current ops/sec; [INSERT AverageLatency(us)=12.68] [READ AverageLatency(us)=72847.54] 
+2014-08-11 12:56:17:650 1111 sec: 12399194 operations; 1423.06 current ops/sec; [INSERT AverageLatency(us)=2706.7] [READ AverageLatency(us)=12868.2] 
+2014-08-11 12:56:27:650 1121 sec: 12600419 operations; 20122.5 current ops/sec; [INSERT AverageLatency(us)=1254.14] [READ AverageLatency(us)=84520.91] 
+2014-08-11 12:56:37:651 1131 sec: 12892520 operations; 29207.18 current ops/sec; [INSERT AverageLatency(us)=12.55] [READ AverageLatency(us)=66982.95] 
+2014-08-11 12:56:47:652 1141 sec: 12893365 operations; 84.49 current ops/sec; [INSERT AverageLatency(us)=37086.06] [READ AverageLatency(us)=28491.57] 
+2014-08-11 12:56:57:652 1151 sec: 13090560 operations; 19719.5 current ops/sec; [INSERT AverageLatency(us)=1098.82] [READ AverageLatency(us)=73674.97] 
+2014-08-11 12:57:07:653 1161 sec: 13357493 operations; 26690.63 current ops/sec; [INSERT AverageLatency(us)=12.05] [READ AverageLatency(us)=69719.31] 
+2014-08-11 12:57:17:653 1171 sec: 13476092 operations; 11859.9 current ops/sec; [INSERT AverageLatency(us)=808.56] [READ AverageLatency(us)=50535.47] 
+2014-08-11 12:57:27:654 1181 sec: 13495080 operations; 1898.61 current ops/sec; [INSERT AverageLatency(us)=1219.7] [READ AverageLatency(us)=13137.64] 
+2014-08-11 12:57:37:655 1191 sec: 13496712 operations; 163.18 current ops/sec; [INSERT AverageLatency(us)=139368.91] [READ AverageLatency(us)=157387.67] 
+2014-08-11 12:57:47:655 1201 sec: 13702604 operations; 20589.2 current ops/sec; [INSERT AverageLatency(us)=1034.01] [READ AverageLatency(us)=85998.81] 
+2014-08-11 12:57:57:656 1211 sec: 13912913 operations; 21028.8 current ops/sec; [INSERT AverageLatency(us)=225.09] [READ AverageLatency(us)=72859.01] 
+2014-08-11 12:58:07:656 1221 sec: 14055029 operations; 14211.6 current ops/sec; [INSERT AverageLatency(us)=11.46] [READ AverageLatency(us)=58526.62] 
+2014-08-11 12:58:17:657 1231 sec: 14151409 operations; 9637.04 current ops/sec; [INSERT AverageLatency(us)=2468.53] [READ AverageLatency(us)=76652.09] 
+2014-08-11 12:58:27:658 1241 sec: 14361270 operations; 20984 current ops/sec; [INSERT AverageLatency(us)=14.31] [READ AverageLatency(us)=86133.64] 
+2014-08-11 12:58:37:658 1251 sec: 14538815 operations; 17754.5 current ops/sec; [INSERT AverageLatency(us)=11.79] [READ AverageLatency(us)=64998.15] 
+2014-08-11 12:58:47:659 1261 sec: 14538815 operations; 0 current ops/sec;   
+2014-08-11 12:58:57:660 1271 sec: 14699174 operations; 16034.3 current ops/sec; [INSERT AverageLatency(us)=2217.27] [READ AverageLatency(us)=81502.79] 
+2014-08-11 12:59:07:660 1281 sec: 14961697 operations; 26252.3 current ops/sec; [INSERT AverageLatency(us)=13.03] [READ AverageLatency(us)=81400.99] 
+2014-08-11 12:59:17:661 1291 sec: 15032084 operations; 7038 current ops/sec; [INSERT AverageLatency(us)=12.78] [READ AverageLatency(us)=77585.58] 
+2014-08-11 12:59:27:662 1301 sec: 15075684 operations; 4360 current ops/sec; [INSERT AverageLatency(us)=6754.66] [READ AverageLatency(us)=100176.13] 
+2014-08-11 12:59:37:662 1311 sec: 15325100 operations; 24939.11 current ops/sec; [INSERT AverageLatency(us)=12.99] [READ AverageLatency(us)=76395.38] 
+2014-08-11 12:59:47:663 1321 sec: 15461499 operations; 13638.54 current ops/sec; [INSERT AverageLatency(us)=13.63] [READ AverageLatency(us)=62523.77] 
+2014-08-11 12:59:57:663 1331 sec: 15461499 operations; 0 current ops/sec;   
+2014-08-11 13:00:07:664 1341 sec: 15461499 operations; 0 current ops/sec;   
+2014-08-11 13:00:17:664 1351 sec: 15461499 operations; 0 current ops/sec;   
+2014-08-11 13:00:27:665 1361 sec: 15501666 operations; 4016.3 current ops/sec; [INSERT AverageLatency(us)=10.85] [READ AverageLatency(us)=1672879.53] 
+2014-08-11 13:00:37:665 1371 sec: 15686700 operations; 18503.4 current ops/sec; [INSERT AverageLatency(us)=1861.49] [READ AverageLatency(us)=52888.34] 
+2014-08-11 13:00:47:666 1381 sec: 15686700 operations; 0 current ops/sec;   
+2014-08-11 13:00:57:666 1391 sec: 15785146 operations; 9844.6 current ops/sec; [INSERT AverageLatency(us)=3438.26] [READ AverageLatency(us)=80360.68] 
+2014-08-11 13:01:07:667 1401 sec: 16029550 operations; 24437.96 current ops/sec; [INSERT AverageLatency(us)=13.52] [READ AverageLatency(us)=80674.55] 
+2014-08-11 13:01:17:668 1411 sec: 16116706 operations; 8714.73 current ops/sec; [INSERT AverageLatency(us)=426.83] [READ AverageLatency(us)=57745.22] 
+2014-08-11 13:01:27:668 1421 sec: 16338050 operations; 22134.4 current ops/sec; [INSERT AverageLatency(us)=745.51] [READ AverageLatency(us)=68157.33] 
+2014-08-11 13:01:37:669 1431 sec: 16512828 operations; 17476.05 current ops/sec; [INSERT AverageLatency(us)=146.55] [READ AverageLatency(us)=51695.33] 
+2014-08-11 13:01:47:669 1441 sec: 16677118 operations; 16429 current ops/sec; [INSERT AverageLatency(us)=1081.97] [READ AverageLatency(us)=57319.39] 
+2014-08-11 13:01:57:670 1451 sec: 16806124 operations; 12899.31 current ops/sec; [INSERT AverageLatency(us)=18.79] [READ AverageLatency(us)=61881.67] 
+2014-08-11 13:02:07:671 1461 sec: 16924268 operations; 11813.22 current ops/sec; [INSERT AverageLatency(us)=2075.27] [READ AverageLatency(us)=69393.97] 
+2014-08-11 13:02:17:671 1471 sec: 17211515 operations; 28724.7 current ops/sec; [INSERT AverageLatency(us)=13.67] [READ AverageLatency(us)=64875.26] 
+2014-08-11 13:02:27:672 1481 sec: 17229479 operations; 1796.22 current ops/sec; [INSERT AverageLatency(us)=2091.94] [READ AverageLatency(us)=15135.71] 
+2014-08-11 13:02:37:673 1491 sec: 17431374 operations; 20189.5 current ops/sec; [INSERT AverageLatency(us)=897.89] [READ AverageLatency(us)=92106.44] 
+2014-08-11 13:02:47:673 1501 sec: 17593620 operations; 16222.98 current ops/sec; [INSERT AverageLatency(us)=11.97] [READ AverageLatency(us)=55112.7] 
+2014-08-11 13:02:57:674 1511 sec: 17632445 operations; 3882.11 current ops/sec; [INSERT AverageLatency(us)=6295.84] [READ AverageLatency(us)=112735.38] 
+2014-08-11 13:03:07:674 1521 sec: 17915152 operations; 28270.7 current ops/sec; [INSERT AverageLatency(us)=13.26] [READ AverageLatency(us)=71295.61] 
+2014-08-11 13:03:17:675 1531 sec: 18007216 operations; 9205.48 current ops/sec; [INSERT AverageLatency(us)=1522.1] [READ AverageLatency(us)=65450.69] 
+2014-08-11 13:03:27:676 1541 sec: 18261762 operations; 25452.05 current ops/sec; [INSERT AverageLatency(us)=13.17] [READ AverageLatency(us)=84908.41] 
+2014-08-11 13:03:37:676 1551 sec: 18380950 operations; 11918.8 current ops/sec; [INSERT AverageLatency(us)=13.85] [READ AverageLatency(us)=51522.97] 
+2014-08-11 13:03:47:677 1561 sec: 18494832 operations; 11387.06 current ops/sec; [INSERT AverageLatency(us)=2005.42] [READ AverageLatency(us)=30358.31] 
+2014-08-11 13:03:57:677 1571 sec: 18494832 operations; 0 current ops/sec;   
+2014-08-11 13:04:07:678 1581 sec: 18704035 operations; 20918.21 current ops/sec; [INSERT AverageLatency(us)=1417.21] [READ AverageLatency(us)=87212.73] 
+2014-08-11 13:04:17:678 1591 sec: 18893272 operations; 18923.7 current ops/sec; [INSERT AverageLatency(us)=14.36] [READ AverageLatency(us)=65029.42] 
+2014-08-11 13:04:27:679 1601 sec: 19051965 operations; 15867.71 current ops/sec; [INSERT AverageLatency(us)=1068.03] [READ AverageLatency(us)=50515.6] 
+2014-08-11 13:04:37:680 1611 sec: 19215788 operations; 16380.66 current ops/sec; [INSERT AverageLatency(us)=573.15] [READ AverageLatency(us)=39419.47] 
+2014-08-11 13:04:47:680 1621 sec: 19372375 operations; 15658.7 current ops/sec; [INSERT AverageLatency(us)=814.17] [READ AverageLatency(us)=54781.05] 
+2014-08-11 13:04:57:681 1631 sec: 19514495 operations; 14210.58 current ops/sec; [INSERT AverageLatency(us)=810.15] [READ AverageLatency(us)=81848.03] 
+2014-08-11 13:05:07:682 1641 sec: 19675950 operations; 16143.89 current ops/sec; [INSERT AverageLatency(us)=12.62] [READ AverageLatency(us)=54298.24] 
+2014-08-11 13:05:17:682 1651 sec: 19818680 operations; 14273 current ops/sec; [INSERT AverageLatency(us)=1479.7] [READ AverageLatency(us)=79334.84] 
+2014-08-11 13:05:27:683 1661 sec: 20007951 operations; 18925.21 current ops/sec; [INSERT AverageLatency(us)=122.56] [READ AverageLatency(us)=64512.44] 
+2014-08-11 13:05:37:683 1671 sec: 20131269 operations; 12331.8 current ops/sec; [INSERT AverageLatency(us)=1160.68] [READ AverageLatency(us)=56041.47] 
+2014-08-11 13:05:47:684 1681 sec: 20325796 operations; 19450.75 current ops/sec; [INSERT AverageLatency(us)=316.02] [READ AverageLatency(us)=78228.77] 
+2014-08-11 13:05:57:685 1691 sec: 20448650 operations; 12284.17 current ops/sec; [INSERT AverageLatency(us)=1381.87] [READ AverageLatency(us)=54364.66] 
+2014-08-11 13:06:07:686 1701 sec: 20644019 operations; 19534.95 current ops/sec; [INSERT AverageLatency(us)=342.92] [READ AverageLatency(us)=67896.72] 
+2014-08-11 13:06:17:686 1711 sec: 20741355 operations; 9733.6 current ops/sec; [INSERT AverageLatency(us)=1527.76] [READ AverageLatency(us)=49926.9] 
+2014-08-11 13:06:27:687 1721 sec: 20972242 operations; 23086.39 current ops/sec; [INSERT AverageLatency(us)=356.75] [READ AverageLatency(us)=52045.16] 
+2014-08-11 13:06:37:687 1731 sec: 21120211 operations; 14796.9 current ops/sec; [INSERT AverageLatency(us)=890.18] [READ AverageLatency(us)=45921.98] 
+2014-08-11 13:06:47:688 1741 sec: 21280663 operations; 16043.6 current ops/sec; [INSERT AverageLatency(us)=485.7] [READ AverageLatency(us)=65775.29] 
+2014-08-11 13:06:57:688 1751 sec: 21532472 operations; 25180.9 current ops/sec; [INSERT AverageLatency(us)=13.45] [READ AverageLatency(us)=85782.34] 
+2014-08-11 13:07:07:689 1761 sec: 21725096 operations; 19260.47 current ops/sec; [INSERT AverageLatency(us)=107.54] [READ AverageLatency(us)=67270.89] 
+2014-08-11 13:07:17:689 1771 sec: 21881648 operations; 15655.2 current ops/sec; [INSERT AverageLatency(us)=709.72] [READ AverageLatency(us)=54986.85] 
+2014-08-11 13:07:27:690 1781 sec: 21935899 operations; 5424.56 current ops/sec; [INSERT AverageLatency(us)=3317.81] [READ AverageLatency(us)=82055.64] 
+2014-08-11 13:07:37:690 1791 sec: 22113132 operations; 17723.3 current ops/sec; [INSERT AverageLatency(us)=630.28] [READ AverageLatency(us)=65013.33] 
+2014-08-11 13:07:47:691 1801 sec: 22113132 operations; 0 current ops/sec;   
+2014-08-11 13:07:57:691 1811 sec: 22113132 operations; 0 current ops/sec;   
+2014-08-11 13:08:07:692 1821 sec: 22120494 operations; 736.13 current ops/sec; [INSERT AverageLatency(us)=12.91] [READ AverageLatency(us)=6649024.73] 
+2014-08-11 13:08:17:693 1831 sec: 22287211 operations; 16670.03 current ops/sec; [INSERT AverageLatency(us)=144.09] [READ AverageLatency(us)=49415.1] 
+2014-08-11 13:08:27:693 1841 sec: 22456830 operations; 16961.9 current ops/sec; [INSERT AverageLatency(us)=845.15] [READ AverageLatency(us)=60691.36] 
+2014-08-11 13:08:37:694 1851 sec: 22645334 operations; 18848.52 current ops/sec; [INSERT AverageLatency(us)=263.28] [READ AverageLatency(us)=69771] 
+2014-08-11 13:08:47:694 1861 sec: 22780170 operations; 13483.6 current ops/sec; [INSERT AverageLatency(us)=1281.96] [READ AverageLatency(us)=67030.7] 
+2014-08-11 13:08:57:695 1871 sec: 22937283 operations; 15709.73 current ops/sec; [INSERT AverageLatency(us)=624.51] [READ AverageLatency(us)=54950.04] 
+2014-08-11 13:09:07:695 1881 sec: 23054949 operations; 11766.6 current ops/sec; [INSERT AverageLatency(us)=1415.18] [READ AverageLatency(us)=43533.01] 
+2014-08-11 13:09:17:696 1891 sec: 23261366 operations; 20639.64 current ops/sec; [INSERT AverageLatency(us)=23.24] [READ AverageLatency(us)=87531.93] 
+2014-08-11 13:09:27:696 1901 sec: 23342638 operations; 8127.2 current ops/sec; [INSERT AverageLatency(us)=29.53] [READ AverageLatency(us)=54434.97] 
+2014-08-11 13:09:37:697 1911 sec: 23537154 operations; 19449.66 current ops/sec; [INSERT AverageLatency(us)=1158.61] [READ AverageLatency(us)=66400.63] 
+2014-08-11 13:09:47:698 1921 sec: 23537154 operations; 0 current ops/sec;   
+2014-08-11 13:09:57:698 1931 sec: 23655904 operations; 11873.81 current ops/sec; [INSERT AverageLatency(us)=2834.32] [READ AverageLatency(us)=66794.18] 
+2014-08-11 13:10:07:698 1941 sec: 23892000 operations; 23609.6 current ops/sec; [INSERT AverageLatency(us)=12.43] [READ AverageLatency(us)=82946.56] 
+2014-08-11 13:10:17:699 1951 sec: 23964726 operations; 7271.87 current ops/sec; [INSERT AverageLatency(us)=1864.63] [READ AverageLatency(us)=65596.82] 
+2014-08-11 13:10:27:699 1961 sec: 24272426 operations; 30770 current ops/sec; [INSERT AverageLatency(us)=14.01] [READ AverageLatency(us)=63510.85] 
+2014-08-11 13:10:37:700 1971 sec: 24301892 operations; 2946.31 current ops/sec; [INSERT AverageLatency(us)=6220.55] [READ AverageLatency(us)=58785.18] 
+2014-08-11 13:10:47:700 1981 sec: 24565832 operations; 26394 current ops/sec; [INSERT AverageLatency(us)=11.11] [READ AverageLatency(us)=73315.54] 
+2014-08-11 13:10:57:701 1991 sec: 24632570 operations; 6673.13 current ops/sec; [UPDATE AverageLatency(us)=9892462] [INSERT AverageLatency(us)=1915.79] [READ AverageLatency(us)=65168.85] [CLEANUP AverageLatency(us)=9892904.5] 
+2014-08-11 13:11:07:702 2001 sec: 24854575 operations; 22200.5 current ops/sec; [UPDATE AverageLatency(us)=776350.67] [INSERT AverageLatency(us)=10.82] [READ AverageLatency(us)=77787.85] [CLEANUP AverageLatency(us)=776360] 
+2014-08-11 13:11:17:702 2011 sec: 24909577 operations; 5499.65 current ops/sec; [UPDATE AverageLatency(us)=7877533.43] [INSERT AverageLatency(us)=1282.16] [READ AverageLatency(us)=36798.94] [CLEANUP AverageLatency(us)=7877544.43] 
+2014-08-11 13:11:24:687 2018 sec: 25000000 operations; 12945.31 current ops/sec; [UPDATE AverageLatency(us)=1045107.25] [INSERT AverageLatency(us)=13.88] [READ AverageLatency(us)=30141.1] [CLEANUP AverageLatency(us)=1045117.75] 
++ echo 'end time:'
+end time:
+++ date +%s
++ echo 1407787885
+1407787885
++ echo 'sleeping for 10 sec ...'
+sleeping for 10 sec ...
++ sleep 10
++ let counter=1+1
++ read line
++ set +x

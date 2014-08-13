@@ -1,0 +1,500 @@
+++ ls caseresult/ -ltr
+++ wc -l
++ filename=case296
++ requestdistribution=
++ mkdir caseresult/case296
++ ssh hadoop@master mkdir /home/hadoop/git/physical_design/caseresult/case296
++ RESULT_DIR=/home/hadoop/git/physical_design/caseresult/case296
++ TEN=10
++ SIXTY=60
++ SLEEP_TIME=200
++ YCSB_DIR=/home/hadoop/ycsb-0.1.4
++ number_of_operations=50000000
++ number_of_threads=20
++ number_of_records=50000000
++ output_file_suffix=.dat
++ experiment_list_file=/home/hadoop/git/physical_design/case296.list
++ clean=false
++ create=false
++ load=false
++ random_read=false
++ workloada=false
++ workloadb=false
++ workloadc=false
++ scan=false
++ all=false
++ for i in '$@'
++ '[' clean == all ']'
++ '[' clean == clean ']'
++ clean=true
++ for i in '$@'
++ '[' create == all ']'
++ '[' create == clean ']'
++ '[' create == create ']'
++ create=true
++ for i in '$@'
++ '[' workloadc == all ']'
++ '[' workloadc == clean ']'
++ '[' workloadc == create ']'
++ '[' workloadc == load ']'
++ '[' workloadc == random_read ']'
++ '[' workloadc == scan ']'
++ '[' workloadc == workloada ']'
++ '[' workloadc == workloadb ']'
++ '[' workloadc == workloadc ']'
++ workloadc=true
++ for i in '$@'
++ '[' zipfian == all ']'
++ '[' zipfian == clean ']'
++ '[' zipfian == create ']'
++ '[' zipfian == load ']'
++ '[' zipfian == random_read ']'
++ '[' zipfian == scan ']'
++ '[' zipfian == workloada ']'
++ '[' zipfian == workloadb ']'
++ '[' zipfian == workloadc ']'
++ '[' zipfian == zipfian ']'
++ requestdistribution=zipfian
++ let counter=1
++ cd /home/hadoop/ycsb-0.1.4
+++ pwd
++ echo /home/hadoop/ycsb-0.1.4
+/home/hadoop/ycsb-0.1.4
++ read line
++ false
++ true
++ echo 'sleeping for 60 ...'
+sleeping for 60 ...
++ sleep 60
++ echo 'droping usertable...'
+droping usertable...
++ ssh hadoop@master /home/hadoop/hbase/bin/hbase shell /home/hadoop/git/physical_design/delete_table
+0 row(s) in 2.7380 seconds
+
+0 row(s) in 1.2930 seconds
+
+0 row(s) in 0.0660 seconds
+
++ echo 'sleeping for 200 ...'
+sleeping for 200 ...
++ sleep 200
++ false
++ true
++ echo 'creating usertable...'
+creating usertable...
++ create_statement='create '\''usertable'\'', { NAME=>'\''family'\'', COMPRESSION=>'\''GZ'\''}, SPLITS => ['\''user1'\'', '\''user2'\'', '\''user3'\'', '\''user4'\'', '\''user5'\'', '\''user6'\'', '\''user7'\'', '\''user8'\'', '\''user9'\'']'
++ echo create ''\''usertable'\'',' '{' 'NAME=>'\''family'\'',' 'COMPRESSION=>'\''GZ'\''},' SPLITS '=>' '['\''user1'\'',' ''\''user2'\'',' ''\''user3'\'',' ''\''user4'\'',' ''\''user5'\'',' ''\''user6'\'',' ''\''user7'\'',' ''\''user8'\'',' ''\''user9'\'']'
++ echo 'exit '
++ scp /home/hadoop/git/physical_design/caseresult/case296/create_1.script hadoop@master:/home/hadoop/git/physical_design/caseresult/case296/create_1.script
++ create_table /home/hadoop/git/physical_design/caseresult/case296/create_1.script
++ echo 'creating table...'
+creating table...
++ echo /home/hadoop/git/physical_design/caseresult/case296/create_1.script
+/home/hadoop/git/physical_design/caseresult/case296/create_1.script
++ ssh hadoop@master /home/hadoop/hbase/bin/hbase shell /home/hadoop/git/physical_design/caseresult/case296/create_1.script
+0 row(s) in 1.7710 seconds
+
++ echo 'sleeping for 10 sec ...'
+sleeping for 10 sec ...
++ sleep 10
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ false
++ true
++ echo workloadc...
+workloadc...
++ echo 'start time: '
+start time: 
+++ date +%s
++ echo 1406760914
+1406760914
+++ echo /home/hadoop/git/physical_design/caseresult/case296/workloadc_1.dat
++ ./workloadc 50000000 20 /home/hadoop/git/physical_design/caseresult/case296/workloadc_1.dat
+Loading workload...
+Starting test.
+2014-07-30 15:55:14:722 0 sec: 0 operations; 
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:zookeeper.version=3.4.6-1569965, built on 02/20/2014 09:09 GMT
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:host.name=sceplus-vm43.almaden.ibm.com
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:java.version=1.6.0_31
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:java.vendor=Sun Microsystems Inc.
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:java.home=/usr/lib/jvm/java-6-openjdk-amd64/jre
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:java.class.path=/home/hadoop/ycsb-0.1.4/hbase-binding/lib/hbase-binding-0.1.4.jar:/home/hadoop/ycsb-0.1.4/hbase-binding/conf:/home/hadoop/ycsb-0.1.4/core/lib/core-0.1.4.jar:/home/hadoop/ycsb-0.1.4/jdbc-binding/conf
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:java.library.path=/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk-amd64/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib/jni:/lib:/usr/lib
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:java.io.tmpdir=/tmp
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:java.compiler=<NA>
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:os.name=Linux
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:os.arch=amd64
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:os.version=3.13.0-24-generic
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:user.name=hadoop
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:user.home=/home/hadoop
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Client environment:user.dir=/home/hadoop/ycsb-0.1.4
+14/07/30 15:55:15 INFO zookeeper.ZooKeeper: Initiating client connection, connectString=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181 sessionTimeout=90000 watcher=hconnection-0x13f1d038, quorum=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181, baseZNode=/hbase
+14/07/30 15:55:15 INFO zookeeper.RecoverableZooKeeper: Process identifier=hconnection-0x13f1d038 connecting to ZooKeeper ensemble=sceplus-vm49.almaden.ibm.com:2181,sceplus-vm48.almaden.ibm.com:2181
+14/07/30 15:55:15 INFO zookeeper.ClientCnxn: Opening socket connection to server master/9.1.143.58:2181. Will not attempt to authenticate using SASL (unknown error)
+14/07/30 15:55:15 INFO zookeeper.ClientCnxn: Socket connection established to master/9.1.143.58:2181, initiating session
+14/07/30 15:55:15 INFO zookeeper.ClientCnxn: Session establishment complete on server master/9.1.143.58:2181, sessionid = 0x478b29edd5000b, negotiated timeout = 90000
+2014-07-30 15:55:24:723 10 sec: 89358 operations; 8934.91 current ops/sec; [INSERT AverageLatency(us)=205.84] [READ AverageLatency(us)=8028.69] 
+2014-07-30 15:55:34:724 20 sec: 217605 operations; 12823.42 current ops/sec; [INSERT AverageLatency(us)=33.46] [READ AverageLatency(us)=14263.68] 
+2014-07-30 15:55:44:725 30 sec: 525697 operations; 30806.12 current ops/sec; [INSERT AverageLatency(us)=14.08] [READ AverageLatency(us)=5991.39] 
+2014-07-30 15:55:54:725 40 sec: 840462 operations; 31476.5 current ops/sec; [INSERT AverageLatency(us)=12.42] [READ AverageLatency(us)=6059.13] 
+2014-07-30 15:56:04:726 50 sec: 1149127 operations; 30863.41 current ops/sec; [INSERT AverageLatency(us)=12.16] [READ AverageLatency(us)=6192.64] 
+2014-07-30 15:56:14:726 60 sec: 1450891 operations; 30176.4 current ops/sec; [INSERT AverageLatency(us)=13.93] [READ AverageLatency(us)=6500.8] 
+2014-07-30 15:56:24:727 70 sec: 1702314 operations; 25139.79 current ops/sec; [INSERT AverageLatency(us)=12.11] [READ AverageLatency(us)=7812.35] 
+2014-07-30 15:56:34:727 80 sec: 1985015 operations; 28270.1 current ops/sec; [INSERT AverageLatency(us)=12.63] [READ AverageLatency(us)=6879.65] 
+2014-07-30 15:56:44:728 90 sec: 2012906 operations; 2788.82 current ops/sec; [INSERT AverageLatency(us)=11.92] [READ AverageLatency(us)=70552.45] 
+2014-07-30 15:56:54:728 100 sec: 2190476 operations; 17757 current ops/sec; [INSERT AverageLatency(us)=13.04] [READ AverageLatency(us)=9412.79] 
+2014-07-30 15:57:04:729 110 sec: 2224509 operations; 3402.96 current ops/sec; [INSERT AverageLatency(us)=11.65] [READ AverageLatency(us)=16907.02] 
+2014-07-30 15:57:14:729 120 sec: 2278108 operations; 5359.9 current ops/sec; [INSERT AverageLatency(us)=11.57] [READ AverageLatency(us)=65113.61] 
+2014-07-30 15:57:24:730 130 sec: 2361876 operations; 8375.96 current ops/sec; [INSERT AverageLatency(us)=11.48] [READ AverageLatency(us)=25790.34] 
+2014-07-30 15:57:34:730 140 sec: 2497344 operations; 13546.8 current ops/sec; [INSERT AverageLatency(us)=12.19] [READ AverageLatency(us)=14711.92] 
+2014-07-30 15:57:44:731 150 sec: 2651096 operations; 15373.66 current ops/sec; [INSERT AverageLatency(us)=13.78] [READ AverageLatency(us)=12915.51] 
+2014-07-30 15:57:54:731 160 sec: 2794449 operations; 14335.3 current ops/sec; [INSERT AverageLatency(us)=12.26] [READ AverageLatency(us)=13491.17] 
+2014-07-30 15:58:04:732 170 sec: 2947241 operations; 15277.67 current ops/sec; [INSERT AverageLatency(us)=12.12] [READ AverageLatency(us)=13044.26] 
+2014-07-30 15:58:14:732 180 sec: 3069582 operations; 12234.1 current ops/sec; [INSERT AverageLatency(us)=13.85] [READ AverageLatency(us)=16086.47] 
+2014-07-30 15:58:24:733 190 sec: 3221058 operations; 15146.09 current ops/sec; [INSERT AverageLatency(us)=12.33] [READ AverageLatency(us)=13144.49] 
+2014-07-30 15:58:34:733 200 sec: 3372526 operations; 15146.8 current ops/sec; [INSERT AverageLatency(us)=12.32] [READ AverageLatency(us)=12782.11] 
+2014-07-30 15:58:44:734 210 sec: 3504400 operations; 13186.08 current ops/sec; [INSERT AverageLatency(us)=13.1] [READ AverageLatency(us)=14884.26] 
+2014-07-30 15:58:54:734 220 sec: 3651295 operations; 14689.5 current ops/sec; [INSERT AverageLatency(us)=12.02] [READ AverageLatency(us)=13205.34] 
+2014-07-30 15:59:04:735 230 sec: 3834065 operations; 18275.17 current ops/sec; [INSERT AverageLatency(us)=12.12] [READ AverageLatency(us)=10792.17] 
+2014-07-30 15:59:14:735 240 sec: 3977918 operations; 14385.3 current ops/sec; [INSERT AverageLatency(us)=12.62] [READ AverageLatency(us)=13892.23] 
+2014-07-30 15:59:24:736 250 sec: 4109745 operations; 13181.38 current ops/sec; [INSERT AverageLatency(us)=12.54] [READ AverageLatency(us)=15187.67] 
+2014-07-30 15:59:34:736 260 sec: 4301394 operations; 19164.9 current ops/sec; [INSERT AverageLatency(us)=10.62] [READ AverageLatency(us)=10192.48] 
+2014-07-30 15:59:44:737 270 sec: 4423659 operations; 12225.28 current ops/sec; [INSERT AverageLatency(us)=11.53] [READ AverageLatency(us)=16108.6] 
+2014-07-30 15:59:54:737 280 sec: 4601686 operations; 17802.7 current ops/sec; [INSERT AverageLatency(us)=12.08] [READ AverageLatency(us)=11175.25] 
+2014-07-30 16:00:04:738 290 sec: 4739219 operations; 13751.92 current ops/sec; [INSERT AverageLatency(us)=12.33] [READ AverageLatency(us)=14254.36] 
+2014-07-30 16:00:14:738 300 sec: 4943027 operations; 20380.8 current ops/sec; [INSERT AverageLatency(us)=12.23] [READ AverageLatency(us)=9688.57] 
+2014-07-30 16:00:24:739 310 sec: 5148257 operations; 20520.95 current ops/sec; [INSERT AverageLatency(us)=12.99] [READ AverageLatency(us)=9511.67] 
+2014-07-30 16:00:34:739 320 sec: 5354881 operations; 20662.4 current ops/sec; [INSERT AverageLatency(us)=10.91] [READ AverageLatency(us)=9195.32] 
+2014-07-30 16:00:44:740 330 sec: 5525721 operations; 17082.29 current ops/sec; [INSERT AverageLatency(us)=12.46] [READ AverageLatency(us)=11631.49] 
+2014-07-30 16:00:54:740 340 sec: 5695187 operations; 16946.6 current ops/sec; [INSERT AverageLatency(us)=11.68] [READ AverageLatency(us)=11661.81] 
+2014-07-30 16:01:04:741 350 sec: 5869378 operations; 17417.36 current ops/sec; [INSERT AverageLatency(us)=11.01] [READ AverageLatency(us)=11348.91] 
+2014-07-30 16:01:14:741 360 sec: 6043471 operations; 17409.3 current ops/sec; [INSERT AverageLatency(us)=12.25] [READ AverageLatency(us)=11317.7] 
+2014-07-30 16:01:24:742 370 sec: 6192684 operations; 14921.3 current ops/sec; [INSERT AverageLatency(us)=12.55] [READ AverageLatency(us)=13271.46] 
+2014-07-30 16:01:34:742 380 sec: 6354651 operations; 16195.08 current ops/sec; [INSERT AverageLatency(us)=11.63] [READ AverageLatency(us)=12294.84] 
+2014-07-30 16:01:44:742 390 sec: 6549950 operations; 19529.9 current ops/sec; [INSERT AverageLatency(us)=11.78] [READ AverageLatency(us)=10243.87] 
+2014-07-30 16:01:54:743 400 sec: 6677058 operations; 12709.53 current ops/sec; [INSERT AverageLatency(us)=11.82] [READ AverageLatency(us)=12858.54] 
+2014-07-30 16:02:04:743 410 sec: 6877135 operations; 20007.7 current ops/sec; [INSERT AverageLatency(us)=12.8] [READ AverageLatency(us)=11674.36] 
+2014-07-30 16:02:14:744 420 sec: 7089051 operations; 21189.48 current ops/sec; [INSERT AverageLatency(us)=12.24] [READ AverageLatency(us)=9396.51] 
+2014-07-30 16:02:24:744 430 sec: 7296941 operations; 20789 current ops/sec; [INSERT AverageLatency(us)=11.53] [READ AverageLatency(us)=9499.8] 
+2014-07-30 16:02:34:745 440 sec: 7506094 operations; 20913.21 current ops/sec; [INSERT AverageLatency(us)=11.17] [READ AverageLatency(us)=9322.3] 
+2014-07-30 16:02:44:745 450 sec: 7710251 operations; 20415.7 current ops/sec; [INSERT AverageLatency(us)=10.77] [READ AverageLatency(us)=9789.71] 
+2014-07-30 16:02:54:746 460 sec: 7930235 operations; 21996.2 current ops/sec; [INSERT AverageLatency(us)=11.88] [READ AverageLatency(us)=9008.27] 
+2014-07-30 16:03:04:746 470 sec: 8124762 operations; 19452.7 current ops/sec; [INSERT AverageLatency(us)=11.12] [READ AverageLatency(us)=10127.85] 
+2014-07-30 16:03:14:747 480 sec: 8327439 operations; 20265.67 current ops/sec; [INSERT AverageLatency(us)=12.43] [READ AverageLatency(us)=9860.02] 
+2014-07-30 16:03:24:748 490 sec: 8515107 operations; 18764.92 current ops/sec; [INSERT AverageLatency(us)=11.96] [READ AverageLatency(us)=10418.18] 
+2014-07-30 16:03:34:748 500 sec: 8729058 operations; 21395.1 current ops/sec; [INSERT AverageLatency(us)=11.03] [READ AverageLatency(us)=9187.6] 
+2014-07-30 16:03:44:749 510 sec: 8928270 operations; 19919.21 current ops/sec; [INSERT AverageLatency(us)=11.96] [READ AverageLatency(us)=9930.92] 
+2014-07-30 16:03:54:749 520 sec: 9146882 operations; 21861.2 current ops/sec; [INSERT AverageLatency(us)=11.16] [READ AverageLatency(us)=9007.64] 
+2014-07-30 16:04:04:750 530 sec: 9362922 operations; 21604 current ops/sec; [INSERT AverageLatency(us)=10.87] [READ AverageLatency(us)=9048] 
+2014-07-30 16:04:14:750 540 sec: 9570709 operations; 20776.62 current ops/sec; [INSERT AverageLatency(us)=10.98] [READ AverageLatency(us)=9362.56] 
+2014-07-30 16:04:24:751 550 sec: 9792785 operations; 22205.38 current ops/sec; [INSERT AverageLatency(us)=11.21] [READ AverageLatency(us)=8957.02] 
+2014-07-30 16:04:34:751 560 sec: 9999296 operations; 20651.1 current ops/sec; [INSERT AverageLatency(us)=10.94] [READ AverageLatency(us)=9457.7] 
+2014-07-30 16:04:44:752 570 sec: 10191879 operations; 19256.37 current ops/sec; [INSERT AverageLatency(us)=11.18] [READ AverageLatency(us)=10152.8] 
+2014-07-30 16:04:54:752 580 sec: 10395169 operations; 20329 current ops/sec; [INSERT AverageLatency(us)=11.35] [READ AverageLatency(us)=9643.72] 
+2014-07-30 16:05:04:753 590 sec: 10588779 operations; 19359.06 current ops/sec; [INSERT AverageLatency(us)=11.33] [READ AverageLatency(us)=10359.65] 
+2014-07-30 16:05:14:753 600 sec: 10792847 operations; 20406.8 current ops/sec; [INSERT AverageLatency(us)=10.53] [READ AverageLatency(us)=9685.3] 
+2014-07-30 16:05:24:754 610 sec: 10995700 operations; 20285.3 current ops/sec; [INSERT AverageLatency(us)=11.57] [READ AverageLatency(us)=9702.64] 
+2014-07-30 16:05:34:754 620 sec: 11186727 operations; 19100.79 current ops/sec; [INSERT AverageLatency(us)=12.34] [READ AverageLatency(us)=10346.35] 
+2014-07-30 16:05:44:755 630 sec: 11376304 operations; 18957.7 current ops/sec; [INSERT AverageLatency(us)=11.24] [READ AverageLatency(us)=10388.38] 
+2014-07-30 16:05:54:755 640 sec: 11572047 operations; 19572.34 current ops/sec; [INSERT AverageLatency(us)=10.98] [READ AverageLatency(us)=10038.51] 
+2014-07-30 16:06:04:756 650 sec: 11722677 operations; 15063 current ops/sec; [INSERT AverageLatency(us)=11.49] [READ AverageLatency(us)=13034.89] 
+2014-07-30 16:06:14:756 660 sec: 11893079 operations; 17038.5 current ops/sec; [INSERT AverageLatency(us)=11.32] [READ AverageLatency(us)=11563.54] 
+2014-07-30 16:06:24:757 670 sec: 12078611 operations; 18551.34 current ops/sec; [INSERT AverageLatency(us)=11.84] [READ AverageLatency(us)=10440.77] 
+2014-07-30 16:06:34:757 680 sec: 12260797 operations; 18218.6 current ops/sec; [INSERT AverageLatency(us)=11.58] [READ AverageLatency(us)=11081.29] 
+2014-07-30 16:06:44:758 690 sec: 12424456 operations; 16364.26 current ops/sec; [INSERT AverageLatency(us)=10.9] [READ AverageLatency(us)=11953.68] 
+2014-07-30 16:06:54:758 700 sec: 12599207 operations; 17475.1 current ops/sec; [INSERT AverageLatency(us)=11.7] [READ AverageLatency(us)=11407.68] 
+2014-07-30 16:07:04:759 710 sec: 12771785 operations; 17256.07 current ops/sec; [INSERT AverageLatency(us)=11.96] [READ AverageLatency(us)=11470.46] 
+2014-07-30 16:07:14:759 720 sec: 12973552 operations; 20176.7 current ops/sec; [INSERT AverageLatency(us)=10.3] [READ AverageLatency(us)=9757.2] 
+2014-07-30 16:07:24:769 730 sec: 13151856 operations; 17812.59 current ops/sec; [INSERT AverageLatency(us)=11.09] [READ AverageLatency(us)=11019.89] 
+2014-07-30 16:07:34:770 740 sec: 13344397 operations; 19252.17 current ops/sec; [INSERT AverageLatency(us)=11.91] [READ AverageLatency(us)=10109.55] 
+2014-07-30 16:07:44:770 750 sec: 13531797 operations; 18740 current ops/sec; [INSERT AverageLatency(us)=11.06] [READ AverageLatency(us)=10433.5] 
+2014-07-30 16:07:54:771 760 sec: 13695687 operations; 16387.36 current ops/sec; [INSERT AverageLatency(us)=10.79] [READ AverageLatency(us)=11615.72] 
+2014-07-30 16:08:04:771 770 sec: 13881378 operations; 18569.1 current ops/sec; [INSERT AverageLatency(us)=11.15] [READ AverageLatency(us)=10753.32] 
+2014-07-30 16:08:14:772 780 sec: 14049134 operations; 16773.92 current ops/sec; [INSERT AverageLatency(us)=11.66] [READ AverageLatency(us)=12099.46] 
+2014-07-30 16:08:24:772 790 sec: 14220707 operations; 17157.3 current ops/sec; [INSERT AverageLatency(us)=11.23] [READ AverageLatency(us)=11448.22] 
+2014-07-30 16:08:34:773 800 sec: 14387818 operations; 16709.43 current ops/sec; [INSERT AverageLatency(us)=10.8] [READ AverageLatency(us)=11672.8] 
+2014-07-30 16:08:44:773 810 sec: 14548630 operations; 16081.2 current ops/sec; [INSERT AverageLatency(us)=10.55] [READ AverageLatency(us)=12245.19] 
+2014-07-30 16:08:54:774 820 sec: 14725841 operations; 17719.33 current ops/sec; [INSERT AverageLatency(us)=11.44] [READ AverageLatency(us)=11328.32] 
+2014-07-30 16:09:04:776 830 sec: 14892259 operations; 16638.47 current ops/sec; [INSERT AverageLatency(us)=10.85] [READ AverageLatency(us)=11892.68] 
+2014-07-30 16:09:14:777 840 sec: 15076760 operations; 18448.26 current ops/sec; [INSERT AverageLatency(us)=11.11] [READ AverageLatency(us)=10719.92] 
+2014-07-30 16:09:24:777 850 sec: 15245439 operations; 16867.9 current ops/sec; [INSERT AverageLatency(us)=11.49] [READ AverageLatency(us)=11702.75] 
+2014-07-30 16:09:34:778 860 sec: 15420399 operations; 17494.25 current ops/sec; [INSERT AverageLatency(us)=12.23] [READ AverageLatency(us)=11309.28] 
+2014-07-30 16:09:44:778 870 sec: 15594721 operations; 17432.2 current ops/sec; [INSERT AverageLatency(us)=11.75] [READ AverageLatency(us)=11282.94] 
+2014-07-30 16:09:54:779 880 sec: 15761917 operations; 16717.93 current ops/sec; [INSERT AverageLatency(us)=10.82] [READ AverageLatency(us)=11796.68] 
+2014-07-30 16:10:04:779 890 sec: 15930469 operations; 16855.2 current ops/sec; [INSERT AverageLatency(us)=10.58] [READ AverageLatency(us)=11779.38] 
+2014-07-30 16:10:14:780 900 sec: 16101802 operations; 17131.59 current ops/sec; [INSERT AverageLatency(us)=11.09] [READ AverageLatency(us)=11522.63] 
+2014-07-30 16:10:24:780 910 sec: 16267130 operations; 16532.8 current ops/sec; [INSERT AverageLatency(us)=10.24] [READ AverageLatency(us)=12036.19] 
+2014-07-30 16:10:34:781 920 sec: 16442333 operations; 17518.55 current ops/sec; [INSERT AverageLatency(us)=10.97] [READ AverageLatency(us)=11265.3] 
+2014-07-30 16:10:44:781 930 sec: 16601660 operations; 15932.7 current ops/sec; [INSERT AverageLatency(us)=11.64] [READ AverageLatency(us)=12263.55] 
+2014-07-30 16:10:54:782 940 sec: 16771405 operations; 16972.8 current ops/sec; [INSERT AverageLatency(us)=11.36] [READ AverageLatency(us)=11580.99] 
+2014-07-30 16:11:04:782 950 sec: 16938855 operations; 16745 current ops/sec; [INSERT AverageLatency(us)=11.56] [READ AverageLatency(us)=11930.33] 
+2014-07-30 16:11:14:783 960 sec: 17108299 operations; 16942.71 current ops/sec; [INSERT AverageLatency(us)=11.68] [READ AverageLatency(us)=11713.09] 
+2014-07-30 16:11:24:783 970 sec: 17266542 operations; 15824.3 current ops/sec; [INSERT AverageLatency(us)=11.62] [READ AverageLatency(us)=12480.87] 
+2014-07-30 16:11:34:784 980 sec: 17434575 operations; 16801.62 current ops/sec; [INSERT AverageLatency(us)=11.73] [READ AverageLatency(us)=11699.28] 
+2014-07-30 16:11:44:784 990 sec: 17608717 operations; 17414.2 current ops/sec; [INSERT AverageLatency(us)=11.47] [READ AverageLatency(us)=11372.5] 
+2014-07-30 16:11:54:785 1000 sec: 17759234 operations; 15050.19 current ops/sec; [INSERT AverageLatency(us)=10.34] [READ AverageLatency(us)=13044.02] 
+2014-07-30 16:12:04:785 1010 sec: 17947288 operations; 18805.4 current ops/sec; [INSERT AverageLatency(us)=10.79] [READ AverageLatency(us)=10671.59] 
+2014-07-30 16:12:14:786 1020 sec: 18116769 operations; 16948.1 current ops/sec; [INSERT AverageLatency(us)=10.59] [READ AverageLatency(us)=11734.45] 
+2014-07-30 16:12:24:786 1030 sec: 18268643 operations; 15185.88 current ops/sec; [INSERT AverageLatency(us)=11.47] [READ AverageLatency(us)=12867.18] 
+2014-07-30 16:12:34:787 1040 sec: 18432792 operations; 16414.9 current ops/sec; [INSERT AverageLatency(us)=10.11] [READ AverageLatency(us)=12113] 
+2014-07-30 16:12:44:787 1050 sec: 18594001 operations; 16119.29 current ops/sec; [INSERT AverageLatency(us)=9.94] [READ AverageLatency(us)=12247.19] 
+2014-07-30 16:12:54:788 1060 sec: 18749123 operations; 15512.2 current ops/sec; [INSERT AverageLatency(us)=11.07] [READ AverageLatency(us)=12723.46] 
+2014-07-30 16:13:04:788 1070 sec: 18918705 operations; 16956.5 current ops/sec; [INSERT AverageLatency(us)=10.64] [READ AverageLatency(us)=11970] 
+2014-07-30 16:13:14:789 1080 sec: 19061115 operations; 14241 current ops/sec; [INSERT AverageLatency(us)=10.25] [READ AverageLatency(us)=13866.74] 
+2014-07-30 16:13:24:789 1090 sec: 19228536 operations; 16740.43 current ops/sec; [INSERT AverageLatency(us)=10.45] [READ AverageLatency(us)=11692.63] 
+2014-07-30 16:13:34:789 1100 sec: 19376228 operations; 14769.2 current ops/sec; [INSERT AverageLatency(us)=10.69] [READ AverageLatency(us)=13299.14] 
+2014-07-30 16:13:44:790 1110 sec: 19529686 operations; 15344.27 current ops/sec; [INSERT AverageLatency(us)=10.95] [READ AverageLatency(us)=12912.81] 
+2014-07-30 16:13:54:790 1120 sec: 19674182 operations; 14449.6 current ops/sec; [INSERT AverageLatency(us)=10.62] [READ AverageLatency(us)=13618.33] 
+2014-07-30 16:14:04:791 1130 sec: 19834440 operations; 16024.2 current ops/sec; [INSERT AverageLatency(us)=10.86] [READ AverageLatency(us)=12478.75] 
+2014-07-30 16:14:14:791 1140 sec: 19984359 operations; 14991.9 current ops/sec; [INSERT AverageLatency(us)=11.15] [READ AverageLatency(us)=13245.2] 
+2014-07-30 16:14:24:792 1150 sec: 20141967 operations; 15759.22 current ops/sec; [INSERT AverageLatency(us)=10.96] [READ AverageLatency(us)=12573.47] 
+2014-07-30 16:14:34:792 1160 sec: 20293054 operations; 15108.7 current ops/sec; [INSERT AverageLatency(us)=10.89] [READ AverageLatency(us)=13136.46] 
+2014-07-30 16:14:44:793 1170 sec: 20455358 operations; 16228.78 current ops/sec; [INSERT AverageLatency(us)=10.77] [READ AverageLatency(us)=12015.7] 
+2014-07-30 16:14:54:793 1180 sec: 20621148 operations; 16579 current ops/sec; [INSERT AverageLatency(us)=10.67] [READ AverageLatency(us)=11907.15] 
+2014-07-30 16:15:04:794 1190 sec: 20780258 operations; 15909.41 current ops/sec; [INSERT AverageLatency(us)=10.48] [READ AverageLatency(us)=12419.2] 
+2014-07-30 16:15:14:794 1200 sec: 20935633 operations; 15537.5 current ops/sec; [INSERT AverageLatency(us)=10.94] [READ AverageLatency(us)=12755.61] 
+2014-07-30 16:15:24:795 1210 sec: 21102994 operations; 16734.43 current ops/sec; [INSERT AverageLatency(us)=11.26] [READ AverageLatency(us)=11847.92] 
+2014-07-30 16:15:34:795 1220 sec: 21261043 operations; 15804.9 current ops/sec; [INSERT AverageLatency(us)=10.63] [READ AverageLatency(us)=12545.3] 
+2014-07-30 16:15:44:796 1230 sec: 21421726 operations; 16066.69 current ops/sec; [INSERT AverageLatency(us)=11.14] [READ AverageLatency(us)=12520.84] 
+2014-07-30 16:15:54:796 1240 sec: 21578392 operations; 15666.6 current ops/sec; [INSERT AverageLatency(us)=10.73] [READ AverageLatency(us)=12576.65] 
+2014-07-30 16:16:04:797 1250 sec: 21732489 operations; 15408.16 current ops/sec; [INSERT AverageLatency(us)=10.61] [READ AverageLatency(us)=13115.43] 
+2014-07-30 16:16:14:797 1260 sec: 21886439 operations; 15395 current ops/sec; [INSERT AverageLatency(us)=11.15] [READ AverageLatency(us)=12726.26] 
+2014-07-30 16:16:24:798 1270 sec: 22039655 operations; 15320.07 current ops/sec; [INSERT AverageLatency(us)=11.59] [READ AverageLatency(us)=12980.54] 
+2014-07-30 16:16:34:798 1280 sec: 22197656 operations; 15800.1 current ops/sec; [INSERT AverageLatency(us)=10.86] [READ AverageLatency(us)=12399.79] 
+2014-07-30 16:16:44:799 1290 sec: 22362423 operations; 16475.05 current ops/sec; [INSERT AverageLatency(us)=11.15] [READ AverageLatency(us)=12068.21] 
+2014-07-30 16:16:54:799 1300 sec: 22520384 operations; 15796.1 current ops/sec; [INSERT AverageLatency(us)=11.33] [READ AverageLatency(us)=12516.04] 
+2014-07-30 16:17:04:800 1310 sec: 22683599 operations; 16319.87 current ops/sec; [INSERT AverageLatency(us)=10.6] [READ AverageLatency(us)=12236.3] 
+2014-07-30 16:17:14:800 1320 sec: 22842625 operations; 15902.6 current ops/sec; [INSERT AverageLatency(us)=11.16] [READ AverageLatency(us)=12370.51] 
+2014-07-30 16:17:24:801 1330 sec: 22996449 operations; 15380.86 current ops/sec; [INSERT AverageLatency(us)=10.39] [READ AverageLatency(us)=12848.6] 
+2014-07-30 16:17:34:801 1340 sec: 23149337 operations; 15288.8 current ops/sec; [INSERT AverageLatency(us)=10.49] [READ AverageLatency(us)=13001.83] 
+2014-07-30 16:17:44:802 1350 sec: 23317167 operations; 16781.32 current ops/sec; [INSERT AverageLatency(us)=10.91] [READ AverageLatency(us)=11807.56] 
+2014-07-30 16:17:54:802 1360 sec: 23464222 operations; 14705.5 current ops/sec; [INSERT AverageLatency(us)=12.12] [READ AverageLatency(us)=13093.05] 
+2014-07-30 16:18:04:803 1370 sec: 23616188 operations; 15195.08 current ops/sec; [INSERT AverageLatency(us)=10.68] [READ AverageLatency(us)=13358.1] 
+2014-07-30 16:18:14:803 1380 sec: 23764075 operations; 14788.7 current ops/sec; [INSERT AverageLatency(us)=10.84] [READ AverageLatency(us)=13448.75] 
+2014-07-30 16:18:24:804 1390 sec: 23916274 operations; 15218.38 current ops/sec; [INSERT AverageLatency(us)=10.79] [READ AverageLatency(us)=13103.52] 
+2014-07-30 16:18:34:804 1400 sec: 24056523 operations; 14024.9 current ops/sec; [INSERT AverageLatency(us)=10.8] [READ AverageLatency(us)=14084.3] 
+2014-07-30 16:18:44:805 1410 sec: 24147611 operations; 9107.89 current ops/sec; [INSERT AverageLatency(us)=11.57] [READ AverageLatency(us)=20314.97] 
+2014-07-30 16:18:54:805 1420 sec: 24281104 operations; 13349.3 current ops/sec; [INSERT AverageLatency(us)=11.01] [READ AverageLatency(us)=15708.67] 
+2014-07-30 16:19:04:806 1430 sec: 24402954 operations; 12183.78 current ops/sec; [INSERT AverageLatency(us)=11.69] [READ AverageLatency(us)=16051.46] 
+2014-07-30 16:19:14:806 1440 sec: 24518532 operations; 11557.8 current ops/sec; [INSERT AverageLatency(us)=15.92] [READ AverageLatency(us)=17241.25] 
+2014-07-30 16:19:24:807 1450 sec: 24639443 operations; 12089.89 current ops/sec; [INSERT AverageLatency(us)=11.63] [READ AverageLatency(us)=16489.72] 
+2014-07-30 16:19:34:807 1460 sec: 24784753 operations; 14531 current ops/sec; [INSERT AverageLatency(us)=10.21] [READ AverageLatency(us)=13279.64] 
+2014-07-30 16:19:44:808 1470 sec: 24902955 operations; 11819.02 current ops/sec; [INSERT AverageLatency(us)=10.74] [READ AverageLatency(us)=17088.42] 
+2014-07-30 16:19:54:808 1480 sec: 25041615 operations; 13866 current ops/sec; [INSERT AverageLatency(us)=12.04] [READ AverageLatency(us)=14491.88] 
+2014-07-30 16:20:04:809 1490 sec: 25193030 operations; 15139.99 current ops/sec; [INSERT AverageLatency(us)=10.94] [READ AverageLatency(us)=12991.81] 
+2014-07-30 16:20:14:809 1500 sec: 25329813 operations; 13678.3 current ops/sec; [INSERT AverageLatency(us)=11.77] [READ AverageLatency(us)=14494.26] 
+2014-07-30 16:20:24:810 1510 sec: 25468476 operations; 13864.91 current ops/sec; [INSERT AverageLatency(us)=10.57] [READ AverageLatency(us)=14358] 
+2014-07-30 16:20:34:810 1520 sec: 25604294 operations; 13581.8 current ops/sec; [INSERT AverageLatency(us)=11.79] [READ AverageLatency(us)=14666.87] 
+2014-07-30 16:20:44:811 1530 sec: 25731743 operations; 12743.63 current ops/sec; [INSERT AverageLatency(us)=9.95] [READ AverageLatency(us)=15647.51] 
+2014-07-30 16:20:54:811 1540 sec: 25850145 operations; 11840.2 current ops/sec; [INSERT AverageLatency(us)=11.06] [READ AverageLatency(us)=16907.31] 
+2014-07-30 16:21:04:812 1550 sec: 25990971 operations; 14081.19 current ops/sec; [INSERT AverageLatency(us)=10.94] [READ AverageLatency(us)=14131.04] 
+2014-07-30 16:21:14:812 1560 sec: 26123444 operations; 13247.3 current ops/sec; [INSERT AverageLatency(us)=10.58] [READ AverageLatency(us)=15047.52] 
+2014-07-30 16:21:24:813 1570 sec: 26252777 operations; 12932.01 current ops/sec; [INSERT AverageLatency(us)=11.36] [READ AverageLatency(us)=15622.34] 
+2014-07-30 16:21:34:825 1580 sec: 26367898 operations; 11498.3 current ops/sec; [INSERT AverageLatency(us)=11.31] [READ AverageLatency(us)=17316.38] 
+2014-07-30 16:21:44:826 1590 sec: 26509249 operations; 14135.1 current ops/sec; [INSERT AverageLatency(us)=11.37] [READ AverageLatency(us)=14264.13] 
+2014-07-30 16:21:54:826 1600 sec: 26649144 operations; 13988.1 current ops/sec; [INSERT AverageLatency(us)=10.78] [READ AverageLatency(us)=14127.55] 
+2014-07-30 16:22:04:826 1610 sec: 26776338 operations; 12719.4 current ops/sec; [INSERT AverageLatency(us)=10.95] [READ AverageLatency(us)=15547.53] 
+2014-07-30 16:22:14:827 1620 sec: 26914900 operations; 13854.81 current ops/sec; [INSERT AverageLatency(us)=11.33] [READ AverageLatency(us)=14338.14] 
+2014-07-30 16:22:24:828 1630 sec: 27056668 operations; 14175.38 current ops/sec; [INSERT AverageLatency(us)=11.44] [READ AverageLatency(us)=13879.06] 
+2014-07-30 16:22:34:828 1640 sec: 27184629 operations; 12796.1 current ops/sec; [INSERT AverageLatency(us)=11.3] [READ AverageLatency(us)=15434.17] 
+2014-07-30 16:22:44:829 1650 sec: 27323305 operations; 13867.6 current ops/sec; [INSERT AverageLatency(us)=9.99] [READ AverageLatency(us)=14007.5] 
+2014-07-30 16:22:54:829 1660 sec: 27463014 operations; 13969.5 current ops/sec; [INSERT AverageLatency(us)=10.82] [READ AverageLatency(us)=14336.19] 
+2014-07-30 16:23:04:829 1670 sec: 27613823 operations; 15080.9 current ops/sec; [INSERT AverageLatency(us)=11.1] [READ AverageLatency(us)=13020.8] 
+2014-07-30 16:23:14:830 1680 sec: 27752354 operations; 13851.71 current ops/sec; [INSERT AverageLatency(us)=11.12] [READ AverageLatency(us)=14130.12] 
+2014-07-30 16:23:24:831 1690 sec: 27877874 operations; 12552 current ops/sec; [INSERT AverageLatency(us)=11.38] [READ AverageLatency(us)=15509.4] 
+2014-07-30 16:23:34:831 1700 sec: 28018436 operations; 14054.79 current ops/sec; [INSERT AverageLatency(us)=11.3] [READ AverageLatency(us)=14187.08] 
+2014-07-30 16:23:44:831 1710 sec: 28164379 operations; 14594.3 current ops/sec; [INSERT AverageLatency(us)=11.39] [READ AverageLatency(us)=13745.71] 
+2014-07-30 16:23:54:832 1720 sec: 28309498 operations; 14510.45 current ops/sec; [INSERT AverageLatency(us)=10.84] [READ AverageLatency(us)=13553.47] 
+2014-07-30 16:24:04:832 1730 sec: 28450208 operations; 14071 current ops/sec; [INSERT AverageLatency(us)=10.87] [READ AverageLatency(us)=14087.04] 
+2014-07-30 16:24:14:833 1740 sec: 28591580 operations; 14135.79 current ops/sec; [INSERT AverageLatency(us)=10.81] [READ AverageLatency(us)=14174.89] 
+2014-07-30 16:24:24:833 1750 sec: 28717824 operations; 12624.4 current ops/sec; [INSERT AverageLatency(us)=10.6] [READ AverageLatency(us)=15687.39] 
+2014-07-30 16:24:34:834 1760 sec: 28833604 operations; 11576.84 current ops/sec; [INSERT AverageLatency(us)=11.11] [READ AverageLatency(us)=16871.14] 
+2014-07-30 16:24:44:843 1770 sec: 28960364 operations; 12664.6 current ops/sec; [INSERT AverageLatency(us)=10.9] [READ AverageLatency(us)=15566.29] 
+2014-07-30 16:24:54:844 1780 sec: 29084242 operations; 12386.56 current ops/sec; [INSERT AverageLatency(us)=10.72] [READ AverageLatency(us)=16193.11] 
+2014-07-30 16:25:04:844 1790 sec: 29188677 operations; 10443.5 current ops/sec; [INSERT AverageLatency(us)=10.81] [READ AverageLatency(us)=18880.42] 
+2014-07-30 16:25:14:845 1800 sec: 29297221 operations; 10853.31 current ops/sec; [INSERT AverageLatency(us)=11.04] [READ AverageLatency(us)=18394.37] 
+2014-07-30 16:25:24:845 1810 sec: 29422523 operations; 12530.2 current ops/sec; [INSERT AverageLatency(us)=11.52] [READ AverageLatency(us)=15905.53] 
+2014-07-30 16:25:34:846 1820 sec: 29552575 operations; 13003.9 current ops/sec; [INSERT AverageLatency(us)=11.59] [READ AverageLatency(us)=15245.34] 
+2014-07-30 16:25:44:846 1830 sec: 29661032 operations; 10845.7 current ops/sec; [INSERT AverageLatency(us)=10.76] [READ AverageLatency(us)=18246.25] 
+2014-07-30 16:25:54:847 1840 sec: 29775904 operations; 11486.05 current ops/sec; [INSERT AverageLatency(us)=10.17] [READ AverageLatency(us)=17590.24] 
+2014-07-30 16:26:04:847 1850 sec: 29897787 operations; 12188.3 current ops/sec; [INSERT AverageLatency(us)=11.4] [READ AverageLatency(us)=16274.43] 
+2014-07-30 16:26:14:848 1860 sec: 30027956 operations; 13015.6 current ops/sec; [INSERT AverageLatency(us)=10.77] [READ AverageLatency(us)=15226.26] 
+2014-07-30 16:26:24:848 1870 sec: 30164161 operations; 13620.5 current ops/sec; [INSERT AverageLatency(us)=10.92] [READ AverageLatency(us)=14550.14] 
+2014-07-30 16:26:34:849 1880 sec: 30303960 operations; 13978.5 current ops/sec; [INSERT AverageLatency(us)=11.25] [READ AverageLatency(us)=14185.5] 
+2014-07-30 16:26:44:849 1890 sec: 30434819 operations; 13085.9 current ops/sec; [INSERT AverageLatency(us)=10.12] [READ AverageLatency(us)=15133.12] 
+2014-07-30 16:26:54:850 1900 sec: 30570018 operations; 13518.55 current ops/sec; [INSERT AverageLatency(us)=10.25] [READ AverageLatency(us)=14629.19] 
+2014-07-30 16:27:04:850 1910 sec: 30705626 operations; 13560.8 current ops/sec; [INSERT AverageLatency(us)=10.9] [READ AverageLatency(us)=14812.78] 
+2014-07-30 16:27:14:851 1920 sec: 30839337 operations; 13369.76 current ops/sec; [INSERT AverageLatency(us)=12.35] [READ AverageLatency(us)=14872] 
+2014-07-30 16:27:24:851 1930 sec: 30985907 operations; 14657 current ops/sec; [INSERT AverageLatency(us)=10.41] [READ AverageLatency(us)=13516.03] 
+2014-07-30 16:27:34:852 1940 sec: 31136468 operations; 15054.59 current ops/sec; [INSERT AverageLatency(us)=10.88] [READ AverageLatency(us)=13201.94] 
+2014-07-30 16:27:44:852 1950 sec: 31268687 operations; 13221.9 current ops/sec; [INSERT AverageLatency(us)=10.71] [READ AverageLatency(us)=15017.05] 
+2014-07-30 16:27:54:853 1960 sec: 31414198 operations; 14549.65 current ops/sec; [INSERT AverageLatency(us)=10.75] [READ AverageLatency(us)=13534.2] 
+2014-07-30 16:28:04:853 1970 sec: 31563486 operations; 14928.8 current ops/sec; [INSERT AverageLatency(us)=10.99] [READ AverageLatency(us)=13317.65] 
+2014-07-30 16:28:14:854 1980 sec: 31571659 operations; 817.22 current ops/sec; [INSERT AverageLatency(us)=11.09] [READ AverageLatency(us)=19808.24] 
+2014-07-30 16:28:24:854 1990 sec: 31651178 operations; 7951.9 current ops/sec; [INSERT AverageLatency(us)=11.81] [READ AverageLatency(us)=46984.34] 
+2014-07-30 16:28:34:855 2000 sec: 31744430 operations; 9324.27 current ops/sec; [INSERT AverageLatency(us)=11.01] [READ AverageLatency(us)=20621.74] 
+2014-07-30 16:28:44:856 2010 sec: 31849892 operations; 10545.15 current ops/sec; [INSERT AverageLatency(us)=10.78] [READ AverageLatency(us)=19183.83] 
+2014-07-30 16:28:54:856 2020 sec: 32009607 operations; 15971.5 current ops/sec; [INSERT AverageLatency(us)=10.5] [READ AverageLatency(us)=12459.3] 
+2014-07-30 16:29:04:857 2030 sec: 32159335 operations; 14972.8 current ops/sec; [INSERT AverageLatency(us)=9.83] [READ AverageLatency(us)=13065.71] 
+2014-07-30 16:29:14:857 2040 sec: 32293221 operations; 13387.26 current ops/sec; [INSERT AverageLatency(us)=10.79] [READ AverageLatency(us)=14807.83] 
+2014-07-30 16:29:24:858 2050 sec: 32417950 operations; 12472.9 current ops/sec; [INSERT AverageLatency(us)=11.15] [READ AverageLatency(us)=15605.79] 
+2014-07-30 16:29:34:858 2060 sec: 32554433 operations; 13646.94 current ops/sec; [INSERT AverageLatency(us)=11.15] [READ AverageLatency(us)=14409.14] 
+2014-07-30 16:29:44:858 2070 sec: 32685084 operations; 13065.1 current ops/sec; [INSERT AverageLatency(us)=11.03] [READ AverageLatency(us)=15195.53] 
+2014-07-30 16:29:54:859 2080 sec: 32824956 operations; 13985.8 current ops/sec; [INSERT AverageLatency(us)=11.14] [READ AverageLatency(us)=14361.05] 
+2014-07-30 16:30:04:859 2090 sec: 32909527 operations; 8457.1 current ops/sec; [INSERT AverageLatency(us)=11.2] [READ AverageLatency(us)=23496.62] 
+2014-07-30 16:30:14:860 2100 sec: 33009981 operations; 10044.4 current ops/sec; [INSERT AverageLatency(us)=11.79] [READ AverageLatency(us)=19574.26] 
+2014-07-30 16:30:24:869 2110 sec: 33096908 operations; 8684.88 current ops/sec; [INSERT AverageLatency(us)=10.98] [READ AverageLatency(us)=21573.8] 
+2014-07-30 16:30:34:870 2120 sec: 33169411 operations; 7249.58 current ops/sec; [INSERT AverageLatency(us)=632.98] [READ AverageLatency(us)=18066.92] 
+2014-07-30 16:30:44:870 2130 sec: 33232502 operations; 6309.1 current ops/sec; [INSERT AverageLatency(us)=833.55] [READ AverageLatency(us)=16461.96] 
+2014-07-30 16:30:54:871 2140 sec: 33265322 operations; 3281.67 current ops/sec; [INSERT AverageLatency(us)=6476.71] [READ AverageLatency(us)=27496.57] 
+2014-07-30 16:31:04:871 2150 sec: 33383540 operations; 11821.8 current ops/sec; [INSERT AverageLatency(us)=11.45] [READ AverageLatency(us)=16844.93] 
+2014-07-30 16:31:14:872 2160 sec: 33555422 operations; 17186.48 current ops/sec; [INSERT AverageLatency(us)=11.31] [READ AverageLatency(us)=11343] 
+2014-07-30 16:31:24:872 2170 sec: 33687551 operations; 13212.9 current ops/sec; [INSERT AverageLatency(us)=10.7] [READ AverageLatency(us)=14725.56] 
+2014-07-30 16:31:34:873 2180 sec: 33847503 operations; 15993.6 current ops/sec; [INSERT AverageLatency(us)=10.53] [READ AverageLatency(us)=12545.02] 
+2014-07-30 16:31:44:873 2190 sec: 33984143 operations; 13664 current ops/sec; [INSERT AverageLatency(us)=12.75] [READ AverageLatency(us)=14398.23] 
+2014-07-30 16:31:54:874 2200 sec: 34114394 operations; 13023.8 current ops/sec; [INSERT AverageLatency(us)=11.46] [READ AverageLatency(us)=15138.78] 
+2014-07-30 16:32:04:874 2210 sec: 34259186 operations; 14479.2 current ops/sec; [INSERT AverageLatency(us)=10.39] [READ AverageLatency(us)=13797.55] 
+2014-07-30 16:32:14:875 2220 sec: 34406395 operations; 14719.43 current ops/sec; [INSERT AverageLatency(us)=10.85] [READ AverageLatency(us)=13588.95] 
+2014-07-30 16:32:24:875 2230 sec: 34551409 operations; 14501.4 current ops/sec; [INSERT AverageLatency(us)=10.84] [READ AverageLatency(us)=13784.68] 
+2014-07-30 16:32:34:876 2240 sec: 34693416 operations; 14199.28 current ops/sec; [INSERT AverageLatency(us)=12.12] [READ AverageLatency(us)=14034.25] 
+2014-07-30 16:32:44:876 2250 sec: 34806683 operations; 11326.7 current ops/sec; [INSERT AverageLatency(us)=10.87] [READ AverageLatency(us)=17337.03] 
+2014-07-30 16:32:54:877 2260 sec: 34927967 operations; 12127.19 current ops/sec; [INSERT AverageLatency(us)=11.7] [READ AverageLatency(us)=16599.32] 
+2014-07-30 16:33:04:877 2270 sec: 35059742 operations; 13177.5 current ops/sec; [INSERT AverageLatency(us)=11.43] [READ AverageLatency(us)=15139.96] 
+2014-07-30 16:33:14:878 2280 sec: 35196910 operations; 13716.8 current ops/sec; [INSERT AverageLatency(us)=11.02] [READ AverageLatency(us)=14546.14] 
+2014-07-30 16:33:24:878 2290 sec: 35328149 operations; 13122.59 current ops/sec; [INSERT AverageLatency(us)=12.01] [READ AverageLatency(us)=15228.41] 
+2014-07-30 16:33:34:878 2300 sec: 35463380 operations; 13523.1 current ops/sec; [INSERT AverageLatency(us)=11.05] [READ AverageLatency(us)=14464.84] 
+2014-07-30 16:33:44:879 2310 sec: 35593480 operations; 13008.7 current ops/sec; [INSERT AverageLatency(us)=10.85] [READ AverageLatency(us)=15404.48] 
+2014-07-30 16:33:54:879 2320 sec: 35735353 operations; 14187.3 current ops/sec; [INSERT AverageLatency(us)=11.04] [READ AverageLatency(us)=13972.04] 
+2014-07-30 16:34:04:880 2330 sec: 35879498 operations; 14413.06 current ops/sec; [INSERT AverageLatency(us)=11.33] [READ AverageLatency(us)=13423.56] 
+2014-07-30 16:34:14:881 2340 sec: 36015154 operations; 13564.24 current ops/sec; [INSERT AverageLatency(us)=11.28] [READ AverageLatency(us)=14767.67] 
+2014-07-30 16:34:24:881 2350 sec: 36157924 operations; 14277 current ops/sec; [INSERT AverageLatency(us)=12.02] [READ AverageLatency(us)=14052.65] 
+2014-07-30 16:34:34:882 2360 sec: 36314466 operations; 15652.63 current ops/sec; [INSERT AverageLatency(us)=11.01] [READ AverageLatency(us)=12674.79] 
+2014-07-30 16:34:44:882 2370 sec: 36442367 operations; 12790.1 current ops/sec; [INSERT AverageLatency(us)=11.05] [READ AverageLatency(us)=15498.81] 
+2014-07-30 16:34:54:883 2380 sec: 36590996 operations; 14862.9 current ops/sec; [INSERT AverageLatency(us)=10.12] [READ AverageLatency(us)=13378.6] 
+2014-07-30 16:35:04:883 2390 sec: 36724390 operations; 13338.07 current ops/sec; [INSERT AverageLatency(us)=11.15] [READ AverageLatency(us)=14943.53] 
+2014-07-30 16:35:14:883 2400 sec: 36860645 operations; 13625.5 current ops/sec; [INSERT AverageLatency(us)=11.58] [READ AverageLatency(us)=14519.92] 
+2014-07-30 16:35:24:884 2410 sec: 37020921 operations; 16026 current ops/sec; [INSERT AverageLatency(us)=11.65] [READ AverageLatency(us)=12529.52] 
+2014-07-30 16:35:34:884 2420 sec: 37164793 operations; 14387.2 current ops/sec; [INSERT AverageLatency(us)=11.79] [READ AverageLatency(us)=13839.9] 
+2014-07-30 16:35:44:885 2430 sec: 37307323 operations; 14251.57 current ops/sec; [INSERT AverageLatency(us)=10.86] [READ AverageLatency(us)=13950.27] 
+2014-07-30 16:35:54:885 2440 sec: 37446882 operations; 13955.9 current ops/sec; [INSERT AverageLatency(us)=11.56] [READ AverageLatency(us)=14312.61] 
+2014-07-30 16:36:04:886 2450 sec: 37591400 operations; 14450.35 current ops/sec; [INSERT AverageLatency(us)=11.21] [READ AverageLatency(us)=13826.84] 
+2014-07-30 16:36:14:886 2460 sec: 37734557 operations; 14315.7 current ops/sec; [INSERT AverageLatency(us)=11.91] [READ AverageLatency(us)=13861.35] 
+2014-07-30 16:36:24:887 2470 sec: 37876810 operations; 14223.88 current ops/sec; [INSERT AverageLatency(us)=11.53] [READ AverageLatency(us)=13879.75] 
+2014-07-30 16:36:34:887 2480 sec: 38014198 operations; 13738.8 current ops/sec; [INSERT AverageLatency(us)=10.7] [READ AverageLatency(us)=14343.54] 
+2014-07-30 16:36:44:888 2490 sec: 38144979 operations; 13076.79 current ops/sec; [INSERT AverageLatency(us)=10.55] [READ AverageLatency(us)=15414.09] 
+2014-07-30 16:36:54:888 2500 sec: 38291032 operations; 14605.3 current ops/sec; [INSERT AverageLatency(us)=11.1] [READ AverageLatency(us)=13562.3] 
+2014-07-30 16:37:04:888 2510 sec: 38440097 operations; 14906.5 current ops/sec; [INSERT AverageLatency(us)=10.39] [READ AverageLatency(us)=13387.43] 
+2014-07-30 16:37:14:889 2520 sec: 38586241 operations; 14612.94 current ops/sec; [INSERT AverageLatency(us)=11.22] [READ AverageLatency(us)=13311.55] 
+2014-07-30 16:37:24:889 2530 sec: 38714208 operations; 12796.7 current ops/sec; [INSERT AverageLatency(us)=11.93] [READ AverageLatency(us)=15314.07] 
+2014-07-30 16:37:34:890 2540 sec: 38843571 operations; 12935.01 current ops/sec; [INSERT AverageLatency(us)=10.56] [READ AverageLatency(us)=15502.23] 
+2014-07-30 16:37:44:890 2550 sec: 38956483 operations; 11291.2 current ops/sec; [INSERT AverageLatency(us)=10.78] [READ AverageLatency(us)=17881.07] 
+2014-07-30 16:37:54:891 2560 sec: 39055842 operations; 9934.91 current ops/sec; [INSERT AverageLatency(us)=11.61] [READ AverageLatency(us)=20001.99] 
+2014-07-30 16:38:04:891 2570 sec: 39180666 operations; 12482.4 current ops/sec; [INSERT AverageLatency(us)=10.77] [READ AverageLatency(us)=15971.3] 
+2014-07-30 16:38:14:892 2580 sec: 39312165 operations; 13148.59 current ops/sec; [INSERT AverageLatency(us)=10.46] [READ AverageLatency(us)=14633.57] 
+2014-07-30 16:38:24:892 2590 sec: 39403646 operations; 9148.1 current ops/sec; [INSERT AverageLatency(us)=11.59] [READ AverageLatency(us)=21309.38] 
+2014-07-30 16:38:34:893 2600 sec: 39518609 operations; 11495.15 current ops/sec; [INSERT AverageLatency(us)=11.58] [READ AverageLatency(us)=17443.11] 
+2014-07-30 16:38:44:893 2610 sec: 39642669 operations; 12406 current ops/sec; [INSERT AverageLatency(us)=10.5] [READ AverageLatency(us)=16269.15] 
+2014-07-30 16:38:54:894 2620 sec: 39709079 operations; 6640.34 current ops/sec; [INSERT AverageLatency(us)=9.62] [READ AverageLatency(us)=29592.68] 
+2014-07-30 16:39:04:894 2630 sec: 39737355 operations; 2827.6 current ops/sec; [INSERT AverageLatency(us)=10.65] [READ AverageLatency(us)=67135.55] 
+2014-07-30 16:39:14:895 2640 sec: 39768435 operations; 3107.69 current ops/sec; [INSERT AverageLatency(us)=13.6] [READ AverageLatency(us)=66123.06] 
+2014-07-30 16:39:24:895 2650 sec: 39862645 operations; 9421 current ops/sec; [INSERT AverageLatency(us)=11.57] [READ AverageLatency(us)=22059.54] 
+2014-07-30 16:39:34:896 2660 sec: 40005512 operations; 14285.27 current ops/sec; [INSERT AverageLatency(us)=11.41] [READ AverageLatency(us)=14166.23] 
+2014-07-30 16:39:44:896 2670 sec: 40139486 operations; 13397.4 current ops/sec; [INSERT AverageLatency(us)=10.93] [READ AverageLatency(us)=14638.88] 
+2014-07-30 16:39:54:897 2680 sec: 40277920 operations; 13842.02 current ops/sec; [INSERT AverageLatency(us)=10.74] [READ AverageLatency(us)=14371.8] 
+2014-07-30 16:40:04:897 2690 sec: 40425149 operations; 14722.9 current ops/sec; [INSERT AverageLatency(us)=10.85] [READ AverageLatency(us)=13346.22] 
+2014-07-30 16:40:14:898 2700 sec: 40567598 operations; 14243.48 current ops/sec; [INSERT AverageLatency(us)=10.48] [READ AverageLatency(us)=13869.44] 
+2014-07-30 16:40:24:898 2710 sec: 40703731 operations; 13613.3 current ops/sec; [INSERT AverageLatency(us)=10.31] [READ AverageLatency(us)=14358.99] 
+2014-07-30 16:40:34:898 2720 sec: 40863981 operations; 16025 current ops/sec; [INSERT AverageLatency(us)=11.09] [READ AverageLatency(us)=12355.75] 
+2014-07-30 16:40:44:899 2730 sec: 41009471 operations; 14547.55 current ops/sec; [INSERT AverageLatency(us)=10.13] [READ AverageLatency(us)=13752.97] 
+2014-07-30 16:40:54:899 2740 sec: 41157342 operations; 14787.1 current ops/sec; [INSERT AverageLatency(us)=10.15] [READ AverageLatency(us)=13621.39] 
+2014-07-30 16:41:04:900 2750 sec: 41294697 operations; 13734.13 current ops/sec; [INSERT AverageLatency(us)=9.95] [READ AverageLatency(us)=14269.64] 
+2014-07-30 16:41:14:901 2760 sec: 41446628 operations; 15193.1 current ops/sec; [INSERT AverageLatency(us)=10.4] [READ AverageLatency(us)=13012.95] 
+2014-07-30 16:41:24:901 2770 sec: 41590854 operations; 14421.16 current ops/sec; [INSERT AverageLatency(us)=11.13] [READ AverageLatency(us)=13683.23] 
+2014-07-30 16:41:34:901 2780 sec: 41734200 operations; 14334.6 current ops/sec; [INSERT AverageLatency(us)=11.69] [READ AverageLatency(us)=13800.02] 
+2014-07-30 16:41:44:902 2790 sec: 41887698 operations; 15348.27 current ops/sec; [INSERT AverageLatency(us)=10.36] [READ AverageLatency(us)=12894.53] 
+2014-07-30 16:41:54:902 2800 sec: 42045289 operations; 15759.1 current ops/sec; [INSERT AverageLatency(us)=10.71] [READ AverageLatency(us)=12393.35] 
+2014-07-30 16:42:04:903 2810 sec: 42197326 operations; 15202.18 current ops/sec; [INSERT AverageLatency(us)=10.33] [READ AverageLatency(us)=13070.28] 
+2014-07-30 16:42:14:903 2820 sec: 42363625 operations; 16629.9 current ops/sec; [INSERT AverageLatency(us)=9.53] [READ AverageLatency(us)=11949.8] 
+2014-07-30 16:42:24:904 2830 sec: 42519910 operations; 15626.94 current ops/sec; [INSERT AverageLatency(us)=10.06] [READ AverageLatency(us)=12663.15] 
+2014-07-30 16:42:34:904 2840 sec: 42669743 operations; 14983.3 current ops/sec; [INSERT AverageLatency(us)=10.23] [READ AverageLatency(us)=13169.24] 
+2014-07-30 16:42:44:905 2850 sec: 42815662 operations; 14590.44 current ops/sec; [INSERT AverageLatency(us)=10.55] [READ AverageLatency(us)=13599.17] 
+2014-07-30 16:42:54:905 2860 sec: 42957113 operations; 14145.1 current ops/sec; [INSERT AverageLatency(us)=11.07] [READ AverageLatency(us)=13798.85] 
+2014-07-30 16:43:04:906 2870 sec: 43097563 operations; 14045 current ops/sec; [INSERT AverageLatency(us)=10.7] [READ AverageLatency(us)=14164.9] 
+2014-07-30 16:43:14:906 2880 sec: 43250454 operations; 15287.57 current ops/sec; [INSERT AverageLatency(us)=11.42] [READ AverageLatency(us)=13074.21] 
+2014-07-30 16:43:24:906 2890 sec: 43387385 operations; 13693.1 current ops/sec; [INSERT AverageLatency(us)=11.46] [READ AverageLatency(us)=14571.04] 
+2014-07-30 16:43:34:907 2900 sec: 43549310 operations; 16190.88 current ops/sec; [INSERT AverageLatency(us)=10.45] [READ AverageLatency(us)=12429.19] 
+2014-07-30 16:43:44:907 2910 sec: 43704398 operations; 15508.8 current ops/sec; [INSERT AverageLatency(us)=10.01] [READ AverageLatency(us)=12916.84] 
+2014-07-30 16:43:54:908 2920 sec: 43851281 operations; 14686.83 current ops/sec; [INSERT AverageLatency(us)=10.1] [READ AverageLatency(us)=13615.39] 
+2014-07-30 16:44:04:908 2930 sec: 44005461 operations; 15418 current ops/sec; [INSERT AverageLatency(us)=10.85] [READ AverageLatency(us)=12791.05] 
+2014-07-30 16:44:14:909 2940 sec: 44153501 operations; 14802.52 current ops/sec; [INSERT AverageLatency(us)=10.41] [READ AverageLatency(us)=13423.43] 
+2014-07-30 16:44:24:909 2950 sec: 44299117 operations; 14561.6 current ops/sec; [INSERT AverageLatency(us)=11.09] [READ AverageLatency(us)=13652.84] 
+2014-07-30 16:44:34:910 2960 sec: 44447009 operations; 14789.2 current ops/sec; [INSERT AverageLatency(us)=10.29] [READ AverageLatency(us)=13443.52] 
+2014-07-30 16:44:44:910 2970 sec: 44582543 operations; 13552.04 current ops/sec; [INSERT AverageLatency(us)=10.72] [READ AverageLatency(us)=14414.29] 
+2014-07-30 16:44:54:910 2980 sec: 44701530 operations; 11898.7 current ops/sec; [INSERT AverageLatency(us)=10.36] [READ AverageLatency(us)=16695.16] 
+2014-07-30 16:45:04:911 2990 sec: 44859227 operations; 15768.12 current ops/sec; [INSERT AverageLatency(us)=10.7] [READ AverageLatency(us)=12794.91] 
+2014-07-30 16:45:14:911 3000 sec: 45005930 operations; 14670.3 current ops/sec; [INSERT AverageLatency(us)=11.13] [READ AverageLatency(us)=13781.79] 
+2014-07-30 16:45:24:912 3010 sec: 45129658 operations; 12371.56 current ops/sec; [INSERT AverageLatency(us)=10.4] [READ AverageLatency(us)=15859.93] 
+2014-07-30 16:45:34:912 3020 sec: 45245729 operations; 11607.1 current ops/sec; [INSERT AverageLatency(us)=10.96] [READ AverageLatency(us)=17303.9] 
+2014-07-30 16:45:44:913 3030 sec: 45333254 operations; 8751.62 current ops/sec; [INSERT AverageLatency(us)=11.1] [READ AverageLatency(us)=20289.45] 
+2014-07-30 16:45:54:913 3040 sec: 45417048 operations; 8379.4 current ops/sec; [INSERT AverageLatency(us)=11.51] [READ AverageLatency(us)=25354.73] 
+2014-07-30 16:46:04:914 3050 sec: 45455897 operations; 3884.51 current ops/sec; [INSERT AverageLatency(us)=12.05] [READ AverageLatency(us)=55309.24] 
+2014-07-30 16:46:14:914 3060 sec: 45555391 operations; 9949.4 current ops/sec; [INSERT AverageLatency(us)=12.07] [READ AverageLatency(us)=19576.75] 
+2014-07-30 16:46:24:915 3070 sec: 45593178 operations; 3778.7 current ops/sec; [INSERT AverageLatency(us)=13.2] [READ AverageLatency(us)=52915.18] 
+2014-07-30 16:46:34:915 3080 sec: 45667093 operations; 7390.76 current ops/sec; [INSERT AverageLatency(us)=11.13] [READ AverageLatency(us)=27242.4] 
+2014-07-30 16:46:44:915 3090 sec: 45742215 operations; 7512.2 current ops/sec; [INSERT AverageLatency(us)=11.51] [READ AverageLatency(us)=24653.43] 
+2014-07-30 16:46:54:916 3100 sec: 45842370 operations; 10014.5 current ops/sec; [INSERT AverageLatency(us)=10.82] [READ AverageLatency(us)=21913.82] 
+2014-07-30 16:47:04:916 3110 sec: 45926637 operations; 8426.7 current ops/sec; [INSERT AverageLatency(us)=10.15] [READ AverageLatency(us)=23001.26] 
+2014-07-30 16:47:14:917 3120 sec: 46036055 operations; 10940.71 current ops/sec; [INSERT AverageLatency(us)=11.27] [READ AverageLatency(us)=18955.35] 
+2014-07-30 16:47:24:973 3130 sec: 46134386 operations; 9778.34 current ops/sec; [INSERT AverageLatency(us)=10.42] [READ AverageLatency(us)=20623.28] 
+2014-07-30 16:47:34:973 3140 sec: 46267220 operations; 13283.4 current ops/sec; [INSERT AverageLatency(us)=10.73] [READ AverageLatency(us)=14795.76] 
+2014-07-30 16:47:44:973 3150 sec: 46379852 operations; 11263.2 current ops/sec; [INSERT AverageLatency(us)=11.4] [READ AverageLatency(us)=17840.48] 
+2014-07-30 16:47:54:974 3160 sec: 46502607 operations; 12274.27 current ops/sec; [INSERT AverageLatency(us)=11.52] [READ AverageLatency(us)=16195.09] 
+2014-07-30 16:48:04:974 3170 sec: 46604266 operations; 10165.9 current ops/sec; [INSERT AverageLatency(us)=11.52] [READ AverageLatency(us)=19502.62] 
+2014-07-30 16:48:14:975 3180 sec: 46716556 operations; 11227.88 current ops/sec; [INSERT AverageLatency(us)=10.58] [READ AverageLatency(us)=17887.4] 
+2014-07-30 16:48:24:975 3190 sec: 46847877 operations; 13132.1 current ops/sec; [INSERT AverageLatency(us)=10.63] [READ AverageLatency(us)=15237.53] 
+2014-07-30 16:48:34:976 3200 sec: 46984352 operations; 13646.14 current ops/sec; [INSERT AverageLatency(us)=11.76] [READ AverageLatency(us)=14329.39] 
+2014-07-30 16:48:44:976 3210 sec: 47127810 operations; 14345.8 current ops/sec; [INSERT AverageLatency(us)=10.4] [READ AverageLatency(us)=13853.44] 
+2014-07-30 16:48:54:977 3220 sec: 47216165 operations; 8834.62 current ops/sec; [INSERT AverageLatency(us)=11.43] [READ AverageLatency(us)=22298.71] 
+2014-07-30 16:49:04:977 3230 sec: 47334910 operations; 11874.5 current ops/sec; [INSERT AverageLatency(us)=11.14] [READ AverageLatency(us)=16662.61] 
+2014-07-30 16:49:14:978 3240 sec: 47482799 operations; 14788.9 current ops/sec; [INSERT AverageLatency(us)=10.43] [READ AverageLatency(us)=13548.59] 
+2014-07-30 16:49:24:978 3250 sec: 47613828 operations; 13101.59 current ops/sec; [INSERT AverageLatency(us)=11.01] [READ AverageLatency(us)=15008.29] 
+2014-07-30 16:49:34:978 3260 sec: 47734901 operations; 12107.3 current ops/sec; [INSERT AverageLatency(us)=10.94] [READ AverageLatency(us)=16423.03] 
+2014-07-30 16:49:44:979 3270 sec: 47858352 operations; 12343.87 current ops/sec; [INSERT AverageLatency(us)=10.86] [READ AverageLatency(us)=16226.24] 
+2014-07-30 16:49:54:979 3280 sec: 47968161 operations; 10980.9 current ops/sec; [INSERT AverageLatency(us)=10.33] [READ AverageLatency(us)=18123.61] 
+2014-07-30 16:50:04:980 3290 sec: 48086741 operations; 11856.81 current ops/sec; [INSERT AverageLatency(us)=11.11] [READ AverageLatency(us)=16675.99] 
+2014-07-30 16:50:14:980 3300 sec: 48233441 operations; 14670 current ops/sec; [INSERT AverageLatency(us)=11.99] [READ AverageLatency(us)=13577.94] 
+2014-07-30 16:50:24:981 3310 sec: 48360626 operations; 12717.23 current ops/sec; [INSERT AverageLatency(us)=10.29] [READ AverageLatency(us)=15735.17] 
+2014-07-30 16:50:34:981 3320 sec: 48487511 operations; 12688.5 current ops/sec; [INSERT AverageLatency(us)=10.49] [READ AverageLatency(us)=15591.45] 
+2014-07-30 16:50:44:982 3330 sec: 48579236 operations; 9171.58 current ops/sec; [INSERT AverageLatency(us)=10.29] [READ AverageLatency(us)=21489.38] 
+2014-07-30 16:50:54:982 3340 sec: 48654034 operations; 7479.8 current ops/sec; [INSERT AverageLatency(us)=10.71] [READ AverageLatency(us)=26017.06] 
+2014-07-30 16:51:04:983 3350 sec: 48747103 operations; 9306.9 current ops/sec; [INSERT AverageLatency(us)=11.59] [READ AverageLatency(us)=21634.17] 
+2014-07-30 16:51:14:983 3360 sec: 48853080 operations; 10596.64 current ops/sec; [INSERT AverageLatency(us)=10.82] [READ AverageLatency(us)=18864.4] 
+2014-07-30 16:51:24:983 3370 sec: 48976551 operations; 12347.1 current ops/sec; [INSERT AverageLatency(us)=10.49] [READ AverageLatency(us)=16096.61] 
+2014-07-30 16:51:34:984 3380 sec: 49118481 operations; 14191.58 current ops/sec; [INSERT AverageLatency(us)=10.49] [READ AverageLatency(us)=14186.31] 
+2014-07-30 16:51:44:984 3390 sec: 49244044 operations; 12556.3 current ops/sec; [INSERT AverageLatency(us)=10.54] [READ AverageLatency(us)=15924.82] 
+2014-07-30 16:51:54:985 3400 sec: 49382316 operations; 13825.82 current ops/sec; [INSERT AverageLatency(us)=10.71] [READ AverageLatency(us)=14438.66] 
+2014-07-30 16:52:04:985 3410 sec: 49516734 operations; 13441.8 current ops/sec; [INSERT AverageLatency(us)=10.43] [READ AverageLatency(us)=14610.5] 
+2014-07-30 16:52:14:986 3420 sec: 49666711 operations; 14997.7 current ops/sec; [UPDATE AverageLatency(us)=302829] [INSERT AverageLatency(us)=10.44] [READ AverageLatency(us)=12765.3] [CLEANUP AverageLatency(us)=302966] 
+2014-07-30 16:52:24:986 3430 sec: 49801111 operations; 13438.66 current ops/sec; [UPDATE AverageLatency(us)=380551] [INSERT AverageLatency(us)=10.26] [READ AverageLatency(us)=13906.63] [CLEANUP AverageLatency(us)=381802] 
+2014-07-30 16:52:34:987 3440 sec: 49919786 operations; 11866.31 current ops/sec; [UPDATE AverageLatency(us)=114825.67] [INSERT AverageLatency(us)=11.08] [READ AverageLatency(us)=12539.16] [CLEANUP AverageLatency(us)=114833.5] 
+2014-07-30 16:52:44:987 3450 sec: 49985591 operations; 6580.5 current ops/sec; [UPDATE AverageLatency(us)=100158.11] [INSERT AverageLatency(us)=11.96] [READ AverageLatency(us)=9739.82] [CLEANUP AverageLatency(us)=100165.89] 
+2014-07-30 16:52:50:822 3456 sec: 50000000 operations; 2469.41 current ops/sec; [UPDATE AverageLatency(us)=166782.33] [INSERT AverageLatency(us)=10.44] [READ AverageLatency(us)=7389.14] [CLEANUP AverageLatency(us)=166790] 
++ echo 'end time:'
+end time:
+++ date +%s
++ echo 1406764371
+1406764371
++ echo 'sleeping for 10 sec ...'
+sleeping for 10 sec ...
++ sleep 10
++ let counter=1+1
++ read line
++ set +x
