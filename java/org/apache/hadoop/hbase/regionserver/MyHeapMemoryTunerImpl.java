@@ -36,7 +36,8 @@ class MyHeapMemoryTunerImpl implements HeapMemoryTuner {
   private Configuration conf;
   private float step = DEFAULT_STEP_VALUE;
   private static final float CONSTANT = 0.2f;
-  private static final int num_regions = 1;
+  private static final int num_regions = 9;
+  private static final int num_rs_threads=8;
   private float globalMemStorePercentMinRange;
   private float globalMemStorePercentMaxRange;
   private float blockCachePercentMinRange;
@@ -296,12 +297,13 @@ class MyHeapMemoryTunerImpl implements HeapMemoryTuner {
     else {
       //float ratio = ((float) 64.0f/(am_storeFileSize*1024))*(1/(1-cachedataratio));
       //float ratio = CONSTANT*(1/(1-cachedataratio));
-      //double ratio = (1.0/(1.0 + Math.pow(Math.E, -5.0*(cachedataratio - 0.5))));
+      double ratio = (1.0/(1.0 + Math.pow(Math.E, -3.0*(cachedataratio - 0.5))));
       // double ratio = Math.pow(cachedataratio,2);
       //double ratio = 1 - Math.pow(1 -cachedataratio, 2);
-      double ratio = 1 - Math.pow(1 -cachedataratio, 4);
+      //double ratio = 1 - Math.pow(1 -cachedataratio, 2);
+        //double ratio = 1;
 	System.out.println("selfdapql probability ratio: " + ratio);
-      double pc_by_pm = ( ratio*read_prop *dnmetrics_avg_read_time*num_regions)/(write_prop * blocking_period_per_update);     
+      double pc_by_pm = ( ratio*dnmetrics_avg_read_time*num_regions)/(write_prop * blocking_period_per_update*num_rs_threads);     
       System.out.println("selfdapql pc by pm ratio: " + pc_by_pm);
       System.out.println("selfdapql pc_by_pm * am_blockCacheEvictionCount: " + pc_by_pm * am_blockCacheEvictionCount);
       System.out.println("selfdapql rslog_blocking_updates_count: " + rslog_blocking_updates_count); 
